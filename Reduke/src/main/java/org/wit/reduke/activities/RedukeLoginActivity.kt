@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.*
-import org.wit.reduke.R
+import org.wit.post.R
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.UserModel
 
@@ -14,15 +14,15 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
         app = application as MainApp
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        val mypreference = RedukeSharedPreferences(this)
+        val redukePref = RedukeSharedPreferences(this)
         loginButton.setOnClickListener {
             var users = app.users.findAll()
             var foundUser: UserModel? = users.find { p -> p.email == enteredEmail.text.toString() }
             if (foundUser != null) {
                 if (enteredEmail.text.toString() == foundUser.email && enteredPassword.text.toString() == foundUser.password) {
-                    mypreference.setCurrentUserName(foundUser.name)
-                    mypreference.setCurrentUserEmail(foundUser.email)
-                    mypreference.setCurrentUserPassword(foundUser.password)
+                    redukePref.setCurrentUserName(foundUser.name)
+                    redukePref.setCurrentUserEmail(foundUser.email)
+                    redukePref.setCurrentUserPassword(foundUser.password)
                 } else {
                     toast(R.string.toast_InvalidCreds)
                 }
