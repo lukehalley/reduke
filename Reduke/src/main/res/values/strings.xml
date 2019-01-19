@@ -1,69 +1,54 @@
 <resources>
+    <!--Global Strings-->
+    <string name="app_name">Reduke</string>
+    <string name="hint_Reduke">Reduke</string>
+    <string name="disc_RedukeLogo">Reduke Logo</string>
+
+    <!--User-->
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="name">Name</string>
     <string name="loginButton">Login</string>
     <string name="registerButton">Register</string>
-    <string name="app_name">Reduke</string>
-    <string name="hint_redukeTitle">Reduke Title</string>
-    <string name="hint_redukeDescription">Description </string>
-    <string name="button_addReduke">Add Reduke</string>
-    <string name="title_editReduke">Edit Reduke</string>
-    <string name="menu_addReduke">Add</string>
-    <string name="menu_cancelReduke">Cancel</string>
-    <string name="hint_EnterRedukeTitle">Please Fill In All Above Fields!</string>
-    <string name="button_saveReduke">Save Reduke</string>
-    <string name="button_addImageFromGallery"> Gallery </string>
-    <string name="button_addAnotherImage"> Add Another Image </string>
-    <string name="select_redukeImage">Select Reduke Image</string>
-    <string name="change_redukeFirstImage">Change First Reduke Image</string>
-    <string name="change_redukeSecondImage">Change Second Reduke Image</string>
-    <string name="change_redukeThirdImage">Change Third Reduke Image</string>
-    <string name="change_redukeFourthImage">Change Fourth Reduke Image</string>
-    <string name="button_setLocation">Set Location</string>
-    <string name="button_changeLocation">Change Location</string>
-    <string name="title_activityMaps">Map</string>
-    <string name="title_RedukeList">Reduke List</string>
-    <string name="title_RedukeAdd">Add Reduke</string>
-    <string name="toast_InvalidCreds">Incorrect Email or Password!</string>
-    <string name="name">Name</string>
-    <string name="promptSignUp">Not Signed Up Yet? Sign Up Below</string>
-    <string name="logoutPrompt">Are you sure you would like to log out?</string>
-    <string name="title_splashscreen">Splashscreen</string>
-    <string name="title_RedukeLogin">Reduke Login</string>
-    <string name="infoTag">Information</string>
-    <string name="imageTag">Images (Up To 4)</string>
-    <string name="mapTag">Location</string>
-    <string name="button_deleteReduke">Delete Reduke</string>
-    <string name="deletePrompt">Are you sure you want to delete this Reduke?</string>
-    <string name="registerTitle">Register</string>
     <string name="title_Register">Reduke User Register</string>
     <string name="hint_SucessfullRegister">Registration Sucessfull!</string>
     <string name="err_UserExists">User with the entered email already exists!</string>
-    <string name="hint_redukeadditionalNotes">Additional Notes</string>
-    <string name="visitedTag">Visited</string>
-    <string name="radio_Visited">Visited</string>
-    <string name="date_Visited">Date Visited: (Not Visited Yet)</string>
+    <string name="deletePrompt">Are you sure you want to delete this Post?</string>
+    <string name="registerTitle">Register</string>
+    <string name="toast_InvalidCreds">Incorrect Email or Password!</string>
+    <string name="promptSignUp">Not Signed Up Yet? Sign Up Below</string>
+    <string name="logoutPrompt">Are you sure you would like to log out?</string>
+    <string name="title_splashscreen">Splashscreen</string>
+    <string name="title_RedukeLogin">Post Login</string>
+    <string name="logoutTitle">Logout</string>
+
+    <!--Post-->
+    <string name="hint_postTitle">Post Title</string>
+    <string name="hint_postDescription">Description </string>
+    <string name="title_editPost">Edit Post</string>
+    <string name="hint_EnterPostTitle">Please Fill In All Above Fields!</string>
+    <string name="infoTag">Information</string>
+    <string name="title_PostList">Feed</string>
+    <string name="title_PostAdd">Add Post</string>
+    <string name="button_addPost">Add Post</string>
+    <string name="button_savePost">Save Post</string>
+    <string name="button_deleteReduke">Delete Post</string>
+    <string name="menu_addPost">Add</string>
+    <string name="menu_cancel_Post">Cancel</string>
+
+    <!--Settings-->
+    <string name="title_Settings">Settings</string>
     <string name="title_activity_settings">Settings</string>
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="settingsTitle">Settings</string>
-    <string name="logoutTitle">Logout</string>
     <string name="changeUserTitle">Change Credentials</string>
     <string name="changeUserName">Name</string>
     <string name="button_SaveEditUser">Save</string>
     <string name="changeUserEmail">Email</string>
     <string name="changePassword">Password</string>
-    <string name="redukeCountNA">Reduke Count: N/A</string>
-    <string name="redukeVisitedCount">Redukes Visited: N/A</string>
     <string name="confirmUserEditSave">Are you sure you want to edit your credentials?</string>
-    <string name="title_Settings">Settings</string>
-    <string name="unsavedPrompt">Are you sure you dont want to save this Reduke?</string>
-    <string name="isVisited">Visited</string>
-    <string name="notVisited">Not Visited</string>
-    <string name="button_addImageFromCamera">Camera</string>
+    <string name="unsavedPrompt">Are you sure you dont want to save this Post?</string>
     <string name="changePasswordConfirm">Confirm New Password</string>
     <string name="passwordConfirm">Confirm Password</string>
-    <string name="redukeStatsTitle">Stats</string>
-    <string name="noUser">No User</string>
-    <string name="hint_Reduke">Reduke</string>
-    <string name="disc_RedukeLogo">Reduke Logo</string>
+
 </resources>

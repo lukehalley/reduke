@@ -6,7 +6,7 @@
     <item
         android:id="@+id/item_add"
         android:text="menu_addPost"
-        android:title="@string/menu_addReduke"
+        android:title="@string/menu_addPost"
         app:showAsAction="always" />
 
     <item

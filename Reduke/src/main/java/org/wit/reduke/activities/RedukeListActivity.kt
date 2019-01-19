@@ -10,19 +10,20 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_feed.*
+import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_reduke_list.*
 import org.jetbrains.anko.*
 import org.wit.post.R
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.PostModel
 import org.wit.reduke.models.UserModel
 
-class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
+class RedukeListActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
     lateinit var app: MainApp
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_feed)
+        setContentView(R.layout.activity_reduke_list)
         app = application as MainApp
         toolbarMain.title = title
         setSupportActionBar(toolbarMain)
@@ -34,10 +35,10 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         }
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = RedukeAdapter(app.posts.findAll(), this)
+        recyclerView.adapter = RedukeAdapter(app.redukes.findAll(), this)
         loadRedukes()
         addRedukeFab.setOnClickListener() {
-            startActivityForResult<CreatePostActivity>(0)
+            startActivityForResult<PostActivity>(0)
         }
 
         var mDrawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -47,25 +48,28 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             menuItem.isChecked = true
             var user = UserModel()
-//            when (menuItem?.itemId) {
-//                R.id.pos -> startActivityForResult<CreatePostActivity>(0)
-//            }
-//            when (menuItem?.itemId) {
-//                R.id.nav_Logout ->
-//                    alert(R.string.logoutPrompt) {
-//                        yesButton {
-//                            finish()
-//                        }
-//                        noButton {}
-//                    }.show()
-//            }
+            when (menuItem?.itemId) {
+                R.id.nav_addReduke -> startActivityForResult<PostActivity>(0)
+            }
+            when (menuItem?.itemId) {
+                R.id.nav_Settings -> startActivityForResult(intentFor<RedukeSettingsActivity>().putExtra("user_edit", user), 0)
+            }
+            when (menuItem?.itemId) {
+                R.id.nav_Logout ->
+                    alert(R.string.logoutPrompt) {
+                        yesButton {
+                            finish()
+                        }
+                        noButton {}
+                    }.show()
+            }
             mDrawerLayout.closeDrawers()
             true
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_feed, menu)
+        menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -78,7 +82,10 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             android.R.id.home -> mDrawerLayout.openDrawer(GravityCompat.START)
         }
         when (item?.itemId) {
-            R.id.item_add -> startActivityForResult<CreatePostActivity>(0)
+            R.id.item_add -> startActivityForResult<PostActivity>(0)
+        }
+        when (item?.itemId) {
+            R.id.item_settings -> startActivityForResult(intentFor<RedukeSettingsActivity>().putExtra("user_edit", user), 0)
         }
         when (item?.itemId) {
             R.id.item_logout ->
@@ -93,7 +100,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     override fun onRedukeClick(post: PostModel) {
-        startActivityForResult(intentFor<CreatePostActivity>().putExtra("reduke_edit", post), 0)
+        startActivityForResult(intentFor<PostActivity>().putExtra("post_edit", post), 0)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -102,17 +109,20 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     private fun loadRedukes() {
-        showRedukes(app.posts.findAll())
+        showRedukes(app.redukes.findAll())
     }
 
-    fun showRedukes(redukes: List<PostModel>) {
+    fun showRedukes(posts: List<PostModel>) {
         val mypreference = RedukeSharedPreferences(this)
         val userName = mypreference.getCurrentUserName()
         val userEmail = mypreference.getCurrentUserEmail()
-        mypreference.setCurrentRedukeCount(redukes.size)
-        var visCounted = 0
-        mypreference.setCurrentVisitRedukeCount(visCounted)
-        recyclerView.adapter = RedukeAdapter(redukes, this)
+        val parentView = nav_view.getHeaderView(0)
+        val navHeaderUser = parentView.findViewById(R.id.current_user_nav_header) as TextView
+        val navHeaderEmail = parentView.findViewById(R.id.current_email_nav_header) as TextView
+        navHeaderUser.text = userName
+        navHeaderEmail.text = userEmail
+        mypreference.setCurrentRedukeCount(posts.size)
+        recyclerView.adapter = RedukeAdapter(posts, this)
         recyclerView.adapter?.notifyDataSetChanged()
     }
 
