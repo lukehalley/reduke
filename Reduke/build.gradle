@@ -11,7 +11,7 @@ androidExtensions {
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "org.wit.reduke"
+        applicationId "org.wit.post"
         minSdkVersion 26
         targetSdkVersion 28
         versionCode 1
