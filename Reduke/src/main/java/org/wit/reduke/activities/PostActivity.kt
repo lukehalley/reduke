@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import kotlinx.android.synthetic.main.activity_post_addedit.*
+import kotlinx.android.synthetic.main.activity_post.*
 import org.jetbrains.anko.*
 import org.wit.post.R
 import org.wit.reduke.main.MainApp
@@ -19,7 +19,7 @@ class PostActivity : AppCompatActivity(), AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_post_addedit)
+        setContentView(R.layout.activity_post)
         toolbarAdd.title = title
         setSupportActionBar(toolbarAdd)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
