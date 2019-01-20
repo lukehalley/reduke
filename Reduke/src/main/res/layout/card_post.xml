@@ -43,17 +43,6 @@
 
         </LinearLayout>
 
-        <!--<EditText-->
-        <!--android:id="@+id/visitedIndicator"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="25dp"-->
-        <!--android:background="@color/colorDisabled"-->
-        <!--android:ems="10"-->
-        <!--android:inputType="none|textPersonName"-->
-        <!--android:text="@string/notVisited"-->
-        <!--android:textAlignment="center"-->
-        <!--android:textColor="@android:color/white" />-->
-
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/item_add"
-        android:text="menu_addPost"
-        android:title="@string/menu_addPost"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/item_settings"
-        android:title="Settings"
         android:icon="@drawable/ic_settings_white_24dp"
+        android:title="Settings"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/item_logout"
-        android:title="Logout"
         android:icon="@drawable/logout"
+        android:title="Logout"
         app:showAsAction="always" />
 </menu>

@@ -38,7 +38,7 @@ class RedukeListActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         recyclerView.adapter = RedukeAdapter(app.redukes.findAll(), this)
         loadRedukes()
         addRedukeFab.setOnClickListener() {
-            startActivityForResult<PostActivity>(0)
+            startActivityForResult<PostAddEditActivity>(0)
         }
 
         var mDrawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -49,7 +49,7 @@ class RedukeListActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             menuItem.isChecked = true
             var user = UserModel()
             when (menuItem?.itemId) {
-                R.id.nav_addReduke -> startActivityForResult<PostActivity>(0)
+                R.id.nav_addReduke -> startActivityForResult<PostAddEditActivity>(0)
             }
             when (menuItem?.itemId) {
                 R.id.nav_Settings -> startActivityForResult(intentFor<RedukeSettingsActivity>().putExtra("user_edit", user), 0)
@@ -69,7 +69,7 @@ class RedukeListActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.menu_feed, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -80,9 +80,6 @@ class RedukeListActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         var user = UserModel()
         when (item?.itemId) {
             android.R.id.home -> mDrawerLayout.openDrawer(GravityCompat.START)
-        }
-        when (item?.itemId) {
-            R.id.item_add -> startActivityForResult<PostActivity>(0)
         }
         when (item?.itemId) {
             R.id.item_settings -> startActivityForResult(intentFor<RedukeSettingsActivity>().putExtra("user_edit", user), 0)
@@ -100,7 +97,7 @@ class RedukeListActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     override fun onRedukeClick(post: PostModel) {
-        startActivityForResult(intentFor<PostActivity>().putExtra("post_edit", post), 0)
+        startActivityForResult(intentFor<PostAddEditActivity>().putExtra("post_edit", post), 0)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

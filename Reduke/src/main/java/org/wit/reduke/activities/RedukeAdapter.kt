@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.card_reduke.view.*
+import kotlinx.android.synthetic.main.card_post.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.wit.post.R
 import org.wit.reduke.models.PostModel
@@ -19,7 +19,7 @@ class RedukeAdapter(private var posts: List<PostModel>,
                     private val listener: RedukeListener) : RecyclerView.Adapter<RedukeAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.card_reduke, parent, false))
+        return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.card_post, parent, false))
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
