@@ -1,4 +1,4 @@
-package org.wit.reduke.activities
+package org.wit.reduke.activities.feed
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater

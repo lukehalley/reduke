@@ -1,4 +1,4 @@
-package org.wit.reduke.activities
+package org.wit.reduke.activities.feed
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,11 +14,14 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_feed.*
 import org.jetbrains.anko.*
 import org.wit.post.R
+import org.wit.reduke.activities.users.RedukeSettingsActivity
+import org.wit.reduke.activities.users.RedukeSharedPreferences
+import org.wit.reduke.activities.posts.PostAddEditActivity
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.PostModel
 import org.wit.reduke.models.UserModel
 
-class RedukeListActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
+class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
     lateinit var app: MainApp
     override fun onCreate(savedInstanceState: Bundle?) {

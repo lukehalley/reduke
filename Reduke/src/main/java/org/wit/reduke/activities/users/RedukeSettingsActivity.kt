@@ -1,4 +1,4 @@
-package org.wit.reduke.activities
+package org.wit.reduke.activities.users
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
