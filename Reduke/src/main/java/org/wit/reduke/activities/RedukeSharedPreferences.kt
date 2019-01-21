@@ -5,6 +5,7 @@ import android.content.Context
 class RedukeSharedPreferences(context: Context) {
 
     val PREFERENCE_NAME = "CurrentUser"
+    val PREF_VAL_USER_ID = "CurrentUserID"
     val PREF_VAL_USER_NAME = "CurrentUserName"
     val PREF_VAL_USER_EMAIL = "CurrentUserEmail"
     val PREF_VAL_USER_PASSWORD = "CurrentUserPassword"
@@ -50,6 +51,16 @@ class RedukeSharedPreferences(context: Context) {
         val editor = preference.edit()
         editor.putInt(PREF_VAL_POST_COUNT, count)
         editor.apply()
+    }
+
+    fun setCurrentUserID(id: String) {
+        val editor = preference.edit()
+        editor.putString(PREF_VAL_USER_ID, String.toString())
+        editor.apply()
+    }
+
+    fun getCurrentUserID(): String {
+        return preference.getString(PREF_VAL_USER_ID, "ID NA")
     }
 
 }
