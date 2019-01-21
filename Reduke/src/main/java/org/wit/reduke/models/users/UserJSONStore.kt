@@ -1,4 +1,4 @@
-package org.wit.reduke.models
+package org.wit.reduke.models.users
 
 import android.content.Context
 import com.google.gson.Gson

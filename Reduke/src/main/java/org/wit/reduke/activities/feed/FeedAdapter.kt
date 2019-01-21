@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.card_post.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.wit.post.R
-import org.wit.reduke.models.PostModel
+import org.wit.reduke.models.posts.PostModel
 
 interface RedukeListener {
     fun onRedukeClick(post: PostModel)

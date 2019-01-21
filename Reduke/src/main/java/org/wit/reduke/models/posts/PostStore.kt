@@ -1,4 +1,4 @@
-package org.wit.reduke.models
+package org.wit.reduke.models.posts
 
 interface PostStore {
     fun findAll(): List<PostModel>

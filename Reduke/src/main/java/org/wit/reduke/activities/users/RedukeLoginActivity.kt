@@ -7,7 +7,7 @@ import org.jetbrains.anko.*
 import org.wit.post.R
 import org.wit.reduke.activities.feed.FeedActivity
 import org.wit.reduke.main.MainApp
-import org.wit.reduke.models.UserModel
+import org.wit.reduke.models.users.UserModel
 
 class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
     lateinit var app: MainApp
