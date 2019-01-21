@@ -10,18 +10,18 @@ import org.wit.reduke.helpers.read
 import org.wit.reduke.helpers.write
 import java.util.*
 
-val POST_JSON_FILE = "posts.json"
+val POST_JSON_FILE = "redukes.json"
 val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
 val listType = object : TypeToken<java.util.ArrayList<PostModel>>() {}.type
 
-fun generateRandomPostId(): Long {
+fun generateRandomRedukeId(): Long {
     return Random().nextLong()
 }
 
 class PostJSONStore : PostStore, AnkoLogger {
 
     val context: Context
-    var posts = mutableListOf<PostModel>()
+    var redukes = mutableListOf<PostModel>()
 
     constructor (context: Context) {
         this.context = context
@@ -31,38 +31,39 @@ class PostJSONStore : PostStore, AnkoLogger {
     }
 
     override fun findAll(): MutableList<PostModel> {
-        return posts
+        return redukes
     }
 
     override fun create(post: PostModel) {
-        post.id = generateRandomPostId()
-        posts.add(post)
+        post.id = generateRandomRedukeId()
+        redukes.add(post)
         serialize()
     }
 
     override fun update(post: PostModel) {
-        var fetchedPost: PostModel? = posts.find { p -> p.id == post.id }
-        if (fetchedPost != null) {
-            fetchedPost.title = post.title
-            fetchedPost.type = post.type
-            fetchedPost.text = post.text
-            fetchedPost.tag = post.tag
+        var foundPost: PostModel? = redukes.find { p -> p.id == post.id }
+        if (foundPost != null) {
+            foundPost.title = post.title
+            foundPost.text = post.text
+            foundPost.tags = post.tags
+            foundPost.timestamp = post.timestamp
+            foundPost.ownerId = post.ownerId
             serialize()
         }
     }
 
-    override fun delete(post: PostModel) {
-        posts.remove(post)
+    override fun delete(placemark: PostModel) {
+        redukes.remove(placemark)
         serialize()
     }
 
     private fun serialize() {
-        val jsonString = gsonBuilder.toJson(posts, listType)
+        val jsonString = gsonBuilder.toJson(redukes, listType)
         write(context, POST_JSON_FILE, jsonString)
     }
 
     private fun deserialize() {
         val jsonString = read(context, POST_JSON_FILE)
-        posts = Gson().fromJson(jsonString, listType)
+        redukes = Gson().fromJson(jsonString, listType)
     }
 }

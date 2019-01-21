@@ -14,15 +14,16 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
         app = application as MainApp
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        val redukePref = RedukeSharedPreferences(this)
+        val mypreference = RedukeSharedPreferences(this)
         loginButton.setOnClickListener {
             var users = app.users.findAll()
             var foundUser: UserModel? = users.find { p -> p.email == enteredEmail.text.toString() }
             if (foundUser != null) {
                 if (enteredEmail.text.toString() == foundUser.email && enteredPassword.text.toString() == foundUser.password) {
-                    redukePref.setCurrentUserName(foundUser.name)
-                    redukePref.setCurrentUserEmail(foundUser.email)
-                    redukePref.setCurrentUserPassword(foundUser.password)
+                    mypreference.setCurrentUserName(foundUser.name)
+                    mypreference.setCurrentUserEmail(foundUser.email)
+                    mypreference.setCurrentUserPassword(foundUser.password)
+                    startActivityForResult(intentFor<RedukeListActivity>().putExtra("loggedInUser", enteredEmail.text.toString()), 0)
                 } else {
                     toast(R.string.toast_InvalidCreds)
                 }
