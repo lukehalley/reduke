@@ -11,7 +11,7 @@ import org.jetbrains.anko.toast
 import org.wit.post.R
 import org.wit.reduke.main.MainApp
 
-class HillfortRegisterActivity : AppCompatActivity(), AnkoLogger {
+class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
 
     lateinit var app: MainApp
     var auth: FirebaseAuth = FirebaseAuth.getInstance()

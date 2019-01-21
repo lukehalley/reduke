@@ -2,6 +2,7 @@ package org.wit.reduke.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.google.firebase.FirebaseApp
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.*
 import org.wit.post.R
@@ -11,6 +12,7 @@ import org.wit.reduke.models.UserModel
 class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
     lateinit var app: MainApp
     override fun onCreate(savedInstanceState: Bundle?) {
+        FirebaseApp.initializeApp(this)
         app = application as MainApp
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
