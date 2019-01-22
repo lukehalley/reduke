@@ -51,5 +51,6 @@
     <string name="changePasswordConfirm">Confirm New Password</string>
     <string name="passwordConfirm">Confirm Password</string>
     <string name="hint_EnterAllFields">Please Enter All Fields!</string>
+    <string name="toast_AuthFail">Email or Password not found, please try again.</string>
 
 </resources>
