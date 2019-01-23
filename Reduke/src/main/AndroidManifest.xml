@@ -35,7 +35,7 @@
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
 
-        <activity android:name="org.wit.reduke.activities.RedukeSplashscreen">
+        <activity android:name="org.wit.reduke.activities.other.RedukeSplashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,23 +48,23 @@
             android:value="YOUR-API-KEY-HERE" />
 
         <activity
-            android:name="org.wit.reduke.activities.RedukeListActivity"
+            android:name="org.wit.reduke.activities.feed.FeedActivity"
             android:label="@string/title_PostList" />
         <activity
-            android:name="org.wit.reduke.activities.PostAddEditActivity"
+            android:name="org.wit.reduke.activities.posts.PostAddEditActivity"
             android:label="@string/title_PostAdd"
-            android:parentActivityName="org.wit.reduke.activities.RedukeListActivity" />
+            android:parentActivityName="org.wit.reduke.activities.feed.FeedActivity" />
         <activity
-            android:name="org.wit.reduke.activities.RedukeLoginActivity"
+            android:name="org.wit.reduke.activities.users.RedukeLoginActivity"
             android:label="@string/title_RedukeLogin" />
         <activity
-            android:name="org.wit.reduke.activities.RedukeRegisterActivity"
+            android:name="org.wit.reduke.activities.users.RedukeRegisterActivity"
             android:label="@string/title_Register"
-            android:parentActivityName="org.wit.reduke.activities.RedukeLoginActivity" />
+            android:parentActivityName="org.wit.reduke.activities.users.RedukeLoginActivity" />
         <activity
-            android:name="org.wit.reduke.activities.RedukeSettingsActivity"
+            android:name="org.wit.reduke.activities.users.RedukeSettingsActivity"
             android:label="@string/title_Settings"
-            android:parentActivityName="org.wit.reduke.activities.RedukeListActivity" />
+            android:parentActivityName="org.wit.reduke.activities.feed.FeedActivity" />
     </application>
 
 </manifest>

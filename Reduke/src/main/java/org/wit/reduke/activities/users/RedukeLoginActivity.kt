@@ -1,12 +1,13 @@
-package org.wit.reduke.activities
+package org.wit.reduke.activities.users
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.*
 import org.wit.post.R
+import org.wit.reduke.activities.feed.FeedActivity
 import org.wit.reduke.main.MainApp
-import org.wit.reduke.models.UserModel
+import org.wit.reduke.models.users.UserModel
 
 class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
     lateinit var app: MainApp
@@ -23,7 +24,7 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
                     mypreference.setCurrentUserName(foundUser.name)
                     mypreference.setCurrentUserEmail(foundUser.email)
                     mypreference.setCurrentUserPassword(foundUser.password)
-                    startActivityForResult(intentFor<RedukeListActivity>().putExtra("loggedInUser", enteredEmail.text.toString()), 0)
+                    startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", enteredEmail.text.toString()), 0)
                 } else {
                     toast(R.string.toast_InvalidCreds)
                 }

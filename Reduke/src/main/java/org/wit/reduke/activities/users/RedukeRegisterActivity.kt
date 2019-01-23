@@ -1,4 +1,4 @@
-package org.wit.reduke.activities
+package org.wit.reduke.activities.users
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -8,7 +8,7 @@ import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import org.wit.post.R
 import org.wit.reduke.main.MainApp
-import org.wit.reduke.models.UserModel
+import org.wit.reduke.models.users.UserModel
 
 class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
 
