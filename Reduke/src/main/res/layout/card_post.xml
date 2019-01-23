@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="110dp"
     android:layout_marginLeft="10dp"
     android:layout_marginTop="10dp"
     android:layout_marginRight="10dp"
@@ -13,7 +14,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/cardPostTitle"
@@ -23,9 +24,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:contentDescription="@string/title_of_the_post_card"
-            android:text="What is the creepiest or scariest folklore story you have heard and what from culture/region did it originate?"
+            android:text="Luke Halley did something"
             android:textColor="@android:color/black"
-            android:textSize="14sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.266"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,24 +34,50 @@
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
-            android:id="@+id/cardRedukeOwner"
+            android:id="@+id/cardPostOwner"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="15dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="8dp"
             android:contentDescription="@string/user_who_created_the_post_card"
             android:text="luke123halley"
             android:textAlignment="center"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/point"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardPostTitle"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/cardPostTitle" />
 
         <TextView
-            android:id="@+id/cardRedukeOwner2"
+            android:id="@+id/cardPostPointCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:contentDescription="@string/user_who_created_the_post_card"
+            android:text="342 points"
+            android:textAlignment="center"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toTopOf="@+id/cardPostCommentCount"
+            app:layout_constraintEnd_toStartOf="@+id/cardUpvotePost"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardPostOwner"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/cardPostCommentCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="12dp"
+            android:contentDescription="@string/user_who_created_the_post_card"
+            android:text="5465 comments"
+            android:textAlignment="center"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/cardPostTimestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -61,47 +88,109 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/point"
             app:layout_constraintTop_toBottomOf="@+id/cardPostTitle"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.015" />
 
         <TextView
-            android:id="@+id/cardRedukeOwner4"
+            android:id="@+id/cardPostSubreddit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
             android:contentDescription="@string/user_who_created_the_post_card"
             android:text="askreddit"
             android:textAlignment="center"
+            android:textColor="@color/colorDisabled"
             android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/point2"
             app:layout_constraintTop_toBottomOf="@+id/cardPostTitle"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/point"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/user_who_created_the_post_card"
-            android:text="·"
-            android:textAlignment="center"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/cardRedukeOwner2"
-            app:layout_constraintStart_toEndOf="@+id/cardRedukeOwner"
-            app:layout_constraintTop_toTopOf="@+id/cardRedukeOwner2" />
+            app:layout_constraintVertical_bias="0.015" />
 
         <TextView
             android:id="@+id/point2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:contentDescription="@string/user_who_created_the_post_card"
             android:text="·"
             android:textAlignment="center"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/cardRedukeOwner4"
-            app:layout_constraintStart_toEndOf="@+id/cardRedukeOwner2"
-            app:layout_constraintTop_toTopOf="@+id/cardRedukeOwner2" />
+            app:layout_constraintStart_toEndOf="@+id/cardPostTimestamp"
+            app:layout_constraintTop_toTopOf="@+id/cardPostTimestamp" />
+
+        <TextView
+            android:id="@+id/point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/user_who_created_the_post_card"
+            android:text="·"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/cardPostOwner"
+            app:layout_constraintTop_toBottomOf="@+id/cardPostTitle" />
+
+        <ImageButton
+            android:id="@+id/cardUpvotePost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardPostCommentCount"
+            app:layout_constraintTop_toBottomOf="@+id/cardPostOwner"
+            app:layout_constraintVertical_bias="0.771"
+            app:srcCompat="@drawable/upvote" />
+
+        <ImageButton
+            android:id="@+id/cardFavouritePost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cardPostMenu"
+            app:layout_constraintStart_toEndOf="@+id/cardDownvotePost"
+            app:layout_constraintTop_toBottomOf="@+id/cardPostOwner"
+            app:layout_constraintVertical_bias="0.771"
+            app:srcCompat="@drawable/ic_star_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/cardPostMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardFavouritePost"
+            app:layout_constraintTop_toBottomOf="@+id/cardPostOwner"
+            app:layout_constraintVertical_bias="0.771"
+            app:srcCompat="@drawable/menu" />
+
+        <ImageButton
+            android:id="@+id/cardDownvotePost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cardFavouritePost"
+            app:layout_constraintStart_toEndOf="@+id/cardUpvotePost"
+            app:layout_constraintTop_toBottomOf="@+id/cardPostOwner"
+            app:layout_constraintVertical_bias="0.771"
+            app:srcCompat="@drawable/downvote" />
 
     </android.support.constraint.ConstraintLayout>
 
