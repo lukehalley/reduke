@@ -29,7 +29,7 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
             showProgress()
             auth.createUserWithEmailAndPassword(enteredEmail.text.toString(), enteredPassword.text.toString())
                     .addOnCompleteListener(this) { task ->
-                        if (enteredName.text.toString().isEmpty() or enteredPassword.text.toString().isEmpty()) {
+                        if (enteredUsername.text.toString().isEmpty() or enteredPassword.text.toString().isEmpty()) {
                             toast(R.string.hint_EnterAllFields)
                         } else {
                             if (enteredPassword.text.toString() == enteredPasswordConfirm.text.toString()) {

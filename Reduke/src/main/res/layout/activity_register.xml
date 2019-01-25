@@ -36,7 +36,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:contentDescription="Add User"
-        app:layout_constraintBottom_toTopOf="@+id/enteredName"
+        app:layout_constraintBottom_toTopOf="@+id/enteredUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         app:srcCompat="@drawable/add_people" />
 
     <EditText
-        android:id="@+id/enteredName"
+        android:id="@+id/enteredUsername"
         android:layout_width="313dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -58,7 +58,7 @@
         android:inputType="textPersonName|textCapWords"
         android:textColor="@android:color/white"
         android:textColorHighlight="@android:color/white"
-        android:textColorHint="@android:color/white"
+        android:textColorHint="@color/colorDisabled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerAppBar" />
@@ -76,11 +76,11 @@
         android:hint="@string/email"
         android:inputType="textWebEmailAddress"
         android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
+        android:textColorHint="@color/colorDisabled"
         android:textColorLink="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enteredName" />
+        app:layout_constraintTop_toBottomOf="@+id/enteredUsername" />
 
     <EditText
         android:id="@+id/enteredPassword"
@@ -95,7 +95,7 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
+        android:textColorHint="@color/colorDisabled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +114,7 @@
         android:hint="@string/passwordConfirm"
         android:inputType="textPassword"
         android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
+        android:textColorHint="@color/colorDisabled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
