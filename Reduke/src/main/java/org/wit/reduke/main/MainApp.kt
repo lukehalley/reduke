@@ -2,10 +2,10 @@ package org.wit.reduke.main
 
 import android.app.Application
 import org.jetbrains.anko.AnkoLogger
-import org.wit.reduke.models.PostJSONStore
-import org.wit.reduke.models.PostStore
-import org.wit.reduke.models.UserJSONStore
-import org.wit.reduke.models.UserStore
+import org.wit.reduke.models.posts.PostJSONStore
+import org.wit.reduke.models.posts.PostStore
+import org.wit.reduke.models.users.UserJSONStore
+import org.wit.reduke.models.users.UserStore
 
 class MainApp : Application(), AnkoLogger {
 
