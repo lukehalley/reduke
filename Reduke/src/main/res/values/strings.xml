@@ -50,6 +50,8 @@
     <string name="unsavedPrompt">Are you sure you dont want to save this Post?</string>
     <string name="changePasswordConfirm">Confirm New Password</string>
     <string name="passwordConfirm">Confirm Password</string>
+    <string name="hint_EnterAllFields">Please Enter All Fields!</string>
+    <string name="toast_AuthFail">Email or Password not found, please try again.</string>
     <string name="title_of_the_post_card">Title of the Post</string>
     <string name="user_who_created_the_post_card">User who created the post</string>
 
