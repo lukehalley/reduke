@@ -11,18 +11,20 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_feed.*
 import org.jetbrains.anko.*
 import org.wit.post.R
+import org.wit.reduke.activities.posts.PostAddEditActivity
 import org.wit.reduke.activities.users.RedukeSettingsActivity
 import org.wit.reduke.activities.users.RedukeSharedPreferences
-import org.wit.reduke.activities.posts.PostAddEditActivity
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.posts.PostModel
 import org.wit.reduke.models.users.UserModel
 
 class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
+    var auth: FirebaseAuth = FirebaseAuth.getInstance()
     lateinit var app: MainApp
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,6 +93,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             R.id.item_logout ->
                 alert(R.string.logoutPrompt) {
                     yesButton {
+                        auth.signOut()
                         finish()
                     }
                     noButton {}
@@ -129,6 +132,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     override fun onBackPressed() {
         alert(R.string.logoutPrompt) {
             yesButton {
+                auth.signOut()
                 finish()
                 super.onBackPressed()
             }
