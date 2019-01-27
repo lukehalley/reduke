@@ -9,12 +9,12 @@ import org.wit.reduke.models.users.UserStore
 
 class MainApp : Application(), AnkoLogger {
 
-    lateinit var redukes: PostStore
+    lateinit var posts: PostStore
     lateinit var users: UserStore
 
     override fun onCreate() {
         super.onCreate()
-        redukes = PostJSONStore(applicationContext)
+        posts = PostJSONStore(applicationContext)
         users = UserJSONStore(applicationContext)
     }
 }
