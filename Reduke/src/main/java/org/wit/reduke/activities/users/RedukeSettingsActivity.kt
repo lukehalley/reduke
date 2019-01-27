@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_settings.*
 import org.jetbrains.anko.*
-import org.wit.post.R
+import org.wit.reduke.R
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.users.UserModel
 
