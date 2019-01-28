@@ -48,6 +48,7 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
                     .ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")
                     .withZone(ZoneOffset.UTC)
                     .format(Instant.now())
+            post.votes = (0..1000).random()
             if (post.title.isEmpty() or post.text.isEmpty()) {
                 toast(org.wit.reduke.R.string.hint_EnterPostTitle)
             } else {
