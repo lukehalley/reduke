@@ -45,7 +45,7 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
             post.title = cardPostTitle.text.toString()
             post.text = cardRedukeDescription.text.toString()
             post.timestamp = DateTimeFormatter
-                    .ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")
+                    .ofPattern("dd-MM-yyyy HH:mm:ss.SSSSSS")
                     .withZone(ZoneOffset.UTC)
                     .format(Instant.now())
             post.votes = (0..1000).random()

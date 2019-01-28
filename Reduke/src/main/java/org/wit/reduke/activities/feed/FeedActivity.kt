@@ -28,7 +28,6 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
     lateinit var app: MainApp
-    var ascending = true
     var sortSetting = "Top"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +44,25 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         }
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = RedukeAdapter(app.posts.findAll(), this)
+        var posts = app.posts.findAll()
+        when (sortSetting) {
+            "Top" -> {
+                recyclerView.adapter = RedukeAdapter(sortByVotes(posts), this)
+            }
+
+            "Newest" -> {
+                recyclerView.adapter = RedukeAdapter(sortByNewest(posts), this)
+            }
+            "Oldest" -> {
+                recyclerView.adapter = RedukeAdapter(sortByOldest(posts), this)
+            }
+            "AlphabeticalAsc" -> {
+                recyclerView.adapter = RedukeAdapter(sortByAlphabeticalAsc(posts), this)
+            }
+            "AlphabeticalDec" -> {
+                recyclerView.adapter = RedukeAdapter(sortByAlphabeticalDec(posts), this)
+            }
+        }
         loadPosts()
         addRedukeFab.setOnClickListener() {
             startActivityForResult<PostAddEditActivity>(0)
@@ -178,11 +195,11 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     fun sortByNewest(list: List<PostModel>): List<PostModel> {
-        return list.sortedWith(compareByDescending { LocalDateTime.parse(it.timestamp, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")) })
+        return list.sortedWith(compareByDescending { LocalDateTime.parse(it.timestamp, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss.SSSSSS")) })
     }
 
     fun sortByOldest(list: List<PostModel>): List<PostModel> {
-        return list.sortedWith(compareBy { LocalDateTime.parse(it.timestamp, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")) })
+        return list.sortedWith(compareBy { LocalDateTime.parse(it.timestamp, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss.SSSSSS")) })
     }
 
     fun sortByAlphabeticalAsc(list: List<PostModel>): List<PostModel> {
