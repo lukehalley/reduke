@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View.VISIBLE
 import kotlinx.android.synthetic.main.activity_post.*
 import org.jetbrains.anko.*
+import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.posts.PostModel
 import java.time.Instant
@@ -49,6 +50,8 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
                     .withZone(ZoneOffset.UTC)
                     .format(Instant.now())
             post.votes = (0..1000).random()
+            val redukeSharedPref = RedukeSharedPreferences(this)
+            post.postOwner = redukeSharedPref.getCurrentUserName()
             if (post.title.isEmpty() or post.text.isEmpty()) {
                 toast(org.wit.reduke.R.string.hint_EnterPostTitle)
             } else {

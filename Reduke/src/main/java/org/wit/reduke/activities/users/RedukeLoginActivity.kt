@@ -32,9 +32,7 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
                 auth.signInWithEmailAndPassword(enteredEmail.text.toString(), enteredPassword.text.toString())
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
-                                redukeSharedPref.setCurrentUserName(enteredEmail.text.toString())
                                 redukeSharedPref.setCurrentUserEmail(enteredEmail.text.toString())
-                                redukeSharedPref.setCurrentUserPassword(enteredPassword.text.toString())
                                 startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", enteredEmail.text.toString()), 0)
                             } else {
                                 // If sign in fails, display a message to the user.
