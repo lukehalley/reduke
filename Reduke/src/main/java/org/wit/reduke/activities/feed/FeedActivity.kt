@@ -11,19 +11,25 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_feed.*
 import org.jetbrains.anko.*
-import org.wit.post.R
+import org.wit.reduke.R
+import org.wit.reduke.activities.posts.PostAddEditActivity
 import org.wit.reduke.activities.users.RedukeSettingsActivity
 import org.wit.reduke.activities.users.RedukeSharedPreferences
-import org.wit.reduke.activities.posts.PostAddEditActivity
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.posts.PostModel
 import org.wit.reduke.models.users.UserModel
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
+    var auth: FirebaseAuth = FirebaseAuth.getInstance()
     lateinit var app: MainApp
+    var sortSetting = "Top"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
@@ -38,8 +44,26 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         }
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = RedukeAdapter(app.redukes.findAll(), this)
-        loadRedukes()
+        var posts = app.posts.findAll()
+        when (sortSetting) {
+            "Top" -> {
+                recyclerView.adapter = RedukeAdapter(sortByVotes(posts), this)
+            }
+
+            "Newest" -> {
+                recyclerView.adapter = RedukeAdapter(sortByNewest(posts), this)
+            }
+            "Oldest" -> {
+                recyclerView.adapter = RedukeAdapter(sortByOldest(posts), this)
+            }
+            "AlphabeticalAsc" -> {
+                recyclerView.adapter = RedukeAdapter(sortByAlphabeticalAsc(posts), this)
+            }
+            "AlphabeticalDec" -> {
+                recyclerView.adapter = RedukeAdapter(sortByAlphabeticalDec(posts), this)
+            }
+        }
+        loadPosts()
         addRedukeFab.setOnClickListener() {
             startActivityForResult<PostAddEditActivity>(0)
         }
@@ -77,6 +101,8 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val sortOptions = listOf("Top", "Newest", "Oldest", "Alphabetical (Ascending)", "Alphabetical (Descending)")
+
 
         var mDrawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
 
@@ -85,12 +111,28 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             android.R.id.home -> mDrawerLayout.openDrawer(GravityCompat.START)
         }
         when (item?.itemId) {
+            R.id.item_sort_feed ->
+                selector(
+                        "Sort Feed By",
+                        sortOptions
+                ) { _, i ->
+                    when {
+                        sortOptions[i] == "Top" -> sortData("Top")
+                        sortOptions[i] == "Newest" -> sortData("Newest")
+                        sortOptions[i] == "Oldest" -> sortData("Oldest")
+                        sortOptions[i] == "Alphabetical (Ascending)" -> sortData("AlphabeticalAsc")
+                        sortOptions[i] == "Alphabetical (Descending)" -> sortData("AlphabeticalDec")
+                    }
+                }
+        }
+        when (item?.itemId) {
             R.id.item_settings -> startActivityForResult(intentFor<RedukeSettingsActivity>().putExtra("user_edit", user), 0)
         }
         when (item?.itemId) {
             R.id.item_logout ->
                 alert(R.string.logoutPrompt) {
                     yesButton {
+                        auth.signOut()
                         finish()
                     }
                     noButton {}
@@ -99,17 +141,73 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun sortData(sortOption: String) {
+        var posts = app.posts.findAll()
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
+
+        when (sortOption) {
+            "Top" -> {
+                toast("Sorting By Upvotes")
+                sortSetting = "Top"
+                recyclerView.adapter = RedukeAdapter(sortByVotes(posts), this)
+            }
+
+            "Newest" -> {
+                toast("Sorting By Newest")
+                sortSetting = "Newest"
+                recyclerView.adapter = RedukeAdapter(sortByNewest(posts), this)
+            }
+            "Oldest" -> {
+                toast("Sorting By Oldest")
+                sortSetting = "Oldest"
+                recyclerView.adapter = RedukeAdapter(sortByOldest(posts), this)
+            }
+            "AlphabeticalAsc" -> {
+                toast("Sorting By Alphabetical (Ascending)")
+                sortSetting = "AlphabeticalAsc"
+                recyclerView.adapter = RedukeAdapter(sortByAlphabeticalAsc(posts), this)
+            }
+            "AlphabeticalDec" -> {
+                toast("Sorting By Alphabetical (Descending)")
+                sortSetting = "AlphabeticalDec"
+                recyclerView.adapter = RedukeAdapter(sortByAlphabeticalDec(posts), this)
+            }
+        }
+    }
+
     override fun onRedukeClick(post: PostModel) {
         startActivityForResult(intentFor<PostAddEditActivity>().putExtra("post_edit", post), 0)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        loadRedukes()
+        loadPosts()
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    private fun loadRedukes() {
-        showRedukes(app.redukes.findAll())
+    private fun loadPosts() {
+        showRedukes(app.posts.findAll())
+    }
+
+    // Sorting functions
+    fun sortByVotes(list: List<PostModel>): List<PostModel> {
+        return list.sortedByDescending { post -> post.votes }
+    }
+
+    fun sortByNewest(list: List<PostModel>): List<PostModel> {
+        return list.sortedWith(compareByDescending { LocalDateTime.parse(it.timestamp, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss.SSSSSS")) })
+    }
+
+    fun sortByOldest(list: List<PostModel>): List<PostModel> {
+        return list.sortedWith(compareBy { LocalDateTime.parse(it.timestamp, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss.SSSSSS")) })
+    }
+
+    fun sortByAlphabeticalAsc(list: List<PostModel>): List<PostModel> {
+        return list.sortedBy { post -> post.title }
+    }
+
+    fun sortByAlphabeticalDec(list: List<PostModel>): List<PostModel> {
+        return list.sortedByDescending { post -> post.title }
     }
 
     fun showRedukes(posts: List<PostModel>) {
@@ -129,6 +227,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     override fun onBackPressed() {
         alert(R.string.logoutPrompt) {
             yesButton {
+                auth.signOut()
                 finish()
                 super.onBackPressed()
             }

@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.card_post.view.*
 import org.jetbrains.anko.AnkoLogger
-import org.wit.post.R
+import org.wit.reduke.R
 import org.wit.reduke.models.posts.PostModel
+
 
 interface RedukeListener {
     fun onRedukeClick(post: PostModel)
@@ -32,9 +33,15 @@ class RedukeAdapter(private var posts: List<PostModel>,
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView), AnkoLogger {
 
         fun bind(post: PostModel, listener: RedukeListener) {
+
             itemView.cardPostTitle.text = post.title
+            itemView.cardPostOwner.text = post.postOwner
+            itemView.cardPostTimestamp.text = post.timestamp.split(" ")[0]
+            itemView.cardPostPointCount.text = post.votes.toString()
             itemView.setOnClickListener { listener.onRedukeClick(post) }
 
         }
     }
+
+
 }

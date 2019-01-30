@@ -9,7 +9,7 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
-import org.wit.post.R
+import org.wit.reduke.R
 import org.wit.reduke.activities.feed.FeedActivity
 import org.wit.reduke.main.MainApp
 
@@ -32,9 +32,7 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
                 auth.signInWithEmailAndPassword(enteredEmail.text.toString(), enteredPassword.text.toString())
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
-                                redukeSharedPref.setCurrentUserName(enteredEmail.text.toString())
                                 redukeSharedPref.setCurrentUserEmail(enteredEmail.text.toString())
-                                redukeSharedPref.setCurrentUserPassword(enteredPassword.text.toString())
                                 startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", enteredEmail.text.toString()), 0)
                             } else {
                                 // If sign in fails, display a message to the user.
