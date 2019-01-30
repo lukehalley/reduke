@@ -6,7 +6,6 @@ import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import org.wit.reduke.R
 import org.wit.reduke.main.MainApp
@@ -42,7 +41,6 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
                                     finish()
                                 } else {
                                     toast("User Registration Failed!" + task.exception)
-                                    info { "User Registration Failed!" + task.exception }
                                 }
                             } else {
                                 toast("Passwords Do Not Match!")
