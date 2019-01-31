@@ -26,15 +26,15 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
         registerButton.setOnClickListener {
             // Show loading indicator after the user clicks the register button.
             showProgress()
-            auth.createUserWithEmailAndPassword(enteredEmail.text.toString(), enteredPassword.text.toString())
+            auth.createUserWithEmailAndPassword(enteredRegisterEmail.text.toString(), enteredRegisterPassword.text.toString())
                     .addOnCompleteListener(this) { task ->
-                        if (enteredUsername.text.toString().isEmpty() or enteredPassword.text.toString().isEmpty()) {
+                        if (enteredRegisterUsername.text.toString().isEmpty() or enteredRegisterPassword.text.toString().isEmpty()) {
                             toast(R.string.hint_EnterAllFields)
                         } else {
-                            if (enteredPassword.text.toString() == enteredPasswordConfirm.text.toString()) {
+                            if (enteredRegisterPassword.text.toString() == enteredRegisterPasswordConfirm.text.toString()) {
                                 if (task.isSuccessful) {
                                     val mypreference = RedukeSharedPreferences(this)
-                                    mypreference.setCurrentUserName(enteredUsername.text.toString())
+                                    mypreference.setCurrentUserName(enteredRegisterUsername.text.toString())
                                     // Sign in success, update UI with the signed-in user's information
                                     toast(R.string.hint_SucessfullRegister)
                                     val user = auth.currentUser

@@ -17,12 +17,12 @@ public class RedukeSplashscreenTest {
 
     @Rule
     @JvmField
-    public ActivityTestRule<RedukeSplashscreen> mActivityTestRule = new ActivityTestRule<RedukeSplashscreen>(RedukeSplashscreen.class);
+    public ActivityTestRule<RedukeSplashscreen> mActivityTestRule = new ActivityTestRule<>(RedukeSplashscreen.class);
 
     private RedukeSplashscreen sActivity = null;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
         sActivity = mActivityTestRule.getActivity();
     }
