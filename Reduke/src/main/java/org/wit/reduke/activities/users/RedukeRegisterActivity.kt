@@ -10,6 +10,7 @@ import org.jetbrains.anko.toast
 import org.wit.reduke.R
 import org.wit.reduke.main.MainApp
 
+
 class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
 
     lateinit var app: MainApp
@@ -24,11 +25,12 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
 
         app = application as MainApp
         registerButton.setOnClickListener {
+            // App is busy until further notice enteredRegisterPassword
             // Show loading indicator after the user clicks the register button.
             showProgress()
             auth.createUserWithEmailAndPassword(enteredRegisterEmail.text.toString(), enteredRegisterPassword.text.toString())
                     .addOnCompleteListener(this) { task ->
-                        if (enteredRegisterUsername.text.toString().isEmpty() or enteredRegisterPassword.text.toString().isEmpty()) {
+                        if (enteredRegisterEmail.text.toString().isEmpty() or enteredRegisterPassword.text.toString().isEmpty()) {
                             toast(R.string.hint_EnterAllFields)
                         } else {
                             if (enteredRegisterPassword.text.toString() == enteredRegisterPasswordConfirm.text.toString()) {
@@ -37,8 +39,10 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
                                     mypreference.setCurrentUserName(enteredRegisterUsername.text.toString())
                                     // Sign in success, update UI with the signed-in user's information
                                     toast(R.string.hint_SucessfullRegister)
+
                                     val user = auth.currentUser
                                     finish()
+
                                 } else {
                                     toast("User Registration Failed!" + task.exception)
                                 }

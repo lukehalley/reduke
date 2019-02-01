@@ -34,14 +34,14 @@
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/enteredRegisterEmail"
+        app:layout_constraintBottom_toTopOf="@+id/enteredLoginEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/redukeLogo"
         app:layout_constraintVertical_bias="0.588" />
 
     <EditText
-        android:id="@+id/enteredRegisterEmail"
+        android:id="@+id/enteredLoginEmail"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
@@ -61,7 +61,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/enteredRegisterPassword"
+        android:id="@+id/enteredLoginPassword"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -77,7 +77,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enteredRegisterEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/enteredLoginEmail" />
 
     <Button
         android:id="@+id/loginButton"
@@ -86,10 +86,10 @@
         android:layout_marginTop="4dp"
         android:backgroundTint="@android:color/white"
         android:text="@string/loginButton"
-        app:layout_constraintEnd_toEndOf="@+id/enteredRegisterPassword"
+        app:layout_constraintEnd_toEndOf="@+id/enteredLoginPassword"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="@+id/enteredRegisterPassword"
-        app:layout_constraintTop_toBottomOf="@+id/enteredRegisterPassword" />
+        app:layout_constraintStart_toStartOf="@+id/enteredLoginPassword"
+        app:layout_constraintTop_toBottomOf="@+id/enteredLoginPassword" />
 
 
     <TextView

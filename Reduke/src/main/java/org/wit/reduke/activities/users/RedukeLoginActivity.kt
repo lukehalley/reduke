@@ -9,10 +9,8 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
-import org.wit.reduke.R
 import org.wit.reduke.activities.feed.FeedActivity
 import org.wit.reduke.main.MainApp
-
 
 class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
 
@@ -23,32 +21,32 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
         app = application as MainApp
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(org.wit.reduke.R.layout.activity_login)
         val redukeSharedPref = RedukeSharedPreferences(this)
 
         loginButton.setOnClickListener {
-            if (enteredRegisterEmail.text.toString().isNotEmpty() && enteredRegisterPassword.text.toString().isNotEmpty()) {
+            if (enteredLoginEmail.text.toString().isNotEmpty() && enteredLoginPassword.text.toString().isNotEmpty()) {
                 showProgress()
-                auth.signInWithEmailAndPassword(enteredRegisterEmail.text.toString(), enteredRegisterPassword.text.toString())
+                auth.signInWithEmailAndPassword(enteredLoginEmail.text.toString(), enteredLoginPassword.text.toString())
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
-                                redukeSharedPref.setCurrentUserEmail(enteredRegisterEmail.text.toString())
-                                startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", enteredRegisterEmail.text.toString()), 0)
+                                redukeSharedPref.setCurrentUserEmail(enteredLoginEmail.text.toString())
+                                startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", enteredLoginEmail.text.toString()), 0)
                             } else {
                                 // If sign in fails, display a message to the user.
-                                toast(R.string.toast_InvalidCreds)
+                                toast(org.wit.reduke.R.string.toast_InvalidCreds)
                             }
                             if (!task.isSuccessful) {
-                                toast(R.string.toast_AuthFail)
+                                toast(org.wit.reduke.R.string.toast_AuthFail)
                             }
                             hideProgress()
                         }
-            } else if (enteredRegisterEmail.text.toString().isEmpty()) {
+            } else if (enteredLoginEmail.text.toString().isEmpty()) {
                 toast("Please Enter Your Email")
-            } else if (enteredRegisterPassword.text.toString().isEmpty()) {
+            } else if (enteredLoginPassword.text.toString().isEmpty()) {
                 toast("Please Enter Your Email")
             } else {
-                toast(R.string.hint_EnterAllFields)
+                toast(org.wit.reduke.R.string.hint_EnterAllFields)
             }
         }
 
