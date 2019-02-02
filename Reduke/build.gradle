@@ -52,7 +52,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
     implementation "com.android.support.test.espresso:espresso-idling-resource:3.0.2"
-    implementation "org.apache.commons:commons-text:1.4"
-
-
+    implementation "org.apache.commons:commons-text:1.6"
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
 }

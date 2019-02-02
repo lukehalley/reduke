@@ -20,7 +20,7 @@ public class EspressoIdlingResource {
         mCountingIdlingResource.decrement();
     }
 
-    public static IdlingResource getIdlingResource() {
+    public static android.support.test.espresso.IdlingResource getIdlingResource() {
         return mCountingIdlingResource;
     }
 }

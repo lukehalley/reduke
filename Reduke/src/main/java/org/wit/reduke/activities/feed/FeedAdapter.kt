@@ -34,7 +34,7 @@ class RedukeAdapter(private var posts: List<PostModel>,
 
         fun bind(post: PostModel, listener: RedukeListener) {
 
-            itemView.cardPostTitle.text = post.title
+            itemView.postTitleField.text = post.title
             itemView.cardPostOwner.text = post.postOwner
             itemView.cardPostTimestamp.text = post.timestamp.split(" ")[0]
             itemView.cardPostPointCount.text = post.votes.toString() + " points"
