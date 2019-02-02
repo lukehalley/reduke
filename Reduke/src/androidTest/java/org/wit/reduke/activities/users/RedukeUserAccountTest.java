@@ -9,8 +9,6 @@ import android.support.test.rule.ActivityTestRule;
 import android.util.Log;
 import android.view.View;
 
-import org.apache.commons.text.CharacterPredicates;
-import org.apache.commons.text.RandomStringGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -18,6 +16,8 @@ import org.junit.Test;
 import org.wit.reduke.R;
 import org.wit.reduke.activities.feed.FeedActivity;
 import org.wit.reduke.tools.EspressoIdlingResource;
+
+import java.security.SecureRandom;
 
 import kotlin.jvm.JvmField;
 
@@ -29,14 +29,17 @@ import static junit.framework.TestCase.assertNotNull;
 
 public class RedukeUserAccountTest {
 
+    private static final String ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_";
+    private static final SecureRandom RANDOM = new SecureRandom();
+
     @Rule
     @JvmField
     public ActivityTestRule<RedukeLoginActivity> mActivityTestRule = new ActivityTestRule<>(RedukeLoginActivity.class);
 
     private RedukeLoginActivity lActivity = null;
 
-    Instrumentation.ActivityMonitor registerActivityMonitor = getInstrumentation().addMonitor(RedukeRegisterActivity.class.getName(), null, false);
-    Instrumentation.ActivityMonitor loginActivityMonitor = getInstrumentation().addMonitor(RedukeLoginActivity.class.getName(), null, false);
+    private Instrumentation.ActivityMonitor registerActivityMonitor = getInstrumentation().addMonitor(RedukeRegisterActivity.class.getName(), null, false);
+    private Instrumentation.ActivityMonitor loginActivityMonitor = getInstrumentation().addMonitor(RedukeLoginActivity.class.getName(), null, false);
     Instrumentation.ActivityMonitor feedActivityMonitor = getInstrumentation().addMonitor(FeedActivity.class.getName(), null, false);
 
     @Before
@@ -48,19 +51,15 @@ public class RedukeUserAccountTest {
     @Test
     public void testUserSignUpAndLogin() {
 
-        RandomStringGenerator randomStringGenerator =
-                new RandomStringGenerator.Builder()
-                        .withinRange('0', 'z')
-                        .filteredBy(CharacterPredicates.LETTERS, CharacterPredicates.DIGITS)
-                        .build();
+        StringBuilder sBuild = new StringBuilder();
+        for (int i = 0; i < 7; ++i) {
+            sBuild.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
+        }
+        String str = sBuild.toString();
 
-        String str = randomStringGenerator.generate(7);
-        String correctUsername = "erfrferfererf";
-        String correctEmail = "erfrferfererf@email.com";
-        String correctPassword = "erfrferfererf";
-
-
-        Log.e("@Test", "Using Email: " + correctEmail + " and Password: " + correctPassword);
+        String correctUsername = str;
+        String correctEmail = str + "@email.com";
+        String correctPassword = str + "23434";
 
         // Check register button exists
         View navToRegisterButton = lActivity.findViewById(R.id.navToRegisterButton);
