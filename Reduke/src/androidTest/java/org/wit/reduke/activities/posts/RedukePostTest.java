@@ -32,6 +32,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.TestCase.assertNotNull;
+import static org.hamcrest.core.IsNot.not;
 
 public class RedukePostTest {
 
@@ -169,6 +170,19 @@ public class RedukePostTest {
 
         onView(withId(R.id.recyclerView))
                 .check(matches(hasDescendant(withText(strEdit))));
+
+        onView(withId(R.id.recyclerView))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
+        Espresso.onView(withId(R.id.deletePostBtn))
+                .perform(ViewActions.click());
+
+        onView(withId(android.R.id.button1)).perform((click()));
+
+        assertNotNull(feedActivity);
+
+        onView(withId(R.id.recyclerView))
+                .check(matches(hasDescendant(not(withText(strEdit)))));
 
     }
 
