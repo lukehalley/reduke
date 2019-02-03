@@ -2,10 +2,10 @@ package org.wit.reduke.activities.users;
 
 import android.app.Activity;
 import android.app.Instrumentation;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.action.ViewActions;
+import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.util.Log;
 import android.view.View;
@@ -20,16 +20,13 @@ import org.wit.reduke.tools.EspressoIdlingResource;
 
 import java.security.SecureRandom;
 
-import androidx.test.uiautomator.UiDevice;
-import androidx.test.uiautomator.UiObject;
-import androidx.test.uiautomator.UiObjectNotFoundException;
-import androidx.test.uiautomator.UiSelector;
 import kotlin.jvm.JvmField;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static java.util.regex.Pattern.matches;
 import static junit.framework.TestCase.assertNotNull;
 
 public class RedukeUserAccountTest {
@@ -117,24 +114,6 @@ public class RedukeUserAccountTest {
 
         Activity feedActivity = getInstrumentation().waitForMonitorWithTimeout(feedActivityMonitor, 5000);
         assertNotNull(feedActivity);
-
-        Espresso.onView(withId(R.id.item_logout))
-                .perform(ViewActions.click());
-
-        // Initialize UiDevice instance
-        UiDevice uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-
-        // Search for correct button in the dialog.
-        UiObject button = uiDevice.findObject(new UiSelector().text("Ok"));
-        try {
-            if (button.exists() && button.isEnabled()) {
-                button.click();
-            }
-        } catch (UiObjectNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        assertNotNull(loginActivity);
     }
 
     @After

@@ -54,4 +54,7 @@ dependencies {
     implementation "com.android.support.test.espresso:espresso-idling-resource:3.0.2"
     implementation "org.apache.commons:commons-text:1.6"
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.2'
+    androidTestImplementation 'androidx.test:rules:1.1.1'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
 }

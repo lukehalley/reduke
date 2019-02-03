@@ -5,6 +5,7 @@ import android.app.Instrumentation;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.action.ViewActions;
+import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +27,10 @@ import kotlin.jvm.JvmField;
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.TestCase.assertNotNull;
 
 public class RedukePostTest {
@@ -37,6 +41,7 @@ public class RedukePostTest {
     @Rule
     @JvmField
     public ActivityTestRule<RedukeLoginActivity> mActivityTestRule = new ActivityTestRule<>(RedukeLoginActivity.class);
+    public ActivityTestRule<PostAddEditActivity> mPostTestRule = new ActivityTestRule<>(PostAddEditActivity.class);
 
     private RedukeLoginActivity lActivity = null;
     private String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum mollis felis, in consequat nibh viverra sed.";
@@ -137,6 +142,19 @@ public class RedukePostTest {
                 .perform(ViewActions.click());
 
         assertNotNull(feedActivity);
+
+        // Check the post we just made exists.
+        onView(withId(R.id.recyclerView))
+                .check(matches(hasDescendant(withText(str))));
+
+        onView(withId(R.id.recyclerView))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
+//        onView(withId(R.id.postTitleField))
+//                .check(matches(withText(str)));
+
+//        onView(withId(R.id.postDescriptionField))
+//                .check(matches(withText(lorem)));
 
     }
 
