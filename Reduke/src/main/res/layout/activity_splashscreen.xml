@@ -6,7 +6,7 @@
     tools:context="org.wit.reduke.activities.other.RedukeSplashscreen">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/splashscreenImage"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:scaleType="centerCrop"

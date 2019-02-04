@@ -64,7 +64,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             }
         }
         loadPosts()
-        addRedukeFab.setOnClickListener() {
+        addPostFabButton.setOnClickListener() {
             startActivityForResult<PostAddEditActivity>(0)
         }
 
