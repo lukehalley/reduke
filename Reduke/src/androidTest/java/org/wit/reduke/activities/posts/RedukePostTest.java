@@ -42,7 +42,6 @@ public class RedukePostTest {
     @Rule
     @JvmField
     public ActivityTestRule<RedukeLoginActivity> mActivityTestRule = new ActivityTestRule<>(RedukeLoginActivity.class);
-    public ActivityTestRule<PostAddEditActivity> mPostTestRule = new ActivityTestRule<>(PostAddEditActivity.class);
 
     private RedukeLoginActivity lActivity = null;
     private String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum mollis felis, in consequat nibh viverra sed.";
@@ -182,7 +181,7 @@ public class RedukePostTest {
         assertNotNull(feedActivity);
 
         onView(withId(R.id.recyclerView))
-                .check(matches(hasDescendant(not(withText(strEdit)))));
+                .check(matches(not(hasDescendant(withText(strEdit)))));
 
     }
 
