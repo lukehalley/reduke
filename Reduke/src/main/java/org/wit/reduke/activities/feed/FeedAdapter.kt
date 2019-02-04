@@ -12,7 +12,9 @@ import org.wit.reduke.models.posts.PostModel
 
 
 interface RedukeListener {
-    fun onRedukeClick(post: PostModel)
+    fun onPostCardClick(post: PostModel)
+    fun onPostUpvote(post: PostModel)
+    fun onPostDownvote(post: PostModel)
     fun onOptionsItemSelected(item: MenuItem?): Boolean
 }
 
@@ -38,9 +40,13 @@ class RedukeAdapter(private var posts: List<PostModel>,
             itemView.cardPostOwner.text = post.postOwner
             itemView.cardPostTimestamp.text = post.timestamp.split(" ")[0]
             itemView.cardPostPointCount.text = post.votes.toString() + " points"
-            itemView.setOnClickListener { listener.onRedukeClick(post) }
+            itemView.setOnClickListener { listener.onPostCardClick(post) }
+            itemView.cardUpvotePost.setOnClickListener{ listener.onPostUpvote(post) }
+            itemView.cardDownvotePost.setOnClickListener{ listener.onPostDownvote(post) }
 
         }
+
+
     }
 
 
