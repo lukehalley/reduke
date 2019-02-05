@@ -49,7 +49,6 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
                     .ofPattern("dd-MM-yyyy HH:mm:ss.SSSSSS")
                     .withZone(ZoneOffset.UTC)
                     .format(Instant.now())
-            post.votes = 0
             val redukeSharedPref = RedukeSharedPreferences(this)
             post.postOwner = redukeSharedPref.getCurrentUserName()
             if (post.title.isEmpty() or post.text.isEmpty()) {
