@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDarkPrimaryTint">
+
+
+    <ImageView
+        android:id="@+id/redukeLogo"
+        android:layout_width="212dp"
+        android:layout_height="190dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/disc_RedukeLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/redukeicon" />
+
+    <TextView
+        android:id="@+id/redukeLoginTitle"
+        android:layout_width="133dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/hint_Reduke"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/enteredEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/redukeLogo"
+        app:layout_constraintVertical_bias="0.787" />
+
+    <EditText
+        android:id="@+id/enteredEmail"
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="340dp"
+        android:layout_marginEnd="8dp"
+        android:autofillHints="@string/email"
+        android:backgroundTint="@android:color/white"
+        android:hint="@string/email"
+        android:inputType="textWebEmailAddress"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textColorLink="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/enteredPassword"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:autofillHints="@string/password"
+        android:backgroundTint="@android:color/white"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enteredEmail" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@android:color/white"
+        android:text="@string/loginButton"
+        app:layout_constraintEnd_toEndOf="@+id/enteredPassword"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/enteredPassword"
+        app:layout_constraintTop_toBottomOf="@+id/enteredPassword" />
+
+
+    <TextView
+        android:id="@+id/promptSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/promptSignUp"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+    <Button
+        android:id="@+id/navToRegisterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@android:color/white"
+        android:text="@string/registerButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/promptSignUp"
+        app:layout_constraintVertical_bias="0.028" />
+
+
+</android.support.constraint.ConstraintLayout>
