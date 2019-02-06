@@ -26,7 +26,6 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
         toolbarAdd.title = title
         setSupportActionBar(toolbarAdd)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         app = application as MainApp
         var edit = false
 
@@ -49,7 +48,6 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
                     .ofPattern("dd-MM-yyyy HH:mm:ss.SSSSSS")
                     .withZone(ZoneOffset.UTC)
                     .format(Instant.now())
-            post.votes = (0..1000).random()
             val redukeSharedPref = RedukeSharedPreferences(this)
             post.postOwner = redukeSharedPref.getCurrentUserName()
             if (post.title.isEmpty() or post.text.isEmpty()) {
