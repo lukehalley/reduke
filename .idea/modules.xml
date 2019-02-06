@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Reduke/Reduke.iml" filepath="$PROJECT_DIR$/Reduke/Reduke.iml" />
+      <module fileurl="file://$PROJECT_DIR$/reduke.iml" filepath="$PROJECT_DIR$/reduke.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/reduke.iml" filepath="$PROJECT_DIR$/.idea/reduke.iml" />
     </modules>
   </component>
