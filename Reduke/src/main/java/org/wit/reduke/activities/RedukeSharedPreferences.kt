@@ -8,8 +8,8 @@ class RedukeSharedPreferences(context: Context){
     val PREF_VAL_USER_NAME = "CurrentUserName"
     val PREF_VAL_USER_EMAIL = "CurrentUserEmail"
     val PREF_VAL_USER_PASSWORD = "CurrentUserPassword"
-    val PREF_VAL_HILLFORT_COUNT= "CurrentRedukeCount"
-    val PREF_VAL_HILLFORT_VISITED_COUNT= "CurrentVisitedRedukeCount"
+    val PREF_VAL_POST_COUNT= "CurrentRedukeCount"
+    val PREF_VAL_POST_VISITED_COUNT= "CurrentVisitedRedukeCount"
 
     val preference = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
 
@@ -44,22 +44,22 @@ class RedukeSharedPreferences(context: Context){
     }
 
     fun getCurrentRedukeCount() : Int {
-        return preference.getInt(PREF_VAL_HILLFORT_COUNT, 0)
+        return preference.getInt(PREF_VAL_POST_COUNT, 0)
     }
 
     fun setCurrentRedukeCount(count : Int){
         val editor = preference.edit()
-        editor.putInt(PREF_VAL_HILLFORT_COUNT, count)
+        editor.putInt(PREF_VAL_POST_COUNT, count)
         editor.apply()
     }
 
     fun getCurrentVisitRedukeCount() : Int {
-        return preference.getInt(PREF_VAL_HILLFORT_VISITED_COUNT, 0)
+        return preference.getInt(PREF_VAL_POST_VISITED_COUNT, 0)
     }
 
     fun setCurrentVisitRedukeCount(count : Int){
         val editor = preference.edit()
-        editor.putInt(PREF_VAL_HILLFORT_VISITED_COUNT, count)
+        editor.putInt(PREF_VAL_POST_VISITED_COUNT, count)
         editor.apply()
     }
 
