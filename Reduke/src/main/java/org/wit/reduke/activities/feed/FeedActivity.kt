@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.card_post.*
 import org.jetbrains.anko.*
 import org.wit.reduke.R
 import org.wit.reduke.activities.posts.PostAddEditActivity
-import org.wit.reduke.activities.users.RedukeSettingsActivity
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.posts.PostModel
@@ -37,7 +36,6 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         app = application as MainApp
         toolbarMain.title = title
         setSupportActionBar(toolbarMain)
-
         val actionbar: ActionBar? = supportActionBar
         actionbar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -78,9 +76,6 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             var user = UserModel()
             when (menuItem?.itemId) {
                 R.id.nav_addReduke -> startActivityForResult<PostAddEditActivity>(0)
-            }
-            when (menuItem?.itemId) {
-                R.id.nav_Settings -> startActivityForResult(intentFor<RedukeSettingsActivity>().putExtra("user_edit", user), 0)
             }
             when (menuItem?.itemId) {
                 R.id.nav_Logout ->
@@ -126,9 +121,6 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
                         sortOptions[i] == "Alphabetical (Descending)" -> sortData("AlphabeticalDec")
                     }
                 }
-        }
-        when (item?.itemId) {
-            R.id.item_settings -> startActivityForResult(intentFor<RedukeSettingsActivity>().putExtra("user_edit", user), 0)
         }
         when (item?.itemId) {
             R.id.item_logout ->
@@ -196,6 +188,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             cardDownvotePost.isEnabled = true
             recyclerView.adapter?.notifyDataSetChanged()
         }
+        info { }
     }
 
     override fun onPostDownvote(post: PostModel) {
@@ -215,23 +208,28 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         }
     }
 
-    override fun setCardUpvoteColor(post: PostModel): Int {
-        val userEmail = RedukeSharedPreferences(this).getCurrentUserEmail()
-        return if (userEmail in post.upvotedBy) {
-            R.color.voteOrange
-        } else {
-            R.color.voteGrey
-        }
-    }
-
-    override fun setCardDownvoteColor(post: PostModel): Int {
-        val userEmail = RedukeSharedPreferences(this).getCurrentUserEmail()
-        return if (userEmail in post.downvotedBy) {
-            R.color.voteOrange
-        } else {
-            R.color.voteGrey
-        }
-    }
+//    override fun setCardUpvoteColor(post: PostModel): Int {
+//        val userEmail = RedukeSharedPreferences(this).getCurrentUserEmail()
+//        return if (userEmail in post.upvotedBy) {
+//            info { "Changed Color to Orange for UPVOTE" + post.title }
+//            R.color.voteOrange
+//        } else {
+//            info { "Changed Color to Grey for UPVOTE" + post.title }
+//            R.color.voteGrey
+//        }
+//
+//    }
+//
+//    override fun setCardDownvoteColor(post: PostModel): Int {
+//        val userEmail = RedukeSharedPreferences(this).getCurrentUserEmail()
+//        return if (userEmail in post.downvotedBy) {
+//            info { "Changed Color to Orange for DOWNVOTE" + post.title }
+//            R.color.voteOrange
+//        } else {
+//            info { "Changed Color to Grey for DOWNVOTE" + post.title }
+//            R.color.voteGrey
+//        }
+//    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -241,6 +239,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
     private fun loadPosts() {
         showPosts(app.posts.findAll())
+        info { "POSTS ARE NOW " + app.posts.findAll() }
     }
 
     // Sorting functions
