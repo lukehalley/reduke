@@ -57,8 +57,6 @@ class RedukeAdapter(private var posts: List<PostModel>,
             } else {
                 itemView.cardDownvotePost.setImageResource(R.drawable.downvotenotactive)
             }
-
-
         }
 
 
