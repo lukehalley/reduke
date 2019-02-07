@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.view.View.VISIBLE
 import kotlinx.android.synthetic.main.activity_post.*
 import org.jetbrains.anko.*
+import org.wit.reduke.R
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.posts.PostModel
@@ -32,7 +33,7 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
 
         if (intent.hasExtra("post_edit")) {
             edit = true
-            toolbarAdd.title = "Edit Reduke"
+            toolbarAdd.title = R.string.title_editPost.toString()
             setSupportActionBar(toolbarAdd)
             post = intent.extras.getParcelable<PostModel>("post_edit")
             postTitleField.setText(post.title)
