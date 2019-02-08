@@ -11,7 +11,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_reduke_list.*
+import kotlinx.android.synthetic.main.activity_feed.*
 import org.jetbrains.anko.*
 import org.wit.post.R
 import org.wit.reduke.main.MainApp
@@ -23,7 +23,7 @@ class RedukeListActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     lateinit var app: MainApp
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_reduke_list)
+        setContentView(R.layout.activity_feed)
         app = application as MainApp
         toolbarMain.title = title
         setSupportActionBar(toolbarMain)
