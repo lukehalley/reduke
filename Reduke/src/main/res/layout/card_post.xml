@@ -37,7 +37,7 @@
         <TextView
             android:id="@+id/cardPostOwner"
             android:layout_width="wrap_content"
-            android:layout_height="15dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:contentDescription="@string/user_who_created_the_post_card"
             android:text="luke123halley"
@@ -81,7 +81,7 @@
             android:id="@+id/cardPostTimestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             android:contentDescription="@string/user_who_created_the_post_card"
             android:text="7 hours ago"
             android:textAlignment="center"
@@ -89,13 +89,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/point"
             app:layout_constraintTop_toBottomOf="@+id/postTitleField"
-            app:layout_constraintVertical_bias="0.015" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/cardPostSubreddit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             android:contentDescription="@string/user_who_created_the_post_card"
             android:text="askreddit"
             android:textAlignment="center"
@@ -104,14 +104,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/point2"
             app:layout_constraintTop_toBottomOf="@+id/postTitleField"
-            app:layout_constraintVertical_bias="0.015"
+            app:layout_constraintVertical_bias="0.0"
             tools:text="not set" />
 
         <TextView
             android:id="@+id/point2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             android:contentDescription="@string/user_who_created_the_post_card"
             android:text="·"
             android:textAlignment="center"
@@ -123,7 +123,7 @@
             android:id="@+id/point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
             android:contentDescription="@string/user_who_created_the_post_card"
             android:text="·"
             android:textAlignment="center"
