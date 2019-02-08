@@ -33,8 +33,6 @@ class RedukeAdapter(private var posts: List<PostModel>,
 
         fun bind(post: PostModel, listener: RedukeListener) {
             itemView.cardPostTitle.text = post.title
-            itemView.cardRedukeDescription.text = post.text
-            itemView.cardRedukeLocation.text = "Address: " + post.ownerId
             itemView.setOnClickListener { listener.onRedukeClick(post) }
 
         }
