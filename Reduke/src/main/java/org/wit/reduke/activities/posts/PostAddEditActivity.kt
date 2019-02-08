@@ -5,15 +5,16 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View.VISIBLE
+import android.widget.Spinner
 import kotlinx.android.synthetic.main.activity_post.*
 import org.jetbrains.anko.*
-import org.wit.reduke.R
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.posts.PostModel
 import java.time.Instant
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+
 
 class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
 
@@ -33,7 +34,7 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
 
         if (intent.hasExtra("post_edit")) {
             edit = true
-            toolbarAdd.title = R.string.title_editPost.toString()
+            toolbarAdd.title = org.wit.reduke.R.string.title_editPost.toString()
             setSupportActionBar(toolbarAdd)
             post = intent.extras.getParcelable<PostModel>("post_edit")
             postTitleField.setText(post.title)
@@ -49,6 +50,8 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
                     .ofPattern("dd-MM-yyyy HH:mm:ss.SSSSSS")
                     .withZone(ZoneOffset.UTC)
                     .format(Instant.now())
+            val subredditSpinner = findViewById<Spinner>(org.wit.reduke.R.id.subredditSpinner)
+            post.subreddit = subredditSpinner.selectedItem.toString()
             val redukeSharedPref = RedukeSharedPreferences(this)
             post.postOwner = redukeSharedPref.getCurrentUserName()
             if (post.title.isEmpty() or post.text.isEmpty()) {
