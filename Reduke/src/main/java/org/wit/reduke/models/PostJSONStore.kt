@@ -10,7 +10,7 @@ import org.wit.reduke.helpers.read
 import org.wit.reduke.helpers.write
 import java.util.*
 
-val HILLFORT_JSON_FILE = "redukes.json"
+val POST_JSON_FILE = "redukes.json"
 val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
 val listType = object : TypeToken<java.util.ArrayList<PostModel>>() {}.type
 
@@ -25,7 +25,7 @@ class PostJSONStore : PostStore, AnkoLogger {
 
     constructor (context: Context) {
         this.context = context
-        if (exists(context, HILLFORT_JSON_FILE)) {
+        if (exists(context, POST_JSON_FILE)) {
             deserialize()
         }
     }
@@ -59,11 +59,11 @@ class PostJSONStore : PostStore, AnkoLogger {
 
     private fun serialize() {
         val jsonString = gsonBuilder.toJson(redukes, listType)
-        write(context, HILLFORT_JSON_FILE, jsonString)
+        write(context, POST_JSON_FILE, jsonString)
     }
 
     private fun deserialize() {
-        val jsonString = read(context, HILLFORT_JSON_FILE)
+        val jsonString = read(context, POST_JSON_FILE)
         redukes = Gson().fromJson(jsonString, listType)
     }
 }
