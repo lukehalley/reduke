@@ -18,8 +18,8 @@ import org.wit.reduke.activities.users.RedukeSettingsActivity
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.activities.posts.PostAddEditActivity
 import org.wit.reduke.main.MainApp
-import org.wit.reduke.models.PostModel
-import org.wit.reduke.models.UserModel
+import org.wit.reduke.models.posts.PostModel
+import org.wit.reduke.models.users.UserModel
 
 class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 

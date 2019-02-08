@@ -8,7 +8,7 @@ import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
 import org.wit.post.R
 import org.wit.reduke.main.MainApp
-import org.wit.reduke.models.UserModel
+import org.wit.reduke.models.users.UserModel
 
 class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
 

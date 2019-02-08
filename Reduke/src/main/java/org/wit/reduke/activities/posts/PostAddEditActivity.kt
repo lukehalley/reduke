@@ -8,7 +8,7 @@ import android.view.View.VISIBLE
 import kotlinx.android.synthetic.main.activity_post.*
 import org.jetbrains.anko.*
 import org.wit.reduke.main.MainApp
-import org.wit.reduke.models.PostModel
+import org.wit.reduke.models.posts.PostModel
 
 
 class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
