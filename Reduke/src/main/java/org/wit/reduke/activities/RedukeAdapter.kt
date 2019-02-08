@@ -1,10 +1,11 @@
 package org.wit.reduke.activities
+
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.feed_card.view.*
+import kotlinx.android.synthetic.main.card_reduke.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.wit.post.R
 import org.wit.reduke.models.PostModel
@@ -18,7 +19,7 @@ class RedukeAdapter(private var posts: List<PostModel>,
                     private val listener: RedukeListener) : RecyclerView.Adapter<RedukeAdapter.MainHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.feed_card, parent, false))
+        return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.card_reduke, parent, false))
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
@@ -31,17 +32,10 @@ class RedukeAdapter(private var posts: List<PostModel>,
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView), AnkoLogger {
 
         fun bind(post: PostModel, listener: RedukeListener) {
-            itemView.cardRedukeTitle.text = post.title
+            itemView.cardPostTitle.text = post.title
             itemView.cardRedukeDescription.text = post.text
+            itemView.cardRedukeLocation.text = "Address: " + post.ownerId
             itemView.setOnClickListener { listener.onRedukeClick(post) }
-
-//            if (post.type == "Text"){
-//                itemView.visitedIndicator.setBackgroundColor(Color.parseColor("#5db761"))
-//                itemView.visitedIndicator.setText(R.string.isVisited)
-//            } else if (post.type == "Link") {
-//                itemView.visitedIndicator.setBackgroundColor(Color.parseColor("#FF9E9E9E"))
-//                itemView.visitedIndicator.setText(R.string.notVisited)
-//            }
 
         }
     }

@@ -23,7 +23,7 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/cardRedukeTitle"
+                android:id="@+id/cardPostTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -43,16 +43,16 @@
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/visitedIndicator"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:background="@color/colorDisabled"
-            android:ems="10"
-            android:inputType="none|textPersonName"
-            android:text="@string/notVisited"
-            android:textAlignment="center"
-            android:textColor="@android:color/white" />
+        <!--<EditText-->
+        <!--android:id="@+id/visitedIndicator"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="25dp"-->
+        <!--android:background="@color/colorDisabled"-->
+        <!--android:ems="10"-->
+        <!--android:inputType="none|textPersonName"-->
+        <!--android:text="@string/notVisited"-->
+        <!--android:textAlignment="center"-->
+        <!--android:textColor="@android:color/white" />-->
 
     </LinearLayout>
 
