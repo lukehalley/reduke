@@ -23,8 +23,8 @@
     <string name="logoutTitle">Logout</string>
 
     <!--Post-->
-    <string name="hint_postTitle">Post Title</string>
-    <string name="hint_postDescription">Description </string>
+    <string name="hint_postTitle">Title</string>
+    <string name="hint_postDescription">Text </string>
     <string name="title_editPost">Edit Post</string>
     <string name="hint_EnterPostTitle">Please Fill In All Above Fields!</string>
     <string name="infoTag">Information</string>
