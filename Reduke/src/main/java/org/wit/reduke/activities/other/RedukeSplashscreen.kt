@@ -1,10 +1,11 @@
-package org.wit.reduke.activities
+package org.wit.reduke.activities.other
 
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import org.jetbrains.anko.startActivityForResult
 import org.wit.post.R
+import org.wit.reduke.activities.users.RedukeLoginActivity
 
 class RedukeSplashscreen : AppCompatActivity() {
     private var mDelayHandler: Handler? = null
