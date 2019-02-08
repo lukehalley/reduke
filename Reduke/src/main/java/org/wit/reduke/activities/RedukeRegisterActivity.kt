@@ -6,7 +6,7 @@ import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
-import org.wit.reduke.R
+import org.wit.post.R
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.UserModel
 
@@ -32,7 +32,7 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
                 user.email = enteredEmail.text.toString()
                 user.password = enteredPassword.text.toString()
                 if (user.name.isEmpty() or user.email.isEmpty() or user.password.isEmpty()) {
-                    toast(R.string.hint_EnterRedukeTitle)
+                    toast(R.string.hint_EnterPostTitle)
                 } else {
                     if (enteredPassword.text.toString() == enteredPasswordConfirm.text.toString()) {
                         app.users.create(user.copy())

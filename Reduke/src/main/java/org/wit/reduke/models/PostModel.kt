@@ -5,8 +5,10 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class PostModel(var id: Long = 0,
-                     var type: String = "",
+                     var ownerId: String = "",
                      var title: String = "",
                      var text: String = "",
-                     var tag: String = "") : Parcelable
+                     var tags: String = "",
+                     var timestamp: String = ""
+                     ) : Parcelable
 
