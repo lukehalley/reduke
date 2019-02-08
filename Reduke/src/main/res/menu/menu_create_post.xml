@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_deleteReduke"
+        android:icon="@drawable/delete"
+        android:title="Delete Reduke"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/item_cancel"
+        android:title="@string/menu_cancelReduke"
+        app:showAsAction="always" />
+</menu>
