@@ -40,7 +40,9 @@ import static org.hamcrest.core.IsNot.not;
 
 public class RedukePostTest {
 
+    // ALPHABET for random data generation
     private static final String ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_";
+    // Creating instance of
     private static final SecureRandom RANDOM = new SecureRandom();
 
     @Rule
@@ -73,120 +75,148 @@ public class RedukePostTest {
         String correctEmail = str + "@email.com";
         String correctPassword = str + "23434";
 
-        // Check register button exists
+        // Check register button exists.
         View navToRegisterButton = lActivity.findViewById(R.id.navToRegisterButton);
         assertNotNull(navToRegisterButton);
-        // Click the register button
+        // Click the register button.
         onView(withId(R.id.navToRegisterButton)).perform(click());
-        // Check we are at the register screen
+        // Check we are at the register screen.
         Activity registerActivity = getInstrumentation().waitForMonitorWithTimeout(registerActivityMonitor, 5000);
         assertNotNull(registerActivity);
-        // Signing up
+        // Signing up.
         Log.e("@Test", "Performing login success test");
         Espresso.onView((withId(R.id.enteredRegisterUsername)))
                 .perform(ViewActions.typeText(correctUsername));
 
         Espresso.closeSoftKeyboard();
 
+        // Enter the email we want to sign up with.
         Espresso.onView((withId(R.id.enteredRegisterEmail)))
                 .perform(ViewActions.typeText(correctEmail));
 
         Espresso.closeSoftKeyboard();
 
+        // Enter the password we want to sign up with.
         Espresso.onView(withId(R.id.enteredRegisterPassword))
                 .perform(ViewActions.typeText(correctPassword));
 
         Espresso.closeSoftKeyboard();
 
+        // Re-enter the password we want to sign up with.
         Espresso.onView(withId(R.id.enteredRegisterPasswordConfirm))
                 .perform(ViewActions.typeText(correctPassword));
 
         Espresso.closeSoftKeyboard();
 
+        // Click the register button to register the user.
         Espresso.onView(withId(R.id.registerButton))
                 .perform(ViewActions.click());
 
+        // After register we should be brought back to the login activity.
         Activity loginActivity = getInstrumentation().waitForMonitorWithTimeout(loginActivityMonitor, 5000);
         assertNotNull(loginActivity);
 
+        // Enter the email we just registered with.
         Espresso.onView((withId(R.id.enteredLoginEmail)))
                 .perform(ViewActions.typeText(correctEmail));
 
         Espresso.closeSoftKeyboard();
 
+        // Enter the password we just registered with.
         Espresso.onView((withId(R.id.enteredLoginPassword)))
                 .perform(ViewActions.typeText(correctPassword));
 
         Espresso.closeSoftKeyboard();
 
+        // Click the login button to login the user.
         Espresso.onView(withId(R.id.loginButton))
                 .perform(ViewActions.click());
 
+        // After login we should be brought to the feed activity.
         Activity feedActivity = getInstrumentation().waitForMonitorWithTimeout(feedActivityMonitor, 5000);
         assertNotNull(feedActivity);
 
+        // Click the add post FAB button.
         Espresso.onView(withId(R.id.addPostFabButton))
                 .perform(ViewActions.click());
 
+        // We should be brought to the add post activity.
         Activity postActivity = getInstrumentation().waitForMonitorWithTimeout(postActivityMonitor, 5000);
         assertNotNull(postActivity);
 
+        // Enter the posts title.
         Espresso.onView((withId(R.id.postTitleField)))
                 .perform(ViewActions.typeText(str));
 
         Espresso.closeSoftKeyboard();
 
+        // Enter the posts description.
         Espresso.onView((withId(R.id.postDescriptionField)))
                 .perform(ViewActions.typeText(lorem));
 
         Espresso.closeSoftKeyboard();
 
+        // Choose the Android sub reddit from the spinner.
         onView(withId(R.id.subredditSpinner)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("Android"))).perform(click());
 
+        // Create the post
         Espresso.onView(withId(R.id.addPostBtn))
                 .perform(ViewActions.click());
 
+        // We should be brought back to the feed activity.
         assertNotNull(feedActivity);
 
         // Check the post we just made exists.
         onView(withId(R.id.recyclerView))
                 .check(matches(hasDescendant(withText(str))));
 
+        // Click the first item in the feed.
         onView(withId(R.id.recyclerView))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
+        // Strings to edit the title and description.
         String strEdit = str + " edit";
         String loremEdit = str + " edit";
 
+        // Edit the title.
         Espresso.onView((withId(R.id.postTitleField)))
                 .perform(ViewActions.replaceText(strEdit));
 
         Espresso.closeSoftKeyboard();
 
+        // Edit the description.
         Espresso.onView((withId(R.id.postDescriptionField)))
                 .perform(ViewActions.replaceText(loremEdit));
 
         Espresso.closeSoftKeyboard();
 
+        // Press the save button
         Espresso.onView(withId(R.id.addPostBtn))
                 .perform(ViewActions.click());
 
+        // We should have been brought back to the feed activity.
         assertNotNull(feedActivity);
 
+        // Check the post we just edited was edited.
         onView(withId(R.id.recyclerView))
                 .check(matches(hasDescendant(withText(strEdit))));
 
+        // Click the first item in the feed again.
         onView(withId(R.id.recyclerView))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
+        // Press the delete button to delete the post.
         Espresso.onView(withId(R.id.deletePostBtn))
                 .perform(ViewActions.click());
 
+        // Press ok on the pop up prompt
         onView(withId(android.R.id.button1)).perform((click()));
 
+        // We should have been brought back to the feed activity.
         assertNotNull(feedActivity);
 
+        // Check the post we just made doesn't exists.
         onView(withId(R.id.recyclerView))
                 .check(matches(not(hasDescendant(withText(strEdit)))));
 
