@@ -199,7 +199,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             }
         }
         // Run the feed animation after sort.
-        runLayoutAnimation(recyclerView)
+        runAnimation(recyclerView)
     }
 
     // When a card is clicked bring the user to the edit activity of that post they clicked.
@@ -256,40 +256,48 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         }
     }
 
-
+    // When the add/edit activity finishes load the posts and execute the feed animation.
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         loadPosts()
-        runLayoutAnimation(recyclerView)
-
+        runAnimation(recyclerView)
     }
 
+    // Load the posts from JSON.
     private fun loadPosts() {
-        showPosts(app.posts.findAll())
+        initFeed(app.posts.findAll())
     }
 
     // Sorting functions
+
+    // Sorts by votes.
     fun sortByVotes(list: List<PostModel>): List<PostModel> {
         return list.sortedByDescending { post -> post.votes }
     }
 
+    // Sorts by the newest.
     fun sortByNewest(list: List<PostModel>): List<PostModel> {
         return list.sortedWith(compareByDescending { LocalDateTime.parse(it.timestamp, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss.SSSSSS")) })
     }
 
+    // Sorts by oldest.
     fun sortByOldest(list: List<PostModel>): List<PostModel> {
         return list.sortedWith(compareBy { LocalDateTime.parse(it.timestamp, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss.SSSSSS")) })
     }
 
+    // Sorts alphabetically (ascending)
     fun sortByAlphabeticalAsc(list: List<PostModel>): List<PostModel> {
         return list.sortedBy { post -> post.title }
     }
 
+    // Sorts alphabetically (descending)
     fun sortByAlphabeticalDec(list: List<PostModel>): List<PostModel> {
         return list.sortedByDescending { post -> post.title }
     }
 
-    fun showPosts(posts: List<PostModel>) {
+    // Initialize the feed by setting the users email and username in the RedukeSharedPreferences
+    // and pass the RedukeAdapter to the recyclerView's adapter.
+    fun initFeed(posts: List<PostModel>) {
         val mypreference = RedukeSharedPreferences(this)
         val userName = mypreference.getCurrentUserName()
         val userEmail = mypreference.getCurrentUserEmail()
@@ -303,6 +311,8 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         recyclerView.adapter?.notifyDataSetChanged()
     }
 
+    // When the user presses the back button log them out but display a pop up to
+    // make sure they want to do this.
     override fun onBackPressed() {
         alert(org.wit.reduke.R.string.logoutPrompt) {
             yesButton {
@@ -314,12 +324,14 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         }.show()
     }
 
-    private fun runLayoutAnimation(recyclerView: RecyclerView) {
+    private fun runAnimation(recyclerView: RecyclerView) {
         loadPosts()
+        // Get the context.
         val context = recyclerView.context
-        val controller = AnimationUtils.loadLayoutAnimation(context, org.wit.reduke.R.anim.layout_animation_fall_down)
+        val controller = AnimationUtils.loadLayoutAnimation(context, org.wit.reduke.R.anim.feedSlideAnimation)
         recyclerView.layoutAnimation = controller
         recyclerView.adapter!!.notifyDataSetChanged()
+        // Run the animation.
         recyclerView.scheduleLayoutAnimation()
     }
 }
