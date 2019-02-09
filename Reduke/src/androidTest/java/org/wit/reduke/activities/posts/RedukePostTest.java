@@ -47,15 +47,16 @@ public class RedukePostTest {
 
     @Rule
     @JvmField
+    // Creating rule for the RedukeLoginActivity.
     public ActivityTestRule<RedukeLoginActivity> mActivityTestRule = new ActivityTestRule<>(RedukeLoginActivity.class);
-
     private RedukeLoginActivity lActivity = null;
-    private String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum mollis felis, in consequat nibh viverra sed.";
+    // Creating all the ActivityMonitors we need for the test below.
     private Instrumentation.ActivityMonitor registerActivityMonitor = getInstrumentation().addMonitor(RedukeRegisterActivity.class.getName(), null, false);
     private Instrumentation.ActivityMonitor loginActivityMonitor = getInstrumentation().addMonitor(RedukeLoginActivity.class.getName(), null, false);
     private Instrumentation.ActivityMonitor feedActivityMonitor = getInstrumentation().addMonitor(FeedActivity.class.getName(), null, false);
     private Instrumentation.ActivityMonitor postActivityMonitor = getInstrumentation().addMonitor(PostAddEditActivity.class.getName(), null, false);
 
+    // Setup the EspressoIdlingResource to allow waiting on network processes like login and register.
     @Before
     public void setUp() {
         lActivity = mActivityTestRule.getActivity();
@@ -64,13 +65,13 @@ public class RedukePostTest {
 
     @Test
     public void testUserSignUpAndLogin() {
-
+        // Start creation of random data
         StringBuilder sBuild = new StringBuilder();
         for (int i = 0; i < 7; ++i) {
             sBuild.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
         }
         String str = sBuild.toString();
-
+        // Assign random string we just created to the variables.
         String correctUsername = str;
         String correctEmail = str + "@email.com";
         String correctPassword = str + "23434";
@@ -87,7 +88,7 @@ public class RedukePostTest {
         Log.e("@Test", "Performing login success test");
         Espresso.onView((withId(R.id.enteredRegisterUsername)))
                 .perform(ViewActions.typeText(correctUsername));
-
+        // Close the keyboard
         Espresso.closeSoftKeyboard();
 
         // Enter the email we want to sign up with.
@@ -151,6 +152,7 @@ public class RedukePostTest {
         Espresso.closeSoftKeyboard();
 
         // Enter the posts description.
+        String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum mollis felis, in consequat nibh viverra sed.";
         Espresso.onView((withId(R.id.postDescriptionField)))
                 .perform(ViewActions.typeText(lorem));
 
@@ -224,7 +226,7 @@ public class RedukePostTest {
 
     @After
     public void tearDown() {
-
+        // Tear down the EspressoIdlingResource and nullify lActivity.
         lActivity = null;
         IdlingRegistry.getInstance().unregister(EspressoIdlingResource.getIdlingResource());
 
