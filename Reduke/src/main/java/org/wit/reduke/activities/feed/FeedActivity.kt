@@ -97,11 +97,11 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         // Set the actions when the drawer items are pressed.
         navigationView.setNavigationItemSelectedListener { menuItem ->
             menuItem.isChecked = true
-            when (menuItem?.itemId) {
+            when (menuItem.itemId) {
                 org.wit.reduke.R.id.nav_addReduke -> startActivityForResult<PostAddEditActivity>(0)
 
             }
-            when (menuItem?.itemId) {
+            when (menuItem.itemId) {
                 org.wit.reduke.R.id.nav_Logout ->
                     alert(org.wit.reduke.R.string.logoutPrompt) {
                         yesButton {
