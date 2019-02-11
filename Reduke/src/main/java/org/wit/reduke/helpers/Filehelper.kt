@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import java.io.*
 
+// Write Posts and Users to a file.
 fun write(context: Context, fileName: String, data: String) {
     try {
         val outputStreamWriter = OutputStreamWriter(context.openFileOutput(fileName, Context.MODE_PRIVATE))
@@ -14,6 +15,7 @@ fun write(context: Context, fileName: String, data: String) {
     }
 }
 
+// Read Posts and Users from a file.
 fun read(context: Context, fileName: String): String {
     var str = ""
     try {
@@ -39,6 +41,7 @@ fun read(context: Context, fileName: String): String {
     return str
 }
 
+// Check if a file exists.
 fun exists(context: Context, filename: String): Boolean {
     val file = context.getFileStreamPath(filename)
     return file.exists()

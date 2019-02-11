@@ -15,24 +15,31 @@ import org.wit.reduke.tools.EspressoIdlingResource
 class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
 
     lateinit var app: MainApp
+    // Create instance of FirebaseAuth
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_register)
         toolbarRegister.title = title
         setSupportActionBar(toolbarRegister)
+        // Show the up arrow in the toolbar allowing the user to cancel their register.
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         app = application as MainApp
         registerButton.setOnClickListener {
+            // Show the loading indicator when registering with cloud.
             showProgress()
+            // Tell Espresso test to wait.
             EspressoIdlingResource.increment()
+            // Create a user with the email and password entered by the user.
             auth.createUserWithEmailAndPassword(enteredRegisterEmail.text.toString(), enteredRegisterPassword.text.toString())
                     .addOnCompleteListener(this) { task ->
+                        // Tell the user to fill in all fields if they leave them blank.
                         if (enteredRegisterEmail.text.toString().isEmpty() or enteredRegisterPassword.text.toString().isEmpty()) {
                             toast(org.wit.reduke.R.string.hint_EnterAllFields)
                         } else {
                             if (enteredRegisterPassword.text.toString() == enteredRegisterPasswordConfirm.text.toString()) {
+                                // If register is successful.
                                 if (task.isSuccessful) {
                                     val mypreference = RedukeSharedPreferences(this)
                                     mypreference.setCurrentUserName(enteredRegisterUsername.text.toString())
@@ -45,22 +52,22 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
                                         EspressoIdlingResource.decrement()
                                     }
                                     finish()
-
+                                    // If the register isn't successful.
                                 } else {
                                     toast("User Registration Failed!" + task.exception.toString())
                                 }
+                                // The user is told to enter their password twice to make sure they
+                                // enter the password they mean. If they do not match show a toast message.
                             } else {
                                 toast("Passwords Do Not Match!")
                             }
                         }
-
-
                     }
-
         }
 
     }
 
+    // Functions to show and hide loading animation.
     private fun showProgress() {
         loadingRegisterIndicator.visibility = View.VISIBLE
     }

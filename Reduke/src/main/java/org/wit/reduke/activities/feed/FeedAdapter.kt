@@ -1,5 +1,6 @@
 package org.wit.reduke.activities.feed
 
+import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -41,6 +42,7 @@ class RedukeAdapter(private var posts: List<PostModel>,
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView), AnkoLogger {
 
         // Bind the post data to all of the fields.
+        @SuppressLint("SetTextI18n")
         fun bind(post: PostModel, listener: RedukeListener) {
             itemView.postTitleField.text = post.title
             itemView.cardPostOwner.text = post.postOwner
