@@ -15,6 +15,7 @@ import org.wit.reduke.tools.EspressoIdlingResource
 
 class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
 
+    // Get instance of the the FirebaseAuth
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     lateinit var app: MainApp
@@ -25,41 +26,54 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
         setContentView(org.wit.reduke.R.layout.activity_login)
         val redukeSharedPref = RedukeSharedPreferences(this)
 
+        // Setup the login button functionality.
         loginButton.setOnClickListener {
+            // Make sure the fields are not empty, if they are tell the user to fill them.
             if (enteredLoginEmail.text.toString().isNotEmpty() && enteredLoginPassword.text.toString().isNotEmpty()) {
+                // Tell Espresso to wait for UI testing as we do not know how long the Firebase login will take.
                 EspressoIdlingResource.increment()
+                // Show the loading indicator.
                 showProgress()
+
+                // Use the details entered by the user to sign in to the firebase auth cloud service.
                 auth.signInWithEmailAndPassword(enteredLoginEmail.text.toString(), enteredLoginPassword.text.toString())
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
+                                // If the user logs in, set their email in the redukeSharedPref for use later on.
                                 redukeSharedPref.setCurrentUserEmail(enteredLoginEmail.text.toString())
                                 startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", enteredLoginEmail.text.toString()), 0)
                             } else {
-                                // If sign in fails, display a message to the user.
+                                // If sign in fails due to incorrect details, display a message to the user.
                                 toast(org.wit.reduke.R.string.toast_InvalidCreds)
                             }
+                            // If user isn't found display this message.
                             if (!task.isSuccessful) {
                                 toast(org.wit.reduke.R.string.toast_AuthFail)
                             }
                             hideProgress()
+                            // Tell Espresso to it cant continue now.
                             if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
                                 EspressoIdlingResource.decrement()
                             }
                         }
+                // Tell the user to enter their email if blank.
             } else if (enteredLoginEmail.text.toString().isEmpty()) {
                 toast("Please Enter Your Email")
+                // Tell the user to enter their password if blank.
             } else if (enteredLoginPassword.text.toString().isEmpty()) {
-                toast("Please Enter Your Email")
+                toast("Please Enter Your Password")
             } else {
                 toast(org.wit.reduke.R.string.hint_EnterAllFields)
             }
         }
 
+        // Set the register button to navigate to the RedukeRegisterActivity.
         navToRegisterButton.setOnClickListener {
             startActivityForResult<RedukeRegisterActivity>(0)
         }
     }
 
+    // Functions to show and hide loading animation.
     fun showProgress() {
         loadingLoginIndicator.visibility = View.VISIBLE
     }
