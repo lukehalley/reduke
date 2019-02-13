@@ -1,4 +1,4 @@
-package org.wit.reduke.models
+package org.wit.reduke.models.users
 
 interface UserStore {
     fun findAll(): List<UserModel>

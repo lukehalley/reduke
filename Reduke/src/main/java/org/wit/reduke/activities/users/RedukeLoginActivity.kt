@@ -1,4 +1,4 @@
-package org.wit.reduke.activities
+package org.wit.reduke.activities.users
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -10,7 +10,9 @@ import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
 import org.wit.post.R
+import org.wit.reduke.activities.feed.FeedActivity
 import org.wit.reduke.main.MainApp
+
 
 class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
 
@@ -33,7 +35,7 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
                                 redukeSharedPref.setCurrentUserName(enteredEmail.text.toString())
                                 redukeSharedPref.setCurrentUserEmail(enteredEmail.text.toString())
                                 redukeSharedPref.setCurrentUserPassword(enteredPassword.text.toString())
-                                startActivityForResult(intentFor<RedukeListActivity>().putExtra("loggedInUser", enteredEmail.text.toString()), 0)
+                                startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", enteredEmail.text.toString()), 0)
                             } else {
                                 // If sign in fails, display a message to the user.
                                 toast(R.string.toast_InvalidCreds)
@@ -53,7 +55,7 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
         }
 
         navToRegisterButton.setOnClickListener {
-            startActivityForResult<RedukeListActivity>(0)
+            startActivityForResult<RedukeRegisterActivity>(0)
         }
     }
 

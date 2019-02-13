@@ -1,4 +1,4 @@
-package org.wit.reduke.models
+package org.wit.reduke.models.users
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

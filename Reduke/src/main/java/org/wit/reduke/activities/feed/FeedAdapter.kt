@@ -1,4 +1,4 @@
-package org.wit.reduke.activities
+package org.wit.reduke.activities.feed
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.card_post.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.wit.post.R
-import org.wit.reduke.models.PostModel
+import org.wit.reduke.models.posts.PostModel
 
 interface RedukeListener {
     fun onRedukeClick(post: PostModel)
@@ -33,8 +33,6 @@ class RedukeAdapter(private var posts: List<PostModel>,
 
         fun bind(post: PostModel, listener: RedukeListener) {
             itemView.cardPostTitle.text = post.title
-            itemView.cardRedukeDescription.text = post.text
-            itemView.cardRedukeLocation.text = "Address: " + post.ownerId
             itemView.setOnClickListener { listener.onRedukeClick(post) }
 
         }
