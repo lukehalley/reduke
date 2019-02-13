@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingRegistry;
+import android.support.test.espresso.UiController;
+import android.support.test.espresso.ViewAction;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.util.Log;
 import android.view.View;
 
+import org.hamcrest.Matcher;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -204,6 +207,26 @@ public class RedukePostTest {
         onView(withId(R.id.recyclerView))
                 .check(matches(hasDescendant(withText(strEdit))));
 
+        // Check that upvotes are zero
+        onView(withId(R.id.recyclerView))
+                .check(matches(hasDescendant(withText("0 points"))));
+
+        // Click the upvote button
+        onView(withId(R.id.recyclerView)).perform(
+                RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.cardUpvotePost)));
+
+        // Check that upvotes are zero
+        onView(withId(R.id.recyclerView))
+                .check(matches(hasDescendant(withText("1 points"))));
+
+        // Click the downvote button
+        onView(withId(R.id.recyclerView)).perform(
+                RecyclerViewActions.actionOnItemAtPosition(0, MyViewAction.clickChildViewWithId(R.id.cardDownvotePost)));
+
+        // Check that downvote are zero
+        onView(withId(R.id.recyclerView))
+                .check(matches(hasDescendant(withText("0 points"))));
+
         // Click the first item in the feed again.
         onView(withId(R.id.recyclerView))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
@@ -232,5 +255,29 @@ public class RedukePostTest {
 
     }
 
+
+}
+
+class MyViewAction {
+
+    public static ViewAction clickChildViewWithId(final int id) {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return null;
+            }
+
+            @Override
+            public String getDescription() {
+                return "Click on a child view with specified id.";
+            }
+
+            @Override
+            public void perform(UiController uiController, View view) {
+                View v = view.findViewById(id);
+                v.performClick();
+            }
+        };
+    }
 
 }
