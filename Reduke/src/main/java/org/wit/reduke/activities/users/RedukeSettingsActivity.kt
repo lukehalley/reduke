@@ -34,7 +34,7 @@ class RedukeSettingsActivity : AppCompatActivity(), AnkoLogger {
         saveEditUser.setOnClickListener {
             if (foundUser != null) {
                 user.id = foundUser.id
-                user.name = foundUser.name
+                user.username = foundUser.username
             }
             user.email = editUserEmail.text.toString()
             user.password = editUserPassword.text.toString()
