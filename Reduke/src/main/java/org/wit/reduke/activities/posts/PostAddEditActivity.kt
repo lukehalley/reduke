@@ -38,7 +38,7 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
             edit = true
 
             // Set toolbar title to Edit Post.
-            toolbarAdd.title = org.wit.reduke.R.string.title_editPost.toString()
+            toolbarAdd.title = "Edit Post"
             setSupportActionBar(toolbarAdd)
             post = intent.extras.getParcelable<PostModel>("post_edit")
 
