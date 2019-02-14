@@ -1,13 +1,13 @@
 
 <h1 align="center">
   <br>
-  <a href="https://preview.ibb.co/mDA9Sf/appNoTxt.png"><img src="https://preview.ibb.co/mDA9Sf/appNoTxt.png" alt="Markdownify" width="200"></a>
+  <a href="https://i.ibb.co/C93y7np/redukeiconblue.png"><img src="https://i.ibb.co/C93y7np/redukeiconblue.png" alt="Reduke Logo" width="200"></a>
   <br>
-  Hillfort
+  Reduke
   <br>
 </h1>
 
-<h4 align="center">An android application built with Kotlin for my 4th Year, Semester 1 "Mobile App Dev" module for our first assignment.</a></h4>
+<h4 align="center">An android application built with Kotlin for my 4th Year, Semester 2 "Mobile App Dev 2" module for our continuous assesment.</a></h4>
 
 ## Demo
 
