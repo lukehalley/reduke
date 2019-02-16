@@ -27,6 +27,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
     lateinit var app: MainApp
     var ascending = true
+    var sortSetting = "Top"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,10 +96,14 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
                 selector(
                         "Sort Feed By",
                         sortOptions
-                ) { dialogInterface, i ->
-                    toast("So you're living in ${sortOptions[i]}, right?")
-                    sortData(!ascending)
-//                    ascending = !ascending
+                ) { _, i ->
+                    when {
+                        sortOptions[i] == "Top" -> sortData("Top")
+                        sortOptions[i] == "Newest" -> sortData("Newest")
+                        sortOptions[i] == "Oldest" -> sortData("Oldest")
+                        sortOptions[i] == "Alphabetical (Ascending)" -> sortData("AlphabeticalAsc")
+                        sortOptions[i] == "Alphabetical (Descending)" -> sortData("AlphabeticalDec")
+                    }
                 }
         }
         when (item?.itemId) {
@@ -117,18 +122,33 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun sortData(ascending: Boolean) {
+    private fun sortData(sortOption: String) {
         var posts = app.posts.findAll()
-        val sortedPostsAscending = posts.sortedBy { post -> post.title }
-        info { "SORTED ascending: $sortedPostsAscending" }
-
-        val sortedPostsDescending = posts.sortedByDescending { post -> post.title }
-        info { "SORTED descending: $sortedPostsDescending" }
-
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = RedukeAdapter(sortedPostsDescending, this)
-//        loadPosts()
+
+        when (sortOption) {
+            "Top" -> {
+                toast("Sorting By Upvotes")
+                sortSetting = "Top"
+            }
+
+            "Newest" -> {
+                toast("Sorting By Newest")
+            }
+            "Oldest" -> {
+                toast("Sorting By Oldest")
+                recyclerView.adapter = RedukeAdapter(posts.sortedBy { post -> post.title }, this)
+            }
+            "AlphabeticalAsc" -> {
+                toast("Sorting By Alphabetical (Ascending)")
+                recyclerView.adapter = RedukeAdapter(posts.sortedBy { post -> post.title }, this)
+            }
+            "AlphabeticalDec" -> {
+                toast("Sorting By Alphabetical (Descending)")
+                recyclerView.adapter = RedukeAdapter(posts.sortedByDescending { post -> post.title }, this)
+            }
+        }
     }
 
     override fun onRedukeClick(post: PostModel) {
