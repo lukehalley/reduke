@@ -9,8 +9,9 @@ import kotlinx.android.synthetic.main.activity_post.*
 import org.jetbrains.anko.*
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.posts.PostModel
-import java.time.LocalDateTime
-
+import java.time.Instant
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
 
@@ -43,7 +44,10 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
         addRedukeBtn.setOnClickListener {
             post.title = cardPostTitle.text.toString()
             post.text = cardRedukeDescription.text.toString()
-            post.timestamp = LocalDateTime.now().toString()
+            post.timestamp = DateTimeFormatter
+                    .ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")
+                    .withZone(ZoneOffset.UTC)
+                    .format(Instant.now())
             if (post.title.isEmpty() or post.text.isEmpty()) {
                 toast(org.wit.reduke.R.string.hint_EnterPostTitle)
             } else {
@@ -52,7 +56,7 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
                 } else {
                     app.posts.create(post.copy())
                 }
-                info("add Button Pressed: $cardPostTitle")
+                info("Created: $post")
                 setResult(AppCompatActivity.RESULT_OK)
                 finish()
             }

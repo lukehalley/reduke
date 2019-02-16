@@ -21,6 +21,8 @@ import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.posts.PostModel
 import org.wit.reduke.models.users.UserModel
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
@@ -127,6 +129,12 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
 
+        val dateTimeStrToLocalDateTime: (String) -> LocalDateTime = {
+            LocalDateTime.parse(it, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS"))
+        }
+
+//        val cmp = compareBy<String> { LocalDateTime.parse(it, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")) }
+
         when (sortOption) {
             "Top" -> {
                 toast("Sorting By Upvotes")
@@ -136,6 +144,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             "Newest" -> {
                 toast("Sorting By Newest")
                 sortSetting = "Newest"
+                recyclerView.adapter = RedukeAdapter(posts.sortedWith(compareByDescending { LocalDateTime.parse(it.timestamp, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")) }), this)
             }
             "Oldest" -> {
                 toast("Sorting By Oldest")
