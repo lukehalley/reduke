@@ -35,7 +35,7 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
                             if (enteredPassword.text.toString() == enteredPasswordConfirm.text.toString()) {
                                 if (task.isSuccessful) {
                                     val mypreference = RedukeSharedPreferences(this)
-                                    mypreference.setCurrentUserID(auth.uid.toString())
+                                    mypreference.setCurrentUserName(enteredUsername.text.toString())
                                     // Sign in success, update UI with the signed-in user's information
                                     toast(R.string.hint_SucessfullRegister)
                                     val user = auth.currentUser
