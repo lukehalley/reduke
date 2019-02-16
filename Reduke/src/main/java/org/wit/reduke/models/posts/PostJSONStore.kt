@@ -10,7 +10,7 @@ import org.wit.reduke.helpers.read
 import org.wit.reduke.helpers.write
 import java.util.*
 
-val POST_JSON_FILE = "redukes.json"
+val POST_JSON_FILE = "posts.json"
 val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
 val listType = object : TypeToken<java.util.ArrayList<PostModel>>() {}.type
 
@@ -43,11 +43,12 @@ class PostJSONStore : PostStore, AnkoLogger {
     override fun update(post: PostModel) {
         var foundPost: PostModel? = redukes.find { p -> p.id == post.id }
         if (foundPost != null) {
+            foundPost.postOwner = post.postOwner
             foundPost.title = post.title
             foundPost.text = post.text
             foundPost.tags = post.tags
+            foundPost.votes = post.votes
             foundPost.timestamp = post.timestamp
-            foundPost.ownerId = post.ownerId
             serialize()
         }
     }

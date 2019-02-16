@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
-import org.wit.post.R
+import org.wit.reduke.R
 import org.wit.reduke.main.MainApp
 
 class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
@@ -35,7 +35,7 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
                             if (enteredPassword.text.toString() == enteredPasswordConfirm.text.toString()) {
                                 if (task.isSuccessful) {
                                     val mypreference = RedukeSharedPreferences(this)
-                                    mypreference.setCurrentUserID(auth.uid.toString())
+                                    mypreference.setCurrentUserName(enteredUsername.text.toString())
                                     // Sign in success, update UI with the signed-in user's information
                                     toast(R.string.hint_SucessfullRegister)
                                     val user = auth.currentUser

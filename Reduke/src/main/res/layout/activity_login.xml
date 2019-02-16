@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/redukeLogo"
-        android:layout_width="212dp"
-        android:layout_height="190dp"
+        android:layout_width="188dp"
+        android:layout_height="138dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/redukeLogo"
-        app:layout_constraintVertical_bias="0.787" />
+        app:layout_constraintVertical_bias="0.588" />
 
     <EditText
         android:id="@+id/enteredEmail"
@@ -130,14 +130,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:indeterminateTint="#FFFFFF"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.541" />
+        app:layout_constraintVertical_bias="0.425" />
 
 
 </android.support.constraint.ConstraintLayout>
