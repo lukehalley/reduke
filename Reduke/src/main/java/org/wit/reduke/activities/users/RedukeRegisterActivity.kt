@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.jetbrains.anko.toast
-import org.wit.post.R
+import org.wit.reduke.R
 import org.wit.reduke.main.MainApp
 
 class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {

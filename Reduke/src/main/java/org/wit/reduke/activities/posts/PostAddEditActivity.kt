@@ -9,17 +9,18 @@ import kotlinx.android.synthetic.main.activity_post.*
 import org.jetbrains.anko.*
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.posts.PostModel
+import java.time.LocalDateTime
 
 
 class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
 
-    var reduke = PostModel()
+    var post = PostModel()
     lateinit var app: MainApp
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(org.wit.post.R.layout.activity_post)
+        setContentView(org.wit.reduke.R.layout.activity_post)
         toolbarAdd.title = title
         setSupportActionBar(toolbarAdd)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -32,34 +33,36 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
             edit = true
             toolbarAdd.title = "Edit Reduke"
             setSupportActionBar(toolbarAdd)
-            reduke = intent.extras.getParcelable<PostModel>("post_edit")
-            cardPostTitle.setText(reduke.title)
-            cardRedukeDescription.setText(reduke.text)
+            post = intent.extras.getParcelable<PostModel>("post_edit")
+            cardPostTitle.setText(post.title)
+            cardRedukeDescription.setText(post.text)
             deleteRedukeBtn.visibility = VISIBLE
-            addRedukeBtn.setText(org.wit.post.R.string.button_savePost)
+            addRedukeBtn.setText(org.wit.reduke.R.string.button_savePost)
         }
 
         addRedukeBtn.setOnClickListener {
-            reduke.title = cardPostTitle.text.toString()
-            reduke.text = cardRedukeDescription.text.toString()
-            if (reduke.title.isEmpty() or reduke.text.isEmpty()) {
-                toast(org.wit.post.R.string.hint_EnterPostTitle)
+            post.title = cardPostTitle.text.toString()
+            post.text = cardRedukeDescription.text.toString()
+            post.timestamp = LocalDateTime.now().toString()
+            if (post.title.isEmpty() or post.text.isEmpty()) {
+                toast(org.wit.reduke.R.string.hint_EnterPostTitle)
             } else {
                 if (edit) {
-                    app.posts.update(reduke.copy())
+                    app.posts.update(post.copy())
                 } else {
-                    app.posts.create(reduke.copy())
+                    app.posts.create(post.copy())
                 }
                 info("add Button Pressed: $cardPostTitle")
                 setResult(AppCompatActivity.RESULT_OK)
                 finish()
             }
+
         }
 
         deleteRedukeBtn.setOnClickListener {
-            alert(org.wit.post.R.string.deletePrompt) {
+            alert(org.wit.reduke.R.string.deletePrompt) {
                 yesButton {
-                    app.posts.delete(reduke)
+                    app.posts.delete(post)
                     finish()
                 }
                 noButton {}
@@ -69,14 +72,14 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(org.wit.post.R.menu.menu_post_add_edit, menu)
+        menuInflater.inflate(org.wit.reduke.R.menu.menu_post_add_edit, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            org.wit.post.R.id.item_cancel -> {
-                alert(org.wit.post.R.string.unsavedPrompt) {
+            org.wit.reduke.R.id.item_cancel -> {
+                alert(org.wit.reduke.R.string.unsavedPrompt) {
                     yesButton {
                         finish()
                     }
@@ -88,7 +91,7 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
     }
 
     override fun onBackPressed() {
-        alert(org.wit.post.R.string.unsavedPrompt) {
+        alert(org.wit.reduke.R.string.unsavedPrompt) {
             yesButton {
                 finish()
                 super.onBackPressed()

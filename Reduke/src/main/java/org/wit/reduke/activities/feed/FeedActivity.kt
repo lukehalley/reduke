@@ -14,7 +14,7 @@ import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_feed.*
 import org.jetbrains.anko.*
-import org.wit.post.R
+import org.wit.reduke.R
 import org.wit.reduke.activities.posts.PostAddEditActivity
 import org.wit.reduke.activities.users.RedukeSettingsActivity
 import org.wit.reduke.activities.users.RedukeSharedPreferences
@@ -82,7 +82,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val sortOptions = listOf("Top", "Newest", "Oldest", "Alphabetical")
+        val sortOptions = listOf("Top", "Newest", "Oldest", "Alphabetical (Ascending)", "Alphabetical (Descending)")
 
 
         var mDrawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -135,17 +135,21 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
             "Newest" -> {
                 toast("Sorting By Newest")
+                sortSetting = "Newest"
             }
             "Oldest" -> {
                 toast("Sorting By Oldest")
+                sortSetting = "Oldest"
                 recyclerView.adapter = RedukeAdapter(posts.sortedBy { post -> post.title }, this)
             }
             "AlphabeticalAsc" -> {
                 toast("Sorting By Alphabetical (Ascending)")
+                sortSetting = "AlphabeticalAsc"
                 recyclerView.adapter = RedukeAdapter(posts.sortedBy { post -> post.title }, this)
             }
             "AlphabeticalDec" -> {
                 toast("Sorting By Alphabetical (Descending)")
+                sortSetting = "AlphabeticalDec"
                 recyclerView.adapter = RedukeAdapter(posts.sortedByDescending { post -> post.title }, this)
             }
         }

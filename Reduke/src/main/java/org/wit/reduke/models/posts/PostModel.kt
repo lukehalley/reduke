@@ -9,6 +9,7 @@ data class PostModel(var id: Long = 0,
                      var title: String = "",
                      var text: String = "",
                      var tags: String = "",
+                     var votes: Int = 0,
                      var timestamp: String = ""
-                     ) : Parcelable
+) : Parcelable
 

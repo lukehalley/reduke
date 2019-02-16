@@ -9,7 +9,7 @@ import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
-import org.wit.post.R
+import org.wit.reduke.R
 import org.wit.reduke.activities.feed.FeedActivity
 import org.wit.reduke.main.MainApp
 
