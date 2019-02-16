@@ -129,37 +129,32 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
 
-        val dateTimeStrToLocalDateTime: (String) -> LocalDateTime = {
-            LocalDateTime.parse(it, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS"))
-        }
-
-//        val cmp = compareBy<String> { LocalDateTime.parse(it, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")) }
-
         when (sortOption) {
             "Top" -> {
                 toast("Sorting By Upvotes")
                 sortSetting = "Top"
+                recyclerView.adapter = RedukeAdapter(sortByVotes(posts), this)
             }
 
             "Newest" -> {
                 toast("Sorting By Newest")
                 sortSetting = "Newest"
-                recyclerView.adapter = RedukeAdapter(posts.sortedWith(compareByDescending { LocalDateTime.parse(it.timestamp, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")) }), this)
+                recyclerView.adapter = RedukeAdapter(sortByNewest(posts), this)
             }
             "Oldest" -> {
                 toast("Sorting By Oldest")
                 sortSetting = "Oldest"
-                recyclerView.adapter = RedukeAdapter(posts.sortedBy { post -> post.title }, this)
+                recyclerView.adapter = RedukeAdapter(sortByOldest(posts), this)
             }
             "AlphabeticalAsc" -> {
                 toast("Sorting By Alphabetical (Ascending)")
                 sortSetting = "AlphabeticalAsc"
-                recyclerView.adapter = RedukeAdapter(posts.sortedBy { post -> post.title }, this)
+                recyclerView.adapter = RedukeAdapter(sortByAlphabeticalAsc(posts), this)
             }
             "AlphabeticalDec" -> {
                 toast("Sorting By Alphabetical (Descending)")
                 sortSetting = "AlphabeticalDec"
-                recyclerView.adapter = RedukeAdapter(posts.sortedByDescending { post -> post.title }, this)
+                recyclerView.adapter = RedukeAdapter(sortByAlphabeticalDec(posts), this)
             }
         }
     }
@@ -175,6 +170,27 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
     private fun loadPosts() {
         showRedukes(app.posts.findAll())
+    }
+
+    // Sorting functions
+    fun sortByVotes(list: List<PostModel>): List<PostModel> {
+        return list.sortedByDescending { post -> post.votes }
+    }
+
+    fun sortByNewest(list: List<PostModel>): List<PostModel> {
+        return list.sortedWith(compareByDescending { LocalDateTime.parse(it.timestamp, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")) })
+    }
+
+    fun sortByOldest(list: List<PostModel>): List<PostModel> {
+        return list.sortedWith(compareBy { LocalDateTime.parse(it.timestamp, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS")) })
+    }
+
+    fun sortByAlphabeticalAsc(list: List<PostModel>): List<PostModel> {
+        return list.sortedBy { post -> post.title }
+    }
+
+    fun sortByAlphabeticalDec(list: List<PostModel>): List<PostModel> {
+        return list.sortedByDescending { post -> post.title }
     }
 
     fun showRedukes(posts: List<PostModel>) {
