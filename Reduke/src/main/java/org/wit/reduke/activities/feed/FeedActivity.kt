@@ -26,6 +26,8 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
     lateinit var app: MainApp
+    var ascending = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
@@ -40,8 +42,8 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         }
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = RedukeAdapter(app.redukes.findAll(), this)
-        loadRedukes()
+        recyclerView.adapter = RedukeAdapter(app.posts.findAll(), this)
+        loadPosts()
         addRedukeFab.setOnClickListener() {
             startActivityForResult<PostAddEditActivity>(0)
         }
@@ -79,12 +81,25 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val sortOptions = listOf("Top", "Newest", "Oldest", "Alphabetical")
+
 
         var mDrawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
 
         var user = UserModel()
         when (item?.itemId) {
             android.R.id.home -> mDrawerLayout.openDrawer(GravityCompat.START)
+        }
+        when (item?.itemId) {
+            R.id.item_sort_feed ->
+                selector(
+                        "Sort Feed By",
+                        sortOptions
+                ) { dialogInterface, i ->
+                    toast("So you're living in ${sortOptions[i]}, right?")
+                    sortData(!ascending)
+//                    ascending = !ascending
+                }
         }
         when (item?.itemId) {
             R.id.item_settings -> startActivityForResult(intentFor<RedukeSettingsActivity>().putExtra("user_edit", user), 0)
@@ -102,17 +117,31 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun sortData(ascending: Boolean) {
+        var posts = app.posts.findAll()
+        val sortedPostsAscending = posts.sortedBy { post -> post.title }
+        info { "SORTED ascending: $sortedPostsAscending" }
+
+        val sortedPostsDescending = posts.sortedByDescending { post -> post.title }
+        info { "SORTED descending: $sortedPostsDescending" }
+
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = RedukeAdapter(sortedPostsDescending, this)
+//        loadPosts()
+    }
+
     override fun onRedukeClick(post: PostModel) {
         startActivityForResult(intentFor<PostAddEditActivity>().putExtra("post_edit", post), 0)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        loadRedukes()
+        loadPosts()
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    private fun loadRedukes() {
-        showRedukes(app.redukes.findAll())
+    private fun loadPosts() {
+        showRedukes(app.posts.findAll())
     }
 
     fun showRedukes(posts: List<PostModel>) {

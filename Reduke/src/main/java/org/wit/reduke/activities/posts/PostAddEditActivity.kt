@@ -46,9 +46,9 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
                 toast(org.wit.post.R.string.hint_EnterPostTitle)
             } else {
                 if (edit) {
-                    app.redukes.update(reduke.copy())
+                    app.posts.update(reduke.copy())
                 } else {
-                    app.redukes.create(reduke.copy())
+                    app.posts.create(reduke.copy())
                 }
                 info("add Button Pressed: $cardPostTitle")
                 setResult(AppCompatActivity.RESULT_OK)
@@ -59,7 +59,7 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
         deleteRedukeBtn.setOnClickListener {
             alert(org.wit.post.R.string.deletePrompt) {
                 yesButton {
-                    app.redukes.delete(reduke)
+                    app.posts.delete(reduke)
                     finish()
                 }
                 noButton {}

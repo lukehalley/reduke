@@ -10,7 +10,7 @@ import org.wit.reduke.helpers.read
 import org.wit.reduke.helpers.write
 import java.util.*
 
-val POST_JSON_FILE = "redukes.json"
+val POST_JSON_FILE = "posts.json"
 val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
 val listType = object : TypeToken<java.util.ArrayList<PostModel>>() {}.type
 
