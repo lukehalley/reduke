@@ -43,7 +43,7 @@ class PostJSONStore : PostStore, AnkoLogger {
     override fun update(post: PostModel) {
         var foundPost: PostModel? = redukes.find { p -> p.id == post.id }
         if (foundPost != null) {
-            foundPost.ownerId = post.ownerId
+            foundPost.postOwner = post.postOwner
             foundPost.title = post.title
             foundPost.text = post.text
             foundPost.tags = post.tags
