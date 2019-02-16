@@ -40,6 +40,7 @@ Connect your device or start an emulator and run the app! 😃
   - Flat and bright colours with consistent app wide colour scheme.
 * Modern UI Elements
   - Navigation drawer, Floating Action Button (FAB), Flat Icons.
+  - Current Users Email & Username shown in sidebar
 * Animations
   - Posts fade in from the right when the posts are loaded or when they sorted.
 * Reddit Feed Features
@@ -82,3 +83,5 @@ Connect your device or start an emulator and run the app! 😃
   - Empty field checking when creating a Post.
 * Pop Up Windows
   - Used in multiple areas such as logging out (are you sure you want to logout?) and when deleting a Post (are you sure you want to delete this Post?) etc...
+* Using SharedPreferences
+  - Used for various logic and ui elements
