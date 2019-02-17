@@ -9,9 +9,13 @@
 
 <h4 align="center">An android application built with Kotlin for my 4th Year, Semester 2 "Mobile App Dev 2" module for our continuous assesment.</a></h4>
 
+## Repo
+
+[Reduke Github Repo](https://github.com/lukehalley/reduke)
+
 ## Demo
 
-
+[Reduke Youtube Video](https://github.com/lukehalley/reduke)
 
 ## Screenshots
 
