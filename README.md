@@ -33,7 +33,7 @@ Then [open the project in Android Studio](https://github.com/dogriffiths/HeadFir
 
 Connect your device or start an emulator and run the app! 😃
 
-## Key Features
+## Features
 
 * Splashscreen
 * Material Design
