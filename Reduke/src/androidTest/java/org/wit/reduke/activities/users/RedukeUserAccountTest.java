@@ -8,6 +8,8 @@ import android.support.test.rule.ActivityTestRule;
 import android.util.Log;
 import android.view.View;
 
+import org.apache.commons.text.CharacterPredicates;
+import org.apache.commons.text.RandomStringGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -41,23 +43,29 @@ public class RedukeUserAccountTest {
     @Test
     public void testUserSignUpAndLogin() {
 
-        // Create random data with MockNeat
-//        MockNeat mock = MockNeat.threadLocal();
-        String correctUsername = "weirdemail";
-        String correctEmail = "weirdemail@email.com";
-        String correctPassword = "djfdjkfskjdfjsdf";
+        RandomStringGenerator randomStringGenerator =
+                new RandomStringGenerator.Builder()
+                        .withinRange('0', 'z')
+                        .filteredBy(CharacterPredicates.LETTERS, CharacterPredicates.DIGITS)
+                        .build();
+
+        String str = randomStringGenerator.generate(7);
+        String correctUsername = str;
+        String correctEmail = str + "@email.com";
+        String correctPassword = str + "1234";
+
 
         Log.e("@Test", "Using Email: " + correctEmail + " and Password: " + correctPassword);
 
         // Check register button exists
         View navToRegisterButton = lActivity.findViewById(R.id.navToRegisterButton);
         assertNotNull(navToRegisterButton);
-        // Click it
+        // Click the register button
         onView(withId(R.id.navToRegisterButton)).perform(click());
-
+        // Check we are at the register screen
         Activity registerActivity = getInstrumentation().waitForMonitorWithTimeout(registerActivityMonitor, 5000);
         assertNotNull(registerActivity);
-
+        // Signing up
         Log.e("@Test", "Performing login success test");
         Espresso.onView((withId(R.id.enteredRegisterUsername)))
                 .perform(ViewActions.typeText(correctUsername));

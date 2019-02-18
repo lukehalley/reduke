@@ -50,6 +50,7 @@
         android:autofillHints="@string/email"
         android:backgroundTint="@android:color/white"
         android:hint="@string/email"
+        android:inputType="textWebEmailAddress"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textColorHint="@color/colorDisabled"
