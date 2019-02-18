@@ -36,7 +36,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:contentDescription="Add User"
-        app:layout_constraintBottom_toTopOf="@+id/enteredUsername"
+        app:layout_constraintBottom_toTopOf="@+id/enteredRegisterUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +45,7 @@
         app:srcCompat="@drawable/add_people" />
 
     <EditText
-        android:id="@+id/enteredUsername"
+        android:id="@+id/enteredRegisterUsername"
         android:layout_width="313dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -55,7 +55,7 @@
         android:backgroundTint="@android:color/white"
         android:drawableEnd="@drawable/person_outline"
         android:hint="@string/name"
-        android:inputType="textPersonName|textCapWords"
+        android:inputType="textNoSuggestions|textVisiblePassword"
         android:textColor="@android:color/white"
         android:textColorHighlight="@android:color/white"
         android:textColorHint="@color/colorDisabled"
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/registerAppBar" />
 
     <EditText
-        android:id="@+id/enteredEmail"
+        android:id="@+id/enteredRegisterEmail"
         android:layout_width="313dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -73,16 +73,16 @@
         android:backgroundTint="@android:color/white"
         android:drawableEnd="@drawable/email_outline_white"
         android:hint="@string/email"
-        android:inputType="textWebEmailAddress"
+        android:inputType="textNoSuggestions|textVisiblePassword"
         android:textColor="@android:color/white"
         android:textColorHint="@color/colorDisabled"
         android:textColorLink="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enteredUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/enteredRegisterUsername" />
 
     <EditText
-        android:id="@+id/enteredPassword"
+        android:id="@+id/enteredRegisterPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="49dp"
@@ -91,16 +91,16 @@
         android:backgroundTint="@android:color/white"
         android:drawableEnd="@drawable/lock_outline_white"
         android:hint="@string/password"
-        android:inputType="textPassword"
+        android:inputType="textNoSuggestions|textVisiblePassword"
         android:textColor="@android:color/white"
         android:textColorHint="@color/colorDisabled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enteredEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/enteredRegisterEmail" />
 
     <EditText
-        android:id="@+id/enteredPasswordConfirm"
+        android:id="@+id/enteredRegisterPasswordConfirm"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="49dp"
@@ -110,13 +110,13 @@
         android:backgroundTint="@android:color/white"
         android:drawableEnd="@drawable/lock_outline_white"
         android:hint="@string/passwordConfirm"
-        android:inputType="textPassword"
+        android:inputType="textNoSuggestions|textVisiblePassword"
         android:textColor="@android:color/white"
         android:textColorHint="@color/colorDisabled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enteredPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/enteredRegisterPassword" />
 
     <Button
         android:id="@+id/registerButton"
@@ -130,7 +130,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enteredPasswordConfirm"
+        app:layout_constraintTop_toBottomOf="@+id/enteredRegisterPasswordConfirm"
         app:layout_constraintVertical_bias="0.005" />
 
     <ProgressBar

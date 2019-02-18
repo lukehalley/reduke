@@ -27,13 +27,13 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
         val redukeSharedPref = RedukeSharedPreferences(this)
 
         loginButton.setOnClickListener {
-            if (enteredEmail.text.toString().isNotEmpty() && enteredPassword.text.toString().isNotEmpty()) {
+            if (enteredRegisterEmail.text.toString().isNotEmpty() && enteredRegisterPassword.text.toString().isNotEmpty()) {
                 showProgress()
-                auth.signInWithEmailAndPassword(enteredEmail.text.toString(), enteredPassword.text.toString())
+                auth.signInWithEmailAndPassword(enteredRegisterEmail.text.toString(), enteredRegisterPassword.text.toString())
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
-                                redukeSharedPref.setCurrentUserEmail(enteredEmail.text.toString())
-                                startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", enteredEmail.text.toString()), 0)
+                                redukeSharedPref.setCurrentUserEmail(enteredRegisterEmail.text.toString())
+                                startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", enteredRegisterEmail.text.toString()), 0)
                             } else {
                                 // If sign in fails, display a message to the user.
                                 toast(R.string.toast_InvalidCreds)
@@ -43,9 +43,9 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
                             }
                             hideProgress()
                         }
-            } else if (enteredEmail.text.toString().isEmpty()) {
+            } else if (enteredRegisterEmail.text.toString().isEmpty()) {
                 toast("Please Enter Your Email")
-            } else if (enteredPassword.text.toString().isEmpty()) {
+            } else if (enteredRegisterPassword.text.toString().isEmpty()) {
                 toast("Please Enter Your Email")
             } else {
                 toast(R.string.hint_EnterAllFields)

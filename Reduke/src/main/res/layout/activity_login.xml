@@ -34,14 +34,14 @@
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/enteredEmail"
+        app:layout_constraintBottom_toTopOf="@+id/enteredRegisterEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/redukeLogo"
         app:layout_constraintVertical_bias="0.588" />
 
     <EditText
-        android:id="@+id/enteredEmail"
+        android:id="@+id/enteredRegisterEmail"
         android:layout_width="300dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
@@ -50,7 +50,6 @@
         android:autofillHints="@string/email"
         android:backgroundTint="@android:color/white"
         android:hint="@string/email"
-        android:inputType="textWebEmailAddress"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textColorHint="@color/colorDisabled"
@@ -61,7 +60,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/enteredPassword"
+        android:id="@+id/enteredRegisterPassword"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -77,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enteredEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/enteredRegisterEmail" />
 
     <Button
         android:id="@+id/loginButton"
@@ -86,10 +85,10 @@
         android:layout_marginTop="4dp"
         android:backgroundTint="@android:color/white"
         android:text="@string/loginButton"
-        app:layout_constraintEnd_toEndOf="@+id/enteredPassword"
+        app:layout_constraintEnd_toEndOf="@+id/enteredRegisterPassword"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="@+id/enteredPassword"
-        app:layout_constraintTop_toBottomOf="@+id/enteredPassword" />
+        app:layout_constraintStart_toStartOf="@+id/enteredRegisterPassword"
+        app:layout_constraintTop_toBottomOf="@+id/enteredRegisterPassword" />
 
 
     <TextView
