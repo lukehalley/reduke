@@ -11,6 +11,7 @@ import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
 import org.wit.reduke.activities.feed.FeedActivity
 import org.wit.reduke.main.MainApp
+import org.wit.reduke.tools.EspressoIdlingResource
 
 class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
 
@@ -26,6 +27,7 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
 
         loginButton.setOnClickListener {
             if (enteredLoginEmail.text.toString().isNotEmpty() && enteredLoginPassword.text.toString().isNotEmpty()) {
+                EspressoIdlingResource.increment()
                 showProgress()
                 auth.signInWithEmailAndPassword(enteredLoginEmail.text.toString(), enteredLoginPassword.text.toString())
                         .addOnCompleteListener(this) { task ->
@@ -40,6 +42,9 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
                                 toast(org.wit.reduke.R.string.toast_AuthFail)
                             }
                             hideProgress()
+                            if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
+                                EspressoIdlingResource.decrement()
+                            }
                         }
             } else if (enteredLoginEmail.text.toString().isEmpty()) {
                 toast("Please Enter Your Email")

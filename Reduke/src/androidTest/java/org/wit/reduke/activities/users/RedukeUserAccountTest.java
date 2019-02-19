@@ -3,6 +3,7 @@ package org.wit.reduke.activities.users;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.support.test.espresso.Espresso;
+import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.util.Log;
@@ -16,6 +17,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.wit.reduke.R;
 import org.wit.reduke.activities.feed.FeedActivity;
+import org.wit.reduke.tools.EspressoIdlingResource;
 
 import kotlin.jvm.JvmField;
 
@@ -40,6 +42,7 @@ public class RedukeUserAccountTest {
     @Before
     public void setUp() {
         lActivity = mActivityTestRule.getActivity();
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.getIdlingResource());
     }
 
     @Test
@@ -52,9 +55,9 @@ public class RedukeUserAccountTest {
                         .build();
 
         String str = randomStringGenerator.generate(7);
-        String correctUsername = "fuke123";
-        String correctEmail = "fuke123@email.com";
-        String correctPassword = "fuke1231234";
+        String correctUsername = "reedfgdfgf";
+        String correctEmail = "reedfgdfgf@email.com";
+        String correctPassword = "reedfgdfgfefrrf";
 
 
         Log.e("@Test", "Using Email: " + correctEmail + " and Password: " + correctPassword);
@@ -92,13 +95,6 @@ public class RedukeUserAccountTest {
         Espresso.onView(withId(R.id.registerButton))
                 .perform(ViewActions.click());
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-
         Activity loginActivity = getInstrumentation().waitForMonitorWithTimeout(loginActivityMonitor, 5000);
         assertNotNull(loginActivity);
 
@@ -120,6 +116,9 @@ public class RedukeUserAccountTest {
     public void tearDown() {
 
         lActivity = null;
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.getIdlingResource());
 
     }
+
+
 }
