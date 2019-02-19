@@ -1,8 +1,7 @@
-package org.wit.reduke.activities.users;
+package org.wit.reduke.activities.posts;
 
 import android.app.Activity;
 import android.app.Instrumentation;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.action.ViewActions;
@@ -16,14 +15,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.wit.reduke.R;
 import org.wit.reduke.activities.feed.FeedActivity;
+import org.wit.reduke.activities.users.RedukeLoginActivity;
+import org.wit.reduke.activities.users.RedukeRegisterActivity;
 import org.wit.reduke.tools.EspressoIdlingResource;
 
 import java.security.SecureRandom;
 
-import androidx.test.uiautomator.UiDevice;
-import androidx.test.uiautomator.UiObject;
-import androidx.test.uiautomator.UiObjectNotFoundException;
-import androidx.test.uiautomator.UiSelector;
 import kotlin.jvm.JvmField;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
@@ -32,7 +29,7 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static junit.framework.TestCase.assertNotNull;
 
-public class RedukeUserAccountTest {
+public class RedukePostTest {
 
     private static final String ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_";
     private static final SecureRandom RANDOM = new SecureRandom();
@@ -42,10 +39,11 @@ public class RedukeUserAccountTest {
     public ActivityTestRule<RedukeLoginActivity> mActivityTestRule = new ActivityTestRule<>(RedukeLoginActivity.class);
 
     private RedukeLoginActivity lActivity = null;
-
+    private String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum mollis felis, in consequat nibh viverra sed.";
     private Instrumentation.ActivityMonitor registerActivityMonitor = getInstrumentation().addMonitor(RedukeRegisterActivity.class.getName(), null, false);
     private Instrumentation.ActivityMonitor loginActivityMonitor = getInstrumentation().addMonitor(RedukeLoginActivity.class.getName(), null, false);
     private Instrumentation.ActivityMonitor feedActivityMonitor = getInstrumentation().addMonitor(FeedActivity.class.getName(), null, false);
+    private Instrumentation.ActivityMonitor postActivityMonitor = getInstrumentation().addMonitor(PostAddEditActivity.class.getName(), null, false);
 
     @Before
     public void setUp() {
@@ -118,23 +116,28 @@ public class RedukeUserAccountTest {
         Activity feedActivity = getInstrumentation().waitForMonitorWithTimeout(feedActivityMonitor, 5000);
         assertNotNull(feedActivity);
 
-        Espresso.onView(withId(R.id.item_logout))
+        Espresso.onView(withId(R.id.addPostFabButton))
                 .perform(ViewActions.click());
 
-        // Initialize UiDevice instance
-        UiDevice uiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        Activity postActivity = getInstrumentation().waitForMonitorWithTimeout(postActivityMonitor, 5000);
+        assertNotNull(postActivity);
 
-        // Search for correct button in the dialog.
-        UiObject button = uiDevice.findObject(new UiSelector().text("Ok"));
-        try {
-            if (button.exists() && button.isEnabled()) {
-                button.click();
-            }
-        } catch (UiObjectNotFoundException e) {
-            e.printStackTrace();
-        }
+        Espresso.onView((withId(R.id.postTitleField)))
+                .perform(ViewActions.typeText(str));
 
-        assertNotNull(loginActivity);
+        Espresso.closeSoftKeyboard();
+
+
+        Espresso.onView((withId(R.id.postDescriptionField)))
+                .perform(ViewActions.typeText(lorem));
+
+        Espresso.closeSoftKeyboard();
+
+        Espresso.onView(withId(R.id.addPostBtn))
+                .perform(ViewActions.click());
+
+        assertNotNull(feedActivity);
+
     }
 
     @After

@@ -1,7 +1,6 @@
 package org.wit.reduke.activities.users
 
 import android.os.Bundle
-import android.support.test.espresso.idling.CountingIdlingResource
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
@@ -16,9 +15,7 @@ import org.wit.reduke.tools.EspressoIdlingResource
 class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
 
     lateinit var app: MainApp
-    var auth: FirebaseAuth = FirebaseAuth.getInstance()
-    var mIdlingRes = CountingIdlingResource("loginIdling")
-
+    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.activity_register)
@@ -28,8 +25,6 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
 
         app = application as MainApp
         registerButton.setOnClickListener {
-            // App is busy until further notice enteredRegisterPassword
-            // Show loading indicator after the user clicks the register button.
             showProgress()
             EspressoIdlingResource.increment()
             auth.createUserWithEmailAndPassword(enteredRegisterEmail.text.toString(), enteredRegisterPassword.text.toString())
@@ -43,7 +38,7 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
                                     mypreference.setCurrentUserName(enteredRegisterUsername.text.toString())
                                     // Sign in success, update UI with the signed-in user's information
                                     toast(org.wit.reduke.R.string.hint_SucessfullRegister)
-                                    val user = auth.currentUser
+                                    auth.currentUser
                                     // Hide loading indicator after the user registers.
                                     hideProgress()
                                     if (!EspressoIdlingResource.getIdlingResource().isIdleNow) {
@@ -52,7 +47,7 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
                                     finish()
 
                                 } else {
-                                    toast("User Registration Failed!" + task.exception)
+                                    toast("User Registration Failed!" + task.exception.toString())
                                 }
                             } else {
                                 toast("Passwords Do Not Match!")
@@ -66,16 +61,12 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
 
     }
 
-    fun showProgress() {
+    private fun showProgress() {
         loadingRegisterIndicator.visibility = View.VISIBLE
     }
 
-    fun hideProgress() {
+    private fun hideProgress() {
         loadingRegisterIndicator.visibility = View.GONE
-    }
-
-    fun getIdlingResourceInTest(): CountingIdlingResource {
-        return mIdlingRes
     }
 
 }
