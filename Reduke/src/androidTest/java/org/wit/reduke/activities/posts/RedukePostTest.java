@@ -132,7 +132,6 @@ public class RedukePostTest {
 
         Espresso.closeSoftKeyboard();
 
-
         Espresso.onView((withId(R.id.postDescriptionField)))
                 .perform(ViewActions.typeText(lorem));
 
@@ -150,11 +149,26 @@ public class RedukePostTest {
         onView(withId(R.id.recyclerView))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
-//        onView(withId(R.id.postTitleField))
-//                .check(matches(withText(str)));
+        String strEdit = str + " edit";
+        String loremEdit = str + " edit";
 
-//        onView(withId(R.id.postDescriptionField))
-//                .check(matches(withText(lorem)));
+        Espresso.onView((withId(R.id.postTitleField)))
+                .perform(ViewActions.replaceText(strEdit));
+
+        Espresso.closeSoftKeyboard();
+
+        Espresso.onView((withId(R.id.postDescriptionField)))
+                .perform(ViewActions.replaceText(loremEdit));
+
+        Espresso.closeSoftKeyboard();
+
+        Espresso.onView(withId(R.id.addPostBtn))
+                .perform(ViewActions.click());
+
+        assertNotNull(feedActivity);
+
+        onView(withId(R.id.recyclerView))
+                .check(matches(hasDescendant(withText(strEdit))));
 
     }
 
