@@ -55,9 +55,9 @@ public class RedukeUserAccountTest {
                         .build();
 
         String str = randomStringGenerator.generate(7);
-        String correctUsername = "reedfgdfgf";
-        String correctEmail = "reedfgdfgf@email.com";
-        String correctPassword = "reedfgdfgfefrrf";
+        String correctUsername = "erfrferfererf";
+        String correctEmail = "erfrferfererf@email.com";
+        String correctPassword = "erfrferfererf";
 
 
         Log.e("@Test", "Using Email: " + correctEmail + " and Password: " + correctPassword);
@@ -107,6 +107,9 @@ public class RedukeUserAccountTest {
                 .perform(ViewActions.typeText(correctPassword));
 
         Espresso.closeSoftKeyboard();
+
+        Espresso.onView(withId(R.id.loginButton))
+                .perform(ViewActions.click());
 
         Activity feedActivity = getInstrumentation().waitForMonitorWithTimeout(feedActivityMonitor, 5000);
         assertNotNull(feedActivity);
