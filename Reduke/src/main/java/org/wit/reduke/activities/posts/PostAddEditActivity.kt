@@ -36,15 +36,15 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
             toolbarAdd.title = "Edit Reduke"
             setSupportActionBar(toolbarAdd)
             post = intent.extras.getParcelable<PostModel>("post_edit")
-            cardPostTitle.setText(post.title)
-            cardRedukeDescription.setText(post.text)
-            deleteRedukeBtn.visibility = VISIBLE
-            addRedukeBtn.setText(org.wit.reduke.R.string.button_savePost)
+            postTitleField.setText(post.title)
+            postDescriptionField.setText(post.text)
+            deletePostBtn.visibility = VISIBLE
+            addPostBtn.setText(org.wit.reduke.R.string.button_savePost)
         }
 
-        addRedukeBtn.setOnClickListener {
-            post.title = cardPostTitle.text.toString()
-            post.text = cardRedukeDescription.text.toString()
+        addPostBtn.setOnClickListener {
+            post.title = postTitleField.text.toString()
+            post.text = postDescriptionField.text.toString()
             post.timestamp = DateTimeFormatter
                     .ofPattern("dd-MM-yyyy HH:mm:ss.SSSSSS")
                     .withZone(ZoneOffset.UTC)
@@ -67,7 +67,7 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
 
         }
 
-        deleteRedukeBtn.setOnClickListener {
+        deletePostBtn.setOnClickListener {
             alert(org.wit.reduke.R.string.deletePrompt) {
                 yesButton {
                     app.posts.delete(post)

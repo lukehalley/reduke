@@ -53,7 +53,7 @@
                     android:textStyle="bold" />
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/cardPostTitle"
+                    android:id="@+id/postTitleField"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_margin="8dp"
@@ -66,7 +66,7 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/cardRedukeDescription"
+                    android:id="@+id/postDescriptionField"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginLeft="10dip"
@@ -82,7 +82,7 @@
 
 
                 <Button
-                    android:id="@+id/addRedukeBtn"
+                    android:id="@+id/addPostBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -96,7 +96,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/deleteRedukeBtn"
+                    android:id="@+id/deletePostBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
