@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.wit.reduke.R;
+import org.wit.reduke.activities.feed.FeedActivity;
 
 import kotlin.jvm.JvmField;
 
@@ -34,6 +35,7 @@ public class RedukeUserAccountTest {
 
     Instrumentation.ActivityMonitor registerActivityMonitor = getInstrumentation().addMonitor(RedukeRegisterActivity.class.getName(), null, false);
     Instrumentation.ActivityMonitor loginActivityMonitor = getInstrumentation().addMonitor(RedukeLoginActivity.class.getName(), null, false);
+    Instrumentation.ActivityMonitor feedActivityMonitor = getInstrumentation().addMonitor(FeedActivity.class.getName(), null, false);
 
     @Before
     public void setUp() {
@@ -50,9 +52,9 @@ public class RedukeUserAccountTest {
                         .build();
 
         String str = randomStringGenerator.generate(7);
-        String correctUsername = str;
-        String correctEmail = str + "@email.com";
-        String correctPassword = str + "1234";
+        String correctUsername = "fuke123";
+        String correctEmail = "fuke123@email.com";
+        String correctPassword = "fuke1231234";
 
 
         Log.e("@Test", "Using Email: " + correctEmail + " and Password: " + correctPassword);
@@ -90,8 +92,28 @@ public class RedukeUserAccountTest {
         Espresso.onView(withId(R.id.registerButton))
                 .perform(ViewActions.click());
 
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
         Activity loginActivity = getInstrumentation().waitForMonitorWithTimeout(loginActivityMonitor, 5000);
         assertNotNull(loginActivity);
+
+        Espresso.onView((withId(R.id.enteredLoginEmail)))
+                .perform(ViewActions.typeText(correctEmail));
+
+        Espresso.closeSoftKeyboard();
+
+        Espresso.onView((withId(R.id.enteredLoginPassword)))
+                .perform(ViewActions.typeText(correctPassword));
+
+        Espresso.closeSoftKeyboard();
+
+        Activity feedActivity = getInstrumentation().waitForMonitorWithTimeout(feedActivityMonitor, 5000);
+        assertNotNull(feedActivity);
     }
 
     @After
