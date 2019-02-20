@@ -28,17 +28,19 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
         app = application as MainApp
         registerButton.setOnClickListener {
             // Show the loading indicator when registering with cloud.
-            showProgress()
+
             // Tell Espresso test to wait.
             EspressoIdlingResource.increment()
-            // Create a user with the email and password entered by the user.
-            auth.createUserWithEmailAndPassword(enteredRegisterEmail.text.toString(), enteredRegisterPassword.text.toString())
-                    .addOnCompleteListener(this) { task ->
-                        // Tell the user to fill in all fields if they leave them blank.
-                        if (enteredRegisterEmail.text.toString().isEmpty() or enteredRegisterPassword.text.toString().isEmpty()) {
-                            toast(org.wit.reduke.R.string.hint_EnterAllFields)
-                        } else {
-                            if (enteredRegisterPassword.text.toString() == enteredRegisterPasswordConfirm.text.toString()) {
+            // Tell the user to fill in all fields if they leave them blank.
+            if (enteredRegisterEmail.text.toString().isEmpty() or enteredRegisterPassword.text.toString().isEmpty()) {
+                hideProgress()
+                toast(org.wit.reduke.R.string.hint_EnterAllFields)
+            } else {
+                if (enteredRegisterPassword.text.toString() == enteredRegisterPasswordConfirm.text.toString()) {
+                    // Create a user with the email and password entered by the user.
+                    auth.createUserWithEmailAndPassword(enteredRegisterEmail.text.toString(), enteredRegisterPassword.text.toString())
+                            .addOnCompleteListener(this) { task ->
+                                showProgress()
                                 // If register is successful.
                                 if (task.isSuccessful) {
                                     val mypreference = RedukeSharedPreferences(this)
@@ -54,15 +56,17 @@ class RedukeRegisterActivity : AppCompatActivity(), AnkoLogger {
                                     finish()
                                     // If the register isn't successful.
                                 } else {
+                                    hideProgress()
                                     toast("User Registration Failed!" + task.exception.toString())
                                 }
                                 // The user is told to enter their password twice to make sure they
                                 // enter the password they mean. If they do not match show a toast message.
-                            } else {
-                                toast("Passwords Do Not Match!")
                             }
-                        }
-                    }
+                } else {
+                    hideProgress()
+                    toast("Passwords Do Not Match!")
+                }
+            }
         }
 
     }
