@@ -23,26 +23,6 @@ Demo Links:
 
 - [Espresso UI Tests](https://youtu.be/ncm8QSMwZus)
 
-## Screenshots
-
-<p align="center">
-  <img src="https://i.imgur.com/6LL3cSp.jpg">
-</p>
-
-## Setup
-
-First clone the repo at the master branch down to your machine.
-
-`git clone https://github.com/lukehalley/reduke.git`
-
-Then [open the project in Android Studio](https://github.com/dogriffiths/HeadFirstAndroid/wiki/How-to-open-a-project-in-Android-Studio)
-
-<p align="center">
-  <img src="https://i.imgur.com/zUipbb3.png">
-</p>
-
-Connect your device or start an emulator and run the app! 😃
-
 ## Features
 * **Design**
   - Custom Splashscreen created by me.
@@ -98,3 +78,23 @@ Connect your device or start an emulator and run the app! 😃
   - Used in multiple areas such as logging out (are you sure you want to logout?) and when deleting a Post (are you sure you want to delete this Post?) etc...
 * **Using SharedPreferences**
   - Used for various logic and ui elements.
+
+## Screenshots
+
+<p align="center">
+  <img src="https://i.imgur.com/6LL3cSp.jpg">
+</p>
+
+## Setup
+
+First clone the repo at the master branch down to your machine.
+
+`git clone https://github.com/lukehalley/reduke.git`
+
+Then [open the project in Android Studio](https://github.com/dogriffiths/HeadFirstAndroid/wiki/How-to-open-a-project-in-Android-Studio)
+
+<p align="center">
+  <img src="https://i.imgur.com/zUipbb3.png">
+</p>
+
+Connect your device or start an emulator and run the app! 😃
