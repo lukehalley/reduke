@@ -15,7 +15,6 @@ import android.view.animation.AnimationUtils
 import android.widget.ExpandableListAdapter
 import android.widget.ExpandableListView
 import android.widget.TextView
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.card_post.*
@@ -154,13 +153,24 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             expandableListView!!.setOnGroupCollapseListener {
             }
 
-            expandableListView!!.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
-                Toast.makeText(applicationContext, "Clicked: " + (titleList as ArrayList<String>)[groupPosition] + " -> " + listData[(titleList as ArrayList<String>)[groupPosition]]!!.get(childPosition), Toast.LENGTH_SHORT).show()
+            expandableListView!!.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
+                when (childPosition) {
+                    0 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    1 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    2 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    3 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    4 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    5 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    6 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    7 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    8 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    9 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    else -> { // Note the block
+                        toast("Invalid Subreddit Selection")
+                    }
+                }
+                mDrawerLayout.closeDrawers()
                 false
-
-//                startActivityForResult<PostAddEditActivity>(0) false
-
-
             }
         }
 
@@ -343,6 +353,12 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     // Sorts alphabetically (descending)
     fun sortByAlphabeticalDec(list: List<PostModel>): List<PostModel> {
         return list.sortedByDescending { post -> post.title }
+    }
+
+    // Sorts alphabetically (descending)
+    fun filterBySubreddit(list: List<PostModel>, subreddit: String): List<PostModel> {
+        toolbarMain.title = subreddit
+        return list.filter { post -> post.subreddit == subreddit }
     }
 
     // Initialize the feed by setting the users email and username in the RedukeSharedPreferences
