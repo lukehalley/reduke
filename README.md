@@ -51,6 +51,10 @@ Demo Links:
 * **Persistence**
   - Persisting Users using Firebase.
   - Persisting Posts using JSON.
+* **Version Control**
+  - Branches for each feature.
+  - Regular commits.
+  - Dev branch used with merge requests to keep all code on Dev & Master working.
 * **Register and Login**
   - Users stored and authenticated in the cloud using Firebase Authentication.
   - Password requires a double entry to ensure change is correct).
