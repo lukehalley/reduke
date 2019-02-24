@@ -36,7 +36,7 @@ Demo Links:
   - Posts fade in from the right when the posts are loaded or when they sorted.
 * **Espresso UI Tests**
   - Test all key functionalitys (CRUD, Upvote, Downvote, Login, Logout etc...)
-  - Using EspressoIdling which allows testing of asynchronous functions in the Reduke app such as Login and Register.
+  - Using **EspressoIdlingResource** which allows testing of asynchronous functions in the Reduke app such as Login and Register.
 * **Reddit Feed Features**
   - Scroll through all the posts created as a feed just like Reddit.
   - Sort Posts by:
