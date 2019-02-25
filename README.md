@@ -52,6 +52,7 @@ Demo Links:
   - Persisting Users using Firebase.
   - Persisting Posts using JSON.
 * **Version Control**
+  - Use of Issues to track task that needed to be done
   - Branches for each feature.
   - Regular commits.
   - Dev branch used with merge requests to keep all code on Dev & Master working.
