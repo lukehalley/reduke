@@ -140,11 +140,13 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         info { "expandableListView: " + expandableListView }
         if (expandableListView != null) {
 
+
             toast("Oh what a godess!")
 
             titleList = ArrayList(listData.keys)
             adapter = CustomExpandableListAdapter(this, titleList as ArrayList<String>, listData)
             expandableListView!!.setAdapter(adapter)
+            expandableListView!!.expandGroup(0)
 
             expandableListView!!.setOnGroupExpandListener {
                 //                groupPosition -> Toast.makeText(applicationContext, (titleList as ArrayList<String>)[groupPosition] + " List Expanded.", Toast.LENGTH_SHORT).show()
