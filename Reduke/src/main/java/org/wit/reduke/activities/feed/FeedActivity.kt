@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_feed.*
+import kotlinx.android.synthetic.main.card_post.*
 import org.jetbrains.anko.*
 import org.wit.reduke.R
 import org.wit.reduke.activities.posts.PostAddEditActivity
@@ -93,6 +94,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             mDrawerLayout.closeDrawers()
             true
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -181,14 +183,53 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     override fun onPostUpvote(post: PostModel) {
-        post.votes = post.votes + 1
-        recyclerView.adapter?.notifyDataSetChanged()
+        val mypreference = RedukeSharedPreferences(this)
+        val userEmail = mypreference.getCurrentUserEmail()
+        if (userEmail in post.downvotedBy) {
+            post.downvotedBy.remove(userEmail)
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
+        if (userEmail !in post.upvotedBy) {
+            post.upvotedBy.add(userEmail)
+            post.votes = post.votes + 1
+            cardUpvotePost.isEnabled = false
+            cardDownvotePost.isEnabled = true
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
     }
 
     override fun onPostDownvote(post: PostModel) {
-        post.votes = post.votes - 1
-        recyclerView.adapter?.notifyDataSetChanged()
+        val mypreference = RedukeSharedPreferences(this)
+        val userEmail = mypreference.getCurrentUserEmail()
+        if (userEmail in post.upvotedBy) {
+            post.upvotedBy.remove(userEmail)
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
+        if (userEmail !in post.downvotedBy) {
+            post.downvotedBy.add(userEmail)
+            post.votes = post.votes - 1
+            cardDownvotePost.isEnabled = false
+            cardUpvotePost.isEnabled = true
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
+    }
 
+    override fun setCardUpvoteColor(post: PostModel): Int {
+        val userEmail = RedukeSharedPreferences(this).getCurrentUserEmail()
+        return if (userEmail in post.upvotedBy) {
+            R.color.voteOrange
+        } else {
+            R.color.voteGrey
+        }
+    }
+
+    override fun setCardDownvoteColor(post: PostModel): Int {
+        val userEmail = RedukeSharedPreferences(this).getCurrentUserEmail()
+        return if (userEmail in post.downvotedBy) {
+            R.color.voteOrange
+        } else {
+            R.color.voteGrey
+        }
     }
 
 
@@ -198,7 +239,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     private fun loadPosts() {
-        showRedukes(app.posts.findAll())
+        showPosts(app.posts.findAll())
     }
 
     // Sorting functions
@@ -222,7 +263,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         return list.sortedByDescending { post -> post.title }
     }
 
-    fun showRedukes(posts: List<PostModel>) {
+    fun showPosts(posts: List<PostModel>) {
         val mypreference = RedukeSharedPreferences(this)
         val userName = mypreference.getCurrentUserName()
         val userEmail = mypreference.getCurrentUserEmail()

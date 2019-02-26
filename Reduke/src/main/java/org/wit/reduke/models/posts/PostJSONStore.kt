@@ -49,6 +49,7 @@ class PostJSONStore : PostStore, AnkoLogger {
             foundPost.tags = post.tags
             foundPost.votes = post.votes
             foundPost.timestamp = post.timestamp
+            foundPost.upvotedBy = post.upvotedBy
             serialize()
         }
     }
