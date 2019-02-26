@@ -176,9 +176,21 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         }
     }
 
-    override fun onRedukeClick(post: PostModel) {
+    override fun onPostCardClick(post: PostModel) {
         startActivityForResult(intentFor<PostAddEditActivity>().putExtra("post_edit", post), 0)
     }
+
+    override fun onPostUpvote(post: PostModel) {
+        post.votes = post.votes + 1
+        recyclerView.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onPostDownvote(post: PostModel) {
+        post.votes = post.votes - 1
+        recyclerView.adapter?.notifyDataSetChanged()
+
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         loadPosts()
