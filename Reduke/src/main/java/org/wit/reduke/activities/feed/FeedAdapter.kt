@@ -1,6 +1,5 @@
 package org.wit.reduke.activities.feed
 
-import android.annotation.SuppressLint
 import android.support.v4.content.ContextCompat
 import android.support.v4.graphics.drawable.DrawableCompat
 import android.support.v7.widget.RecyclerView
@@ -38,7 +37,6 @@ class RedukeAdapter(private var posts: List<PostModel>,
 
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView), AnkoLogger {
 
-        @SuppressLint("SetTextI18n")
         fun bind(post: PostModel, listener: RedukeListener) {
 
             itemView.postTitleField.text = post.title
@@ -48,18 +46,14 @@ class RedukeAdapter(private var posts: List<PostModel>,
             itemView.setOnClickListener { listener.onPostCardClick(post) }
             itemView.cardUpvotePost.setOnClickListener { listener.onPostUpvote(post) }
             itemView.cardDownvotePost.setOnClickListener { listener.onPostDownvote(post) }
-
             DrawableCompat.setTint(
                     itemView.cardUpvotePost.drawable,
-                    ContextCompat.getColor(itemView.context, listener.setCardUpvoteColor(post))
+                    ContextCompat.getColor(itemView.cardUpvotePost.context, listener.setCardUpvoteColor(post))
             )
             DrawableCompat.setTint(
                     itemView.cardDownvotePost.drawable,
-                    ContextCompat.getColor(itemView.context, listener.setCardDownvoteColor(post))
+                    ContextCompat.getColor(itemView.cardDownvotePost.context, listener.setCardDownvoteColor(post))
             )
-
-//            itemView.cardUpvotePost.setColorFilter(listener.setCardUpvoteColor(post))
-//            itemView.cardDownvotePost.setColorFilter(listener.setCardDownvoteColor(post))
         }
 
 

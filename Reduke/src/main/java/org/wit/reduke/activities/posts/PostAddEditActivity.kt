@@ -26,7 +26,6 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
         toolbarAdd.title = title
         setSupportActionBar(toolbarAdd)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         app = application as MainApp
         var edit = false
 

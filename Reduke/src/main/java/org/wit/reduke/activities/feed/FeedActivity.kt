@@ -199,18 +199,19 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     override fun onPostDownvote(post: PostModel) {
-        val mypreference = RedukeSharedPreferences(this)
-        val userEmail = mypreference.getCurrentUserEmail()
-        if (userEmail in post.upvotedBy) {
-            post.upvotedBy.remove(userEmail)
-            recyclerView.adapter?.notifyDataSetChanged()
-        }
-        if (userEmail !in post.downvotedBy) {
-            post.downvotedBy.add(userEmail)
-            post.votes = post.votes - 1
-            cardDownvotePost.isEnabled = false
-            cardUpvotePost.isEnabled = true
-            recyclerView.adapter?.notifyDataSetChanged()
+        if (post.votes > 0) {
+            val userEmail = RedukeSharedPreferences(this).getCurrentUserEmail()
+            if (userEmail in post.upvotedBy) {
+                post.upvotedBy.remove(userEmail)
+                recyclerView.adapter?.notifyDataSetChanged()
+            }
+            if (userEmail !in post.downvotedBy) {
+                post.downvotedBy.add(userEmail)
+                post.votes = post.votes - 1
+                cardDownvotePost.isEnabled = false
+                cardUpvotePost.isEnabled = true
+                recyclerView.adapter?.notifyDataSetChanged()
+            }
         }
     }
 
