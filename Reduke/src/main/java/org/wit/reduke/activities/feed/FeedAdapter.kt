@@ -8,19 +8,23 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.card_post.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.wit.reduke.R
+import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.models.posts.PostModel
 
-
 interface RedukeListener {
-    fun onRedukeClick(post: PostModel)
+    fun onPostCardClick(post: PostModel)
+    fun onPostUpvote(post: PostModel)
+    fun onPostDownvote(post: PostModel)
     fun onOptionsItemSelected(item: MenuItem?): Boolean
+//    fun setCardUpvoteColor(post: PostModel): Int
+//    fun setCardDownvoteColor(post: PostModel): Int
 }
 
 class RedukeAdapter(private var posts: List<PostModel>,
-                    private val listener: RedukeListener) : RecyclerView.Adapter<RedukeAdapter.MainHolder>() {
+                    private val listener: RedukeListener) : RecyclerView.Adapter<RedukeAdapter.MainHolder>(), AnkoLogger {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        return MainHolder(LayoutInflater.from(parent?.context).inflate(R.layout.card_post, parent, false))
+        return MainHolder(LayoutInflater.from(parent?.context).inflate(org.wit.reduke.R.layout.card_post, parent, false))
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
@@ -33,14 +37,31 @@ class RedukeAdapter(private var posts: List<PostModel>,
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView), AnkoLogger {
 
         fun bind(post: PostModel, listener: RedukeListener) {
-
             itemView.postTitleField.text = post.title
             itemView.cardPostOwner.text = post.postOwner
             itemView.cardPostTimestamp.text = post.timestamp.split(" ")[0]
             itemView.cardPostPointCount.text = post.votes.toString() + " points"
-            itemView.setOnClickListener { listener.onRedukeClick(post) }
+            itemView.setOnClickListener { listener.onPostCardClick(post) }
+            itemView.cardUpvotePost.setOnClickListener { listener.onPostUpvote(post) }
+            itemView.cardDownvotePost.setOnClickListener { listener.onPostDownvote(post) }
+
+            val userEmail = RedukeSharedPreferences(itemView.cardUpvotePost.context).getCurrentUserEmail()
+            if (userEmail in post.upvotedBy) {
+                itemView.cardUpvotePost.setImageResource(R.drawable.upvoteactive)
+            } else {
+                itemView.cardUpvotePost.setImageResource(R.drawable.upvotenotactive)
+            }
+
+            if (userEmail in post.downvotedBy) {
+                itemView.cardDownvotePost.setImageResource(R.drawable.downvoteactive)
+            } else {
+                itemView.cardDownvotePost.setImageResource(R.drawable.downvotenotactive)
+            }
+
 
         }
+
+
     }
 
 
