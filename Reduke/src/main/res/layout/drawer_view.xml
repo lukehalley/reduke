@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_addReduke"
             android:icon="@drawable/add_white"
             android:title="@string/title_PostAdd" />
-        <item
-            android:id="@+id/nav_Settings"
-            android:icon="@drawable/ic_settings_white_24dp"
-            android:title="@string/settingsTitle" />
+
         <item
             android:id="@+id/nav_Logout"
             android:icon="@drawable/logout"
