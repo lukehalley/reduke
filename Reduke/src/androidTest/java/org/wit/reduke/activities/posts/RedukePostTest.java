@@ -25,6 +25,7 @@ import java.security.SecureRandom;
 import kotlin.jvm.JvmField;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
+import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
@@ -32,6 +33,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static junit.framework.TestCase.assertNotNull;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsNot.not;
 
 public class RedukePostTest {
@@ -136,6 +140,9 @@ public class RedukePostTest {
                 .perform(ViewActions.typeText(lorem));
 
         Espresso.closeSoftKeyboard();
+
+        onView(withId(R.id.subredditSpinner)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Android"))).perform(click());
 
         Espresso.onView(withId(R.id.addPostBtn))
                 .perform(ViewActions.click());
