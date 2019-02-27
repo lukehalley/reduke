@@ -12,17 +12,22 @@ import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.animation.AnimationUtils
+import android.widget.ExpandableListAdapter
+import android.widget.ExpandableListView
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.card_post.*
 import org.jetbrains.anko.*
+import org.wit.reduke.activities.navbar.CustomExpandableListAdapter
 import org.wit.reduke.activities.posts.PostAddEditActivity
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.posts.PostModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.set
 
 
 class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
@@ -33,6 +38,12 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
     // Set the default feed sorting setting.
     var sortSetting = "Top"
+
+    // Navbar expandable menu resources
+    internal var expandableListView: ExpandableListView? = null
+    internal var adapter: ExpandableListAdapter? = null
+    internal var titleList: List<String>? = null
+
 
     // When the activity is first created the following is run.
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,6 +107,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
         // Set the actions when the drawer items are pressed.
         navigationView.setNavigationItemSelectedListener { menuItem ->
+            toast(menuItem.itemId)
             menuItem.isChecked = true
             when (menuItem.itemId) {
                 org.wit.reduke.R.id.nav_addReduke -> startActivityForResult<PostAddEditActivity>(0)
@@ -114,6 +126,56 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             mDrawerLayout.closeDrawers()
             true
         }
+
+        val listData = HashMap<String, List<String>>()
+
+        val subs = ArrayList<String>(Arrays.asList(*resources.getStringArray(org.wit.reduke.R.array.subreddits_list)))
+
+        listData["Subreddits"] = subs
+
+        info { "Expand List: " + listData }
+
+        expandableListView = findViewById(org.wit.reduke.R.id.nav_ExpandableSubredditList)
+
+        info { "expandableListView: " + expandableListView }
+        if (expandableListView != null) {
+
+
+            toast("Oh what a godess!")
+
+            titleList = ArrayList(listData.keys)
+            adapter = CustomExpandableListAdapter(this, titleList as ArrayList<String>, listData)
+            expandableListView!!.setAdapter(adapter)
+            expandableListView!!.expandGroup(0)
+
+            expandableListView!!.setOnGroupExpandListener {
+                //                groupPosition -> Toast.makeText(applicationContext, (titleList as ArrayList<String>)[groupPosition] + " List Expanded.", Toast.LENGTH_SHORT).show()
+            }
+
+            expandableListView!!.setOnGroupCollapseListener {
+            }
+
+            expandableListView!!.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
+                when (childPosition) {
+                    0 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    1 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    2 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    3 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    4 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    5 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    6 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    7 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    8 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    9 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    else -> { // Note the block
+                        toast("Invalid Subreddit Selection")
+                    }
+                }
+                mDrawerLayout.closeDrawers()
+                false
+            }
+        }
+
 
     }
 
@@ -295,6 +357,12 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         return list.sortedByDescending { post -> post.title }
     }
 
+    // Sorts alphabetically (descending)
+    fun filterBySubreddit(list: List<PostModel>, subreddit: String): List<PostModel> {
+        toolbarMain.title = subreddit
+        return list.filter { post -> post.subreddit == subreddit }
+    }
+
     // Initialize the feed by setting the users email and username in the RedukeSharedPreferences
     // and pass the RedukeAdapter to the recyclerView's adapter.
     fun initFeed(posts: List<PostModel>) {
@@ -325,12 +393,10 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     private fun runAnimation(recyclerView: RecyclerView) {
-//        loadPosts()
         // Get the context.
         val context = recyclerView.context
         val controller = AnimationUtils.loadLayoutAnimation(context, org.wit.reduke.R.anim.feedslideanimation)
         recyclerView.layoutAnimation = controller
-//        recyclerView.adapter!!.notifyDataSetChanged()
         // Run the animation.
         recyclerView.scheduleLayoutAnimation()
     }
