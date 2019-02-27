@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.card_post.view.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 import org.wit.reduke.R
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.models.posts.PostModel
@@ -30,7 +29,6 @@ class RedukeAdapter(private var posts: List<PostModel>,
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val post = posts[holder.adapterPosition]
-        info { "Posts ATM" + posts }
         holder.bind(post, listener)
     }
 
