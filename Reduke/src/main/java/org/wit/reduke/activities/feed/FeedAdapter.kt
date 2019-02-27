@@ -41,6 +41,7 @@ class RedukeAdapter(private var posts: List<PostModel>,
             itemView.cardPostOwner.text = post.postOwner
             itemView.cardPostTimestamp.text = post.timestamp.split(" ")[0]
             itemView.cardPostPointCount.text = post.votes.toString() + " points"
+            itemView.cardPostSubreddit.text = post.subreddit
             itemView.setOnClickListener { listener.onPostCardClick(post) }
             itemView.cardUpvotePost.setOnClickListener { listener.onPostUpvote(post) }
             itemView.cardDownvotePost.setOnClickListener { listener.onPostDownvote(post) }

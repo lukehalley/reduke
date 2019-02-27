@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="115dp"
@@ -70,7 +71,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginBottom="12dp"
             android:contentDescription="@string/user_who_created_the_post_card"
-            android:text="5465 comments"
+            android:text="0 comments"
             android:textAlignment="center"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -98,13 +99,13 @@
             android:contentDescription="@string/user_who_created_the_post_card"
             android:text="askreddit"
             android:textAlignment="center"
-            android:textColor="@color/colorDisabled"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/point2"
             app:layout_constraintTop_toBottomOf="@+id/postTitleField"
-            app:layout_constraintVertical_bias="0.015" />
+            app:layout_constraintVertical_bias="0.015"
+            tools:text="not set" />
 
         <TextView
             android:id="@+id/point2"
