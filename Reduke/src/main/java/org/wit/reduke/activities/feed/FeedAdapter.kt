@@ -12,30 +12,35 @@ import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.models.posts.PostModel
 
 interface RedukeListener {
+    // Create listener functions.
     fun onPostCardClick(post: PostModel)
+
     fun onPostUpvote(post: PostModel)
     fun onPostDownvote(post: PostModel)
     fun onOptionsItemSelected(item: MenuItem?): Boolean
-//    fun setCardUpvoteColor(post: PostModel): Int
-//    fun setCardDownvoteColor(post: PostModel): Int
 }
 
+// Adapter class with the list of posts and the listener.
 class RedukeAdapter(private var posts: List<PostModel>,
                     private val listener: RedukeListener) : RecyclerView.Adapter<RedukeAdapter.MainHolder>(), AnkoLogger {
 
+    // Inflate the current post to a card.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         return MainHolder(LayoutInflater.from(parent?.context).inflate(org.wit.reduke.R.layout.card_post, parent, false))
     }
 
+    // Bind current post to the feed.
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
         val post = posts[holder.adapterPosition]
         holder.bind(post, listener)
     }
 
+    // Get the number of posts.
     override fun getItemCount(): Int = posts.size
 
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView), AnkoLogger {
 
+        // Bind the post data to all of the fields.
         fun bind(post: PostModel, listener: RedukeListener) {
             itemView.postTitleField.text = post.title
             itemView.cardPostOwner.text = post.postOwner
@@ -46,13 +51,13 @@ class RedukeAdapter(private var posts: List<PostModel>,
             itemView.cardUpvotePost.setOnClickListener { listener.onPostUpvote(post) }
             itemView.cardDownvotePost.setOnClickListener { listener.onPostDownvote(post) }
 
+            // Color the upvote and downvote buttons based on the current user - if he/she has up-voted or down-voted the current post.
             val userEmail = RedukeSharedPreferences(itemView.cardUpvotePost.context).getCurrentUserEmail()
             if (userEmail in post.upvotedBy) {
                 itemView.cardUpvotePost.setImageResource(R.drawable.upvoteactive)
             } else {
                 itemView.cardUpvotePost.setImageResource(R.drawable.upvotenotactive)
             }
-
             if (userEmail in post.downvotedBy) {
                 itemView.cardDownvotePost.setImageResource(R.drawable.downvoteactive)
             } else {
