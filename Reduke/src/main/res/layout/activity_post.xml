@@ -80,6 +80,14 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="17sp" />
 
+                <Spinner
+                    android:id="@+id/subredditSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="49dp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="10dip"
+                    android:layout_marginRight="10dip"
+                    android:entries="@array/subreddits_list" />
 
                 <Button
                     android:id="@+id/addPostBtn"
