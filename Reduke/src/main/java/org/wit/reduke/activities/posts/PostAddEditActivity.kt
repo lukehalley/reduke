@@ -58,7 +58,6 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
                 } else {
                     app.posts.create(post.copy())
                 }
-                info("Created: $post")
                 setResult(AppCompatActivity.RESULT_OK)
                 finish()
             }

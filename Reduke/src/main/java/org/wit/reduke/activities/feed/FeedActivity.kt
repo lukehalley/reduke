@@ -8,14 +8,15 @@ import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.card_post.*
 import org.jetbrains.anko.*
-import org.wit.reduke.R
 import org.wit.reduke.activities.posts.PostAddEditActivity
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.main.MainApp
@@ -23,6 +24,7 @@ import org.wit.reduke.models.posts.PostModel
 import org.wit.reduke.models.users.UserModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+
 
 class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
@@ -32,14 +34,14 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_feed)
+        setContentView(org.wit.reduke.R.layout.activity_feed)
         app = application as MainApp
         toolbarMain.title = title
         setSupportActionBar(toolbarMain)
         val actionbar: ActionBar? = supportActionBar
         actionbar?.apply {
             setDisplayHomeAsUpEnabled(true)
-            setHomeAsUpIndicator(R.drawable.ic_menu)
+            setHomeAsUpIndicator(org.wit.reduke.R.drawable.ic_menu)
         }
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
@@ -63,23 +65,24 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             }
         }
         loadPosts()
-        addPostFabButton.setOnClickListener() {
+        addPostFabButton.setOnClickListener {
             startActivityForResult<PostAddEditActivity>(0)
         }
 
-        var mDrawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        var mDrawerLayout: DrawerLayout = findViewById(org.wit.reduke.R.id.drawer_layout)
 
-        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        val navigationView: NavigationView = findViewById(org.wit.reduke.R.id.nav_view)
 
         navigationView.setNavigationItemSelectedListener { menuItem ->
             menuItem.isChecked = true
             var user = UserModel()
             when (menuItem?.itemId) {
-                R.id.nav_addReduke -> startActivityForResult<PostAddEditActivity>(0)
+                org.wit.reduke.R.id.nav_addReduke -> startActivityForResult<PostAddEditActivity>(0)
+
             }
             when (menuItem?.itemId) {
-                R.id.nav_Logout ->
-                    alert(R.string.logoutPrompt) {
+                org.wit.reduke.R.id.nav_Logout ->
+                    alert(org.wit.reduke.R.string.logoutPrompt) {
                         yesButton {
                             finish()
                         }
@@ -93,7 +96,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_feed, menu)
+        menuInflater.inflate(org.wit.reduke.R.menu.menu_feed, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -101,14 +104,12 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         val sortOptions = listOf("Top", "Newest", "Oldest", "Alphabetical (Ascending)", "Alphabetical (Descending)")
 
 
-        var mDrawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-
-        var user = UserModel()
+        var mDrawerLayout: DrawerLayout = findViewById(org.wit.reduke.R.id.drawer_layout)
         when (item?.itemId) {
             android.R.id.home -> mDrawerLayout.openDrawer(GravityCompat.START)
         }
         when (item?.itemId) {
-            R.id.item_sort_feed ->
+            org.wit.reduke.R.id.item_sort_feed ->
                 selector(
                         "Sort Feed By",
                         sortOptions
@@ -123,8 +124,8 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
                 }
         }
         when (item?.itemId) {
-            R.id.item_logout ->
-                alert(R.string.logoutPrompt) {
+            org.wit.reduke.R.id.item_logout ->
+                alert(org.wit.reduke.R.string.logoutPrompt) {
                     yesButton {
                         auth.signOut()
                         finish()
@@ -166,8 +167,10 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
                 toast("Sorting By Alphabetical (Descending)")
                 sortSetting = "AlphabeticalDec"
                 recyclerView.adapter = RedukeAdapter(sortByAlphabeticalDec(posts), this)
+
             }
         }
+        runLayoutAnimation(recyclerView)
     }
 
     override fun onPostCardClick(post: PostModel) {
@@ -208,38 +211,16 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         }
     }
 
-//    override fun setCardUpvoteColor(post: PostModel): Int {
-//        val userEmail = RedukeSharedPreferences(this).getCurrentUserEmail()
-//        return if (userEmail in post.upvotedBy) {
-//            info { "Changed Color to Orange for UPVOTE" + post.title }
-//            R.color.voteOrange
-//        } else {
-//            info { "Changed Color to Grey for UPVOTE" + post.title }
-//            R.color.voteGrey
-//        }
-//
-//    }
-//
-//    override fun setCardDownvoteColor(post: PostModel): Int {
-//        val userEmail = RedukeSharedPreferences(this).getCurrentUserEmail()
-//        return if (userEmail in post.downvotedBy) {
-//            info { "Changed Color to Orange for DOWNVOTE" + post.title }
-//            R.color.voteOrange
-//        } else {
-//            info { "Changed Color to Grey for DOWNVOTE" + post.title }
-//            R.color.voteGrey
-//        }
-//    }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        loadPosts()
         super.onActivityResult(requestCode, resultCode, data)
+        loadPosts()
+        runLayoutAnimation(recyclerView)
+
     }
 
     private fun loadPosts() {
         showPosts(app.posts.findAll())
-        info { "POSTS ARE NOW " + app.posts.findAll() }
     }
 
     // Sorting functions
@@ -268,8 +249,8 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         val userName = mypreference.getCurrentUserName()
         val userEmail = mypreference.getCurrentUserEmail()
         val parentView = nav_view.getHeaderView(0)
-        val navHeaderUser = parentView.findViewById(R.id.current_user_nav_header) as TextView
-        val navHeaderEmail = parentView.findViewById(R.id.current_email_nav_header) as TextView
+        val navHeaderUser = parentView.findViewById(org.wit.reduke.R.id.current_user_nav_header) as TextView
+        val navHeaderEmail = parentView.findViewById(org.wit.reduke.R.id.current_email_nav_header) as TextView
         navHeaderUser.text = userName
         navHeaderEmail.text = userEmail
         mypreference.setCurrentRedukeCount(posts.size)
@@ -278,7 +259,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     override fun onBackPressed() {
-        alert(R.string.logoutPrompt) {
+        alert(org.wit.reduke.R.string.logoutPrompt) {
             yesButton {
                 auth.signOut()
                 finish()
@@ -286,5 +267,14 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             }
             noButton {}
         }.show()
+    }
+
+    private fun runLayoutAnimation(recyclerView: RecyclerView) {
+        loadPosts()
+        val context = recyclerView.context
+        val controller = AnimationUtils.loadLayoutAnimation(context, org.wit.reduke.R.anim.layout_animation_fall_down)
+        recyclerView.layoutAnimation = controller
+        recyclerView.adapter!!.notifyDataSetChanged()
+        recyclerView.scheduleLayoutAnimation()
     }
 }
