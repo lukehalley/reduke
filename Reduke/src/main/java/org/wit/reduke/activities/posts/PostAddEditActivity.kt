@@ -17,6 +17,9 @@ import java.time.format.DateTimeFormatter
 
 
 class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
+
+    val subreddits = listOf("Android", "Education", "Fashion", "Funny", "Ireland", "Music", "News", "Photography", "Technology", "Video")
+
     var post = PostModel()
     lateinit var app: MainApp
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +48,9 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
             // Fill the fields with existing data.
             postTitleField.setText(post.title)
             postDescriptionField.setText(post.text)
+            subredditSpinner.setSelection(subreddits.indexOf(post.subreddit))
+            subredditSpinner.isEnabled = false
+
             deletePostBtn.visibility = VISIBLE
 
             // Set the button to display save instead of add.
