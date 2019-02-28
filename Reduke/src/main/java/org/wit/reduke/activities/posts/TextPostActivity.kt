@@ -6,7 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View.VISIBLE
 import android.widget.Spinner
-import kotlinx.android.synthetic.main.activity_post.*
+import kotlinx.android.synthetic.main.activity_text_post.*
 import org.jetbrains.anko.*
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.main.MainApp
@@ -24,9 +24,9 @@ class TextPostActivity : AppCompatActivity(), AnkoLogger {
     lateinit var app: MainApp
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(org.wit.reduke.R.layout.activity_post)
-        toolbarAdd.title = title
-        setSupportActionBar(toolbarAdd)
+        setContentView(org.wit.reduke.R.layout.activity_text_post)
+        toolbarText.title = "Add Text Post"
+        setSupportActionBar(toolbarText)
 
         // Show the up the button to allow the user to navigate back to the feed.
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -41,37 +41,37 @@ class TextPostActivity : AppCompatActivity(), AnkoLogger {
             edit = true
 
             // Set toolbar title to Edit Post.
-            toolbarAdd.title = "Edit Post"
-            setSupportActionBar(toolbarAdd)
+            toolbarText.title = "Edit Post"
+            setSupportActionBar(toolbarText)
             post = intent.extras.getParcelable<PostModel>("post_edit")
 
             // Fill the fields with existing data.
-            postTitleField.setText(post.title)
-            postDescriptionField.setText(post.text)
-            subredditSpinner.setSelection(subreddits.indexOf(post.subreddit))
-            subredditSpinner.isEnabled = false
+            textPostTitleField.setText(post.title)
+            textPostDescriptionField.setText(post.text)
+            textPostSubredditSpinner.setSelection(subreddits.indexOf(post.subreddit))
+            textPostSubredditSpinner.isEnabled = false
 
-            deletePostBtn.visibility = VISIBLE
+            deleteTextPostBtn.visibility = VISIBLE
 
             // Set the button to display save instead of add.
-            addPostBtn.setText(org.wit.reduke.R.string.button_savePost)
+            addTextPostBtn.setText(org.wit.reduke.R.string.button_savePost)
         }
 
         // If the user is adding a post.
-        addPostBtn.setOnClickListener {
+        addTextPostBtn.setOnClickListener {
             // Get the data from all the post fields.
-            post.title = postTitleField.text.toString()
+            post.title = textPostTitleField.text.toString()
 
             post.type = "Text"
 
-            post.text = postDescriptionField.text.toString()
+            post.text = textPostDescriptionField.text.toString()
             // Create a timestamp for when the post has been created.
             post.timestamp = DateTimeFormatter
                     .ofPattern("dd-MM-yyyy HH:mm:ss.SSSSSS")
                     .withZone(ZoneOffset.UTC)
                     .format(Instant.now())
             // Get the value from the subreddit spinner.
-            val subredditSpinner = findViewById<Spinner>(org.wit.reduke.R.id.subredditSpinner)
+            val subredditSpinner = findViewById<Spinner>(org.wit.reduke.R.id.textPostSubredditSpinner)
             post.subreddit = subredditSpinner.selectedItem.toString()
 
             // Get an instance of the RedukeSharedPreferences.
@@ -97,7 +97,7 @@ class TextPostActivity : AppCompatActivity(), AnkoLogger {
         }
 
         // Set up the delete buttons functionality.
-        deletePostBtn.setOnClickListener {
+        deleteTextPostBtn.setOnClickListener {
             // Make sure the user actually wants to the delete the post with a yes or no popup.
             alert(org.wit.reduke.R.string.deletePrompt) {
                 yesButton {

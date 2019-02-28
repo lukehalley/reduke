@@ -44,7 +44,7 @@ class RedukeAdapter(private var posts: List<PostModel>,
         // Bind the post data to all of the fields.
         @SuppressLint("SetTextI18n")
         fun bind(post: PostModel, listener: RedukeListener) {
-            itemView.postTitleField.text = post.title
+            itemView.textPostTitleField.text = post.title
             itemView.cardPostOwner.text = post.owner
             itemView.cardPostTimestamp.text = post.timestamp.split(" ")[0]
             itemView.cardPostPointCount.text = post.votes.toString() + " points"
