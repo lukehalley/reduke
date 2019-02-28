@@ -16,7 +16,7 @@
 
 [Reduke Github Repo](https://github.com/lukehalley/reduke)
 
-## Demo
+## Demo Videos
 
 **PLEASE NOTE:** There are two demo videos, one which shows the **Reduke App Functionality** and a second video which shows the **Espresso UI Tests**
 
