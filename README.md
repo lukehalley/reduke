@@ -38,17 +38,18 @@ Then [open the project in Android Studio](https://github.com/dogriffiths/HeadFir
 Connect your device or start an emulator and run the app! 😃
 
 ## Features
-
-* Splashscreen
-* Material Design
-  - Flat and bright colours with consistent app wide colour scheme.
-* Modern UI Elements
+* Design
+  - Custom Splashscreen created by me.
   - Navigation drawer, Floating Action Button (FAB), Flat Icons.
-  - Current Users Email & Username shown in sidebar
+  - Current Users Email & Username shown in sidebar.
+  - Material Design - Flat and bright colours with consistent app wide colour scheme.
 * Animations
   - Posts fade in from the right when the posts are loaded or when they sorted.
+* Espresso UI Tests
+  - Test all key functionalitys (CRUD, Upvote, Downvote, Login, Logout etc...)
+  - Using EspressoIdling which allows testing of asynchronous functions in the Reduke app such as Login and Register.
 * Reddit Feed Features
-  - Scroll through all the posts created.
+  - Scroll through all the posts created as a feed just like Reddit.
   - Sort Posts by:
     - Top (Most votes)
     - Newest (Newest Posts)
@@ -59,26 +60,26 @@ Connect your device or start an emulator and run the app! 😃
   - Posts displayed in uniform cards.
   - Post Title, Owner, Date Created, Votes, Subreddit, Comment Count can be seen on each card for each Post.
 * Persistence
-  - Persisting Users using Firebase
-  - Persisting Posts using JSON
+  - Persisting Users using Firebase.
+  - Persisting Posts using JSON.
 * Register and Login
   - Users stored and authenticated in the cloud using Firebase Authentication.
-  - Password requires a double entry to ensure change is correct)
-  - Empty field checking
+  - Password requires a double entry to ensure change is correct).
+  - Empty field checking.
 * CRUD Features
-  - Add a Post
-  - View/Read a Post
-  - Edit/Update a Post
-  - Delete Post
+  - Add a Post.
+  - View/Read a Post.
+  - Edit/Update a Post.
+  - Delete Post.
   * User Model Fields
-    - id: unique id of the user
+    - id: unique id of the user.
     - username: the username of the user.
     - email: the email of the user.
     - password: the password of the user.
 * Post Model Fields
-  - id: unique id of the post
-  - postOwner: user who created the post
-  - title: title of the post
+  - id: unique id of the post.
+  - postOwner: user who created the post.
+  - title: title of the post.
   - text: body text of the post.
   - tags: tags set by the user set when created - EG: Question, Answer...
   - votes: number of votes the post has decided by users upvoting and downvoting the post.
@@ -90,4 +91,4 @@ Connect your device or start an emulator and run the app! 😃
 * Pop Up Windows
   - Used in multiple areas such as logging out (are you sure you want to logout?) and when deleting a Post (are you sure you want to delete this Post?) etc...
 * Using SharedPreferences
-  - Used for various logic and ui elements
+  - Used for various logic and ui elements.
