@@ -11,15 +11,11 @@
 
 ## Repo
 
-<p align="center">
 [Reduke Github Repo](https://github.com/lukehalley/reduke)
-</p>
 
 ## Demo
 
-<p align="center">
 [Reduke Youtube Video](https://github.com/lukehalley/reduke)
-</p>
 
 ## Screenshots
 
