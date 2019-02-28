@@ -10,38 +10,42 @@ import org.wit.reduke.helpers.read
 import org.wit.reduke.helpers.write
 import java.util.*
 
-val POST_JSON_FILE = "posts.json"
-val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
-val listType = object : TypeToken<java.util.ArrayList<PostModel>>() {}.type
+// Set name for the posts JSON file and create instances of both the gsonBuilder and the TypeToken.
+const val POST_JSON_FILE = "posts.json"
+val gsonBuilder = GsonBuilder().setPrettyPrinting().create()!!
+val listType = object : TypeToken<java.util.ArrayList<PostModel>>() {}.type!!
 
+// Create a random id for each post.
 fun generateRandomRedukeId(): Long {
     return Random().nextLong()
 }
 
-class PostJSONStore : PostStore, AnkoLogger {
-
-    val context: Context
-    var redukes = mutableListOf<PostModel>()
-
-    constructor (context: Context) {
-        this.context = context
+class PostJSONStore(val context: Context) : PostStore, AnkoLogger {
+    var posts = mutableListOf<PostModel>()
+    // If the JSON file for the posts deserialize it.
+    init {
         if (exists(context, POST_JSON_FILE)) {
             deserialize()
         }
     }
 
+    // Get a list of all current posts.
     override fun findAll(): MutableList<PostModel> {
-        return redukes
+        return posts
     }
 
+    // Create a post with a random id and add it to the JSON file.
     override fun create(post: PostModel) {
         post.id = generateRandomRedukeId()
-        redukes.add(post)
+        posts.add(post)
         serialize()
     }
 
+    // Update a existing post.
     override fun update(post: PostModel) {
-        var foundPost: PostModel? = redukes.find { p -> p.id == post.id }
+        // Find the post by its id.
+        val foundPost: PostModel? = posts.find { p -> p.id == post.id }
+        // As long as the found post is not null update the post.
         if (foundPost != null) {
             foundPost.postOwner = post.postOwner
             foundPost.title = post.title
@@ -54,18 +58,21 @@ class PostJSONStore : PostStore, AnkoLogger {
         }
     }
 
-    override fun delete(placemark: PostModel) {
-        redukes.remove(placemark)
+    // Delete a post and write to the file to update it.
+    override fun delete(post: PostModel) {
+        posts.remove(post)
         serialize()
     }
 
+    // Write the posts to the JSON file.
     private fun serialize() {
-        val jsonString = gsonBuilder.toJson(redukes, listType)
+        val jsonString = gsonBuilder.toJson(posts, listType)
         write(context, POST_JSON_FILE, jsonString)
     }
 
+    // Read the posts from the JSON file.
     private fun deserialize() {
         val jsonString = read(context, POST_JSON_FILE)
-        redukes = Gson().fromJson(jsonString, listType)
+        posts = Gson().fromJson(jsonString, listType)
     }
 }

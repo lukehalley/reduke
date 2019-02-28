@@ -11,7 +11,7 @@
     <string name="loginButton">Login</string>
     <string name="registerButton">Register</string>
     <string name="title_Register">Reduke User Register</string>
-    <string name="hint_SucessfullRegister">Registration Sucessfull!</string>
+    <string name="hint_SucessfullRegister">Registration Successful!</string>
     <string name="err_UserExists">User with the entered email already exists!</string>
     <string name="deletePrompt">Are you sure you want to delete this Post?</string>
     <string name="registerTitle">Register</string>
@@ -58,6 +58,18 @@
     <string name="logout">Logout</string>
     <string name="sort_feed">sort feed</string>
     <string name="add_user">Add User</string>
+    <string name="splashscreen_image">Splashscreen Image</string>
+    <string name="example_text">Luke Halley did something</string>
+    <string name="exampleowner">luke123halley</string>
+    <string name="examplepoints">342 points</string>
+    <string name="zerocomments">0 comments</string>
+    <string name="defaulttime">7 hours ago</string>
+    <string name="defaultsubreddit">askreddit</string>
+    <string name="point">·</string>
+    <string name="upvote_button">upvote button</string>
+    <string name="favourite_button">favourite button</string>
+    <string name="menu_on_card">menu on card</string>
+    <string name="downvote_button">downvote button</string>
 
     <!--Subreddits-->
     <string-array name="subreddits_list">
