@@ -38,17 +38,17 @@ Then [open the project in Android Studio](https://github.com/dogriffiths/HeadFir
 Connect your device or start an emulator and run the app! 😃
 
 ## Features
-* Design
+* **Design**
   - Custom Splashscreen created by me.
   - Navigation drawer, Floating Action Button (FAB), Flat Icons.
   - Current Users Email & Username shown in sidebar.
   - Material Design - Flat and bright colours with consistent app wide colour scheme.
-* Animations
+* **Animations**
   - Posts fade in from the right when the posts are loaded or when they sorted.
-* Espresso UI Tests
+* **Espresso UI Tests**
   - Test all key functionalitys (CRUD, Upvote, Downvote, Login, Logout etc...)
   - Using EspressoIdling which allows testing of asynchronous functions in the Reduke app such as Login and Register.
-* Reddit Feed Features
+* **Reddit Feed Features**
   - Scroll through all the posts created as a feed just like Reddit.
   - Sort Posts by:
     - Top (Most votes)
@@ -59,14 +59,14 @@ Connect your device or start an emulator and run the app! 😃
   - Upvote or Downvote a post.
   - Posts displayed in uniform cards.
   - Post Title, Owner, Date Created, Votes, Subreddit, Comment Count can be seen on each card for each Post.
-* Persistence
+* **Persistence**
   - Persisting Users using Firebase.
   - Persisting Posts using JSON.
-* Register and Login
+* **Register and Login**
   - Users stored and authenticated in the cloud using Firebase Authentication.
   - Password requires a double entry to ensure change is correct).
   - Empty field checking.
-* CRUD Features
+* **CRUD Features**
   - Add a Post.
   - View/Read a Post.
   - Edit/Update a Post.
@@ -76,7 +76,7 @@ Connect your device or start an emulator and run the app! 😃
     - username: the username of the user.
     - email: the email of the user.
     - password: the password of the user.
-* Post Model Fields
+* **Post Model Fields**
   - id: unique id of the post.
   - postOwner: user who created the post.
   - title: title of the post.
@@ -88,7 +88,7 @@ Connect your device or start an emulator and run the app! 😃
   - upvotedBy: list of user emails who upvoted the post.
   - downvotedBy: list of user emails who downvoted the post.
   - Empty field checking when creating a Post.
-* Pop Up Windows
+* **Pop Up Windows**
   - Used in multiple areas such as logging out (are you sure you want to logout?) and when deleting a Post (are you sure you want to delete this Post?) etc...
-* Using SharedPreferences
+* **Using SharedPreferences**
   - Used for various logic and ui elements.
