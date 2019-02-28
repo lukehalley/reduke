@@ -15,7 +15,11 @@
 
 ## Demo
 
-[Reduke Youtube Video](https://github.com/lukehalley/reduke)
+**PLEASE NOTE:** There are two demo videos, one which shows the **Reduke App Functionality** and a second video which shows the **Espresso UI Tests**
+
+- [Reduke App Functionality](https://youtu.be/LO0r3PZQhF4)
+
+- [Espresso UI Tests](https://youtu.be/ncm8QSMwZus)
 
 ## Screenshots
 
