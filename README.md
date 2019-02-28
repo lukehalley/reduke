@@ -16,7 +16,7 @@
 ## Screenshots
 
 <p align="center">
-  <img src="https://i.ibb.co/Jn3Tt8P/Reduke-Screenshots.jpg">
+  <img src="https://lh3.googleusercontent.com/ypfYjsWXhkA_iboEqDVH155mCfQ8gcXP5qMJWtdWUWnRwkuBf1tIZUjdL0tBIMxoTt7z_zmTr7gnzTAdYUTuQrUdQXpQRkRCAqNLnCMw5l4b-2QU3SIs5AcAWqfHsDwUfRJ8VQAKSMJm-QI5RV5sk_gkVBA9x1Py-0nxEFLaglrNJVNAzbCTYYvTo7kveOMFCx7O87bZnd2dWlFoKC1eMD1zCH5jGwBYCSbN26toFoClV5iNtQuQfy5mnoIoB_0ZZokZuB_RD_kSSJi7CF1vobrb_wJag-5okXCveQTiHN5ESy-zTcK-VsXtbHUY3EIXoP6DXuM7QtJX3huEqVOzXG7U1RMpAIC3XyyFJc1m4RvavgXYv_OvvALhmP_FJO9pXZ51s249fekmTmjrGtoMNyZS97yMF3kwhkk8NwYHAhxV7N7zWl1ePN7z94eAmzJdgidWvZk60tdtKpAzEyQXvxApBfA1n3HkvDRc4VGN61_Rl-8-hBJga8UBczRY3Depx03VDfhSvxy4ZlYo2HUXMzzej-gFlZrz8rEu1Pr-3cyi9gQCf50zYhCxYWHQG-nF8UZ-ZOhQBfgL_ETpKSWcYRpBjVhc4yw-CEcjQA8kW5kvA_b49kPfZwrWwvD2Hs6I8eJvorB10G2g-ToXe8BjO9sy6tK8P6H3=w924-h1640-no">
 </p>
 
 ## Setup
