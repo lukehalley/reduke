@@ -325,12 +325,12 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     private fun runAnimation(recyclerView: RecyclerView) {
-        loadPosts()
+//        loadPosts()
         // Get the context.
         val context = recyclerView.context
         val controller = AnimationUtils.loadLayoutAnimation(context, org.wit.reduke.R.anim.feedslideanimation)
         recyclerView.layoutAnimation = controller
-        recyclerView.adapter!!.notifyDataSetChanged()
+//        recyclerView.adapter!!.notifyDataSetChanged()
         // Run the animation.
         recyclerView.scheduleLayoutAnimation()
     }
