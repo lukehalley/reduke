@@ -47,7 +47,7 @@
             android:name="org.wit.reduke.activities.feed.FeedActivity"
             android:label="@string/title_PostList" />
         <activity
-            android:name="org.wit.reduke.activities.posts.PostAddEditActivity"
+            android:name="org.wit.reduke.activities.posts.TextPostActivity"
             android:label="@string/title_PostAdd"
             android:parentActivityName="org.wit.reduke.activities.feed.FeedActivity" />
         <activity
