@@ -4,15 +4,16 @@ import android.content.Context
 
 class RedukeSharedPreferences(context: Context) {
 
+    // Create the shared preference field names.
     val PREFERENCE_NAME = "CurrentUser"
-    val PREF_VAL_USER_ID = "CurrentUserID"
     val PREF_VAL_USER_NAME = "CurrentUserName"
     val PREF_VAL_USER_EMAIL = "CurrentUserEmail"
-    val PREF_VAL_USER_PASSWORD = "CurrentUserPassword"
     val PREF_VAL_POST_COUNT = "CurrentRedukeCount"
 
+    // Get a instance of SharedPreferences
     val preference = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
 
+    // Getters and setters for the current users username
     fun getCurrentUserName(): String {
         return preference.getString(PREF_VAL_USER_NAME, "Name NA")
     }
@@ -23,44 +24,20 @@ class RedukeSharedPreferences(context: Context) {
         editor.apply()
     }
 
+    // Getters and setters for the current users email
     fun getCurrentUserEmail(): String {
         return preference.getString(PREF_VAL_USER_EMAIL, "Email NA")
     }
-
     fun setCurrentUserEmail(email: String) {
         val editor = preference.edit()
         editor.putString(PREF_VAL_USER_EMAIL, email)
         editor.apply()
     }
 
-    fun getCurrentUserPassword(): String {
-        return preference.getString(PREF_VAL_USER_PASSWORD, "Password NA")
-    }
-
-    fun setCurrentUserPassword(password: String) {
-        val editor = preference.edit()
-        editor.putString(PREF_VAL_USER_PASSWORD, password)
-        editor.apply()
-    }
-
-    fun getCurrentRedukeCount(): Int {
-        return preference.getInt(PREF_VAL_POST_COUNT, 0)
-    }
-
     fun setCurrentRedukeCount(count: Int) {
         val editor = preference.edit()
         editor.putInt(PREF_VAL_POST_COUNT, count)
         editor.apply()
-    }
-
-    fun setCurrentUserID(id: String) {
-        val editor = preference.edit()
-        editor.putString(PREF_VAL_USER_ID, String.toString())
-        editor.apply()
-    }
-
-    fun getCurrentUserID(): String {
-        return preference.getString(PREF_VAL_USER_ID, "ID NA")
     }
 
 }

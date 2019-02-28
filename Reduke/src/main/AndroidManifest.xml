@@ -32,7 +32,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
 
         <activity android:name="org.wit.reduke.activities.other.RedukeSplashscreen">
@@ -61,10 +61,6 @@
             android:name="org.wit.reduke.activities.users.RedukeRegisterActivity"
             android:label="@string/title_Register"
             android:parentActivityName="org.wit.reduke.activities.users.RedukeLoginActivity" />
-        <activity
-            android:name="org.wit.reduke.activities.users.RedukeSettingsActivity"
-            android:label="@string/title_Settings"
-            android:parentActivityName="org.wit.reduke.activities.feed.FeedActivity" />
     </application>
 
 </manifest>
