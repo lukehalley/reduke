@@ -27,7 +27,7 @@ class RedukeAdapter(private var posts: List<PostModel>,
 
     // Inflate the current post to a card.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        return MainHolder(LayoutInflater.from(parent?.context).inflate(org.wit.reduke.R.layout.card_post, parent, false))
+        return MainHolder(LayoutInflater.from(parent.context).inflate(org.wit.reduke.R.layout.card_post, parent, false))
     }
 
     // Bind current post to the feed.
