@@ -54,7 +54,9 @@ Connect your device or start an emulator and run the app! 😃
   - Upvote or Downvote a post.
   - Posts displayed in uniform cards.
   - Post Title, Owner, Date Created, Votes, Subreddit, Comment Count can be seen on each card for each Post.
-* Persistence for Posts using JSON
+* Persistence
+  - Persisting Users using Firebase
+  - Persisting Posts using JSON
 * Register and Login
   - Users stored and authenticated in the cloud using Firebase Authentication.
   - Password requires a double entry to ensure change is correct)
