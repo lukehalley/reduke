@@ -39,7 +39,9 @@ Connect your device or start an emulator and run the app! 😃
 * Material Design
   - Flat and bright colours with consistent app wide colour scheme.
 * Modern UI Elements
-  - Navigation drawer, Floating Action Button (FAB), Flat Icons
+  - Navigation drawer, Floating Action Button (FAB), Flat Icons.
+* Animations
+  - Posts fade in from the right when the posts are loaded or when they sorted.
 * Reddit Feed Features
   - Scroll through all the posts created.
   - Sort Posts by:
