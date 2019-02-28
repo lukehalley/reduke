@@ -28,7 +28,7 @@ First clone the repo at the master branch down to your machine.
 Then [open the project in Android Studio](https://github.com/dogriffiths/HeadFirstAndroid/wiki/How-to-open-a-project-in-Android-Studio)
 
 <p align="center">
-  <img src="https://i.imgur.com/LiOBGk0.png">
+  <img src="https://lh3.googleusercontent.com/vqXWSJiIdlsARvsxzszBKqxI8_Ey979guegQUAda_gG-zGAGnjPwBV5rkzoBK5JEpqhO7sVs7mTrhMEfDILk_5pchhrhOoNJHKmmRYmtd3E0uydd8KOFA0EwqT_fZOrAWC1dE9BWotG55KP41ERNY3geb8cktDTjJQRroetPZGlnO1wSxRvCQHvHFT7fx3CgAReDkLZc7ztJKVlPKOC5MWj2bt3bdy3RdRYMeJ4w9hR_EmcEOUndeUNEzU--AbzGcTA3vry4c5MKv5nxXRNnleDoYfVExE0I9IogHI3KwraMVpiiEf8etHzFhxuv6eAorbqUe-OljEIi7yRjBD9WpwyBsxwQRSCvcoVeAF5bPmLOf5aXsV9AUEci_yRTXdt1sd7BpFvs4KMnW_JdZjt3O7KtqxPe35tD2eWBivzXlE97pSjvg4zBfsMNoRsPwpPUc8RdrfJiJZVl1zF9SW_GbWswTzs3zLboi5lxFSdz_xz7TMWvyINRu_cKVdvpX4nVBrxyYpdHiTcbDtvbwWFXbqK9c6xEOYmr5R-NS56aDjtsIycqkZvV9q7lyNiYEnC5HaJNJb4Qa1AYbmevyoyZfx9tvwRx8mWs1aoVuR4vtTLbl3s_V4sj09W2ymnaegb8FowDcX_T7pPy9cxaavh-RZIihw0ZHHbc=w2692-h1640-no">
 </p>
 
 Connect your device or start an emulator and run the app! 😃
