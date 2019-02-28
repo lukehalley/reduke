@@ -11,29 +11,19 @@
 
 ## Demo
 
-<p align="center">
-  <img src="https://media.giphy.com/media/63LNxgT7pn0Ma9NRHh/giphy.gif">
-</p>
+
 
 ## Screenshots
 
 <p align="center">
-  <img src="http://i.imgur.com/UGPa7oW.jpg">
-</p>
-
-<p align="center">
-  <img src="https://image.ibb.co/maSjSf/2.jpg">
-</p>
-
-<p align="center">
-  <img src="https://image.ibb.co/h3LtL0/3.jpg">
+  <img src="https://i.ibb.co/Jn3Tt8P/Reduke-Screenshots.jpg">
 </p>
 
 ## Setup
 
 First clone the repo at the master branch down to your machine.
 
-`git clone https://github.com/lukehalley/hillfort.git`
+`git clone https://github.com/lukehalley/reduke.git`
 
 Then [open the project in Android Studio](https://github.com/dogriffiths/HeadFirstAndroid/wiki/How-to-open-a-project-in-Android-Studio)
 
@@ -41,50 +31,52 @@ Then [open the project in Android Studio](https://github.com/dogriffiths/HeadFir
   <img src="https://i.imgur.com/LiOBGk0.png">
 </p>
 
-navigate to the file located:
-
-`Hillfort/src/main/AndroidManifest.xml`
-
-and find the following lines:
-
-`<meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR-API-KEY-HERE" />`
-
-replace `YOUR-API-KEY-HERE` with you Google Maps API.
-
-If you do not know how to get a Google Maps API [here is a tutorial by Google](https://developers.google.com/maps/documentation/android-sdk/signup)
-
-Finally connect your device or start an emulator and run the app! 😃
+Connect your device or start an emulator and run the app! 😃
 
 ## Key Features
 
 * Splashscreen
-* Persitance for both Hilloforts and Users using JSON
+* Material Design
+  - Flat and bright colours with consistent app wide colour scheme.
+* Modern UI Elements
+  - Navigation drawer, Floating Action Button (FAB), Flat Icons
+* Reddit Feed Features
+  - Scroll through all the posts created.
+  - Sort Posts by:
+    - Top (Most votes)
+    - Newest (Newest Posts)
+    - Oldest (Oldest Posts)
+    - Alphabetical (Ascending Order)
+    - Alphabetical (Descending Order)
+  - Upvote or Downvote a post.
+  - Posts displayed in uniform cards.
+  - Post Title, Owner, Date Created, Votes, Subreddit, Comment Count can be seen on each card for each Post.
+* Persistence for Posts using JSON
 * Register and Login
-  - Using a "User" module with the details of user strored locally on the device with a JSON file.
+  - Users stored and authenticated in the cloud using Firebase Authentication.
   - Password requires a double entry to ensure change is correct)
   - Empty field checking
-* Material Design
-  - Flat and bright colours
-* Modern UI
-  - Navigation drawer, Floating Action Button (FAB), Flat Icons
 * CRUD Features
-  - Add a Hillfort
-  - View/Read a Hillfort
-  - Edit/Update a Hillfort
-  - Delete Hillfort
-* Multiple Data Fields
-  - Title
-  - Description
-  - Additional Notes
-  - Visted (Switch/Boolean)
-  - Images (Up to 4 - can be loaded from devices gallery or taken by camera)
-  - Location with readable address (Google Maps with Geocoder)
-  - Empty field checking
-* User Settings
-  - Edit Email
-  - Edit Password (with double entry to ensure change is correct)
-  - Empty field checking
+  - Add a Post
+  - View/Read a Post
+  - Edit/Update a Post
+  - Delete Post
+  * User Model Fields
+    - id: unique id of the user
+    - username: the username of the user.
+    - email: the email of the user.
+    - password: the password of the user.
+* Post Model Fields
+  - id: unique id of the post
+  - postOwner: user who created the post
+  - title: title of the post
+  - text: body text of the post.
+  - tags: tags set by the user set when created - EG: Question, Answer...
+  - votes: number of votes the post has decided by users upvoting and downvoting the post.
+  - subreddit: subreddit the post belongs too.
+  - timestamp: time the post was created.
+  - upvotedBy: list of user emails who upvoted the post.
+  - downvotedBy: list of user emails who downvoted the post.
+  - Empty field checking when creating a Post.
 * Pop Up Windows
-  - Used in multiple areas such as logging out (are you sure you want to logout?) and when deleting a hillfort (are you sure you want to delete this hillfort?) etc...
+  - Used in multiple areas such as logging out (are you sure you want to logout?) and when deleting a Post (are you sure you want to delete this Post?) etc...
