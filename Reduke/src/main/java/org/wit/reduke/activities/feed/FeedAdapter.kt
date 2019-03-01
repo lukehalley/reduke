@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import io.github.ponnamkarthik.richlinkpreview.ViewListener
 import kotlinx.android.synthetic.main.card_text_post.view.*
 import org.jetbrains.anko.AnkoLogger
-import org.wit.reduke.R
+import org.jetbrains.anko.error
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.models.posts.PostModel
+
 
 interface RedukeListener {
     // Create listener functions.
@@ -41,11 +43,10 @@ class RedukeAdapter(private var posts: List<PostModel>,
 
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView), AnkoLogger {
 
+
         // Bind the post data to all of the fields.
         @SuppressLint("SetTextI18n")
         fun bind(post: PostModel, listener: RedukeListener) {
-
-
 
             itemView.textPostTitleField.text = post.title
             itemView.cardPostOwner.text = post.owner
@@ -59,15 +60,43 @@ class RedukeAdapter(private var posts: List<PostModel>,
             // Color the upvote and downvote buttons based on the current user - if he/she has up-voted or down-voted the current post.
             val userEmail = RedukeSharedPreferences(itemView.cardUpvotePost.context).getCurrentUserEmail()
             if (userEmail in post.upvotedBy) {
-                itemView.cardUpvotePost.setImageResource(R.drawable.upvoteactive)
+                itemView.cardUpvotePost.setImageResource(org.wit.reduke.R.drawable.upvoteactive)
             } else {
-                itemView.cardUpvotePost.setImageResource(R.drawable.upvotenotactive)
+                itemView.cardUpvotePost.setImageResource(org.wit.reduke.R.drawable.upvotenotactive)
             }
             if (userEmail in post.downvotedBy) {
-                itemView.cardDownvotePost.setImageResource(R.drawable.downvoteactive)
+                itemView.cardDownvotePost.setImageResource(org.wit.reduke.R.drawable.downvoteactive)
             } else {
-                itemView.cardDownvotePost.setImageResource(R.drawable.downvotenotactive)
+                itemView.cardDownvotePost.setImageResource(org.wit.reduke.R.drawable.downvotenotactive)
             }
+
+            // Set Card Design Based On Post Type
+            when (post.type) {
+                "Text" -> {
+                    itemView.imagePostCardImage.visibility = View.INVISIBLE
+                    itemView.imagePostCardLink.visibility = View.INVISIBLE
+                }
+                "Image" -> {
+                    itemView.imagePostCardImage.visibility = View.VISIBLE
+                    itemView.imagePostCardLink.visibility = View.INVISIBLE
+                }
+                "Link" -> {
+                    itemView.imagePostCardLink.setLink(post.link, object : ViewListener {
+                        override fun onSuccess(status: Boolean) {
+
+                        }
+
+                        override fun onError(e: Exception) {
+                            error { "Couldnt get URL Preview: $e" }
+                        }
+                    })
+                    itemView.imagePostCardImage.visibility = View.INVISIBLE
+                    itemView.imagePostCardLink.visibility = View.VISIBLE
+                }
+                else -> error { "Unknown Post Type, Can't Set Card Design!" }
+            }
+
+
         }
 
 
