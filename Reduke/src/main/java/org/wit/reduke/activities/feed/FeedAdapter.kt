@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.card_post.view.*
+import kotlinx.android.synthetic.main.card_text_post.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.wit.reduke.R
 import org.wit.reduke.activities.users.RedukeSharedPreferences
@@ -27,7 +27,7 @@ class RedukeAdapter(private var posts: List<PostModel>,
 
     // Inflate the current post to a card.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        return MainHolder(LayoutInflater.from(parent.context).inflate(org.wit.reduke.R.layout.card_post, parent, false))
+        return MainHolder(LayoutInflater.from(parent.context).inflate(org.wit.reduke.R.layout.card_text_post, parent, false))
     }
 
     // Bind current post to the feed.
@@ -44,6 +44,9 @@ class RedukeAdapter(private var posts: List<PostModel>,
         // Bind the post data to all of the fields.
         @SuppressLint("SetTextI18n")
         fun bind(post: PostModel, listener: RedukeListener) {
+
+
+
             itemView.textPostTitleField.text = post.title
             itemView.cardPostOwner.text = post.owner
             itemView.cardPostTimestamp.text = post.timestamp.split(" ")[0]
