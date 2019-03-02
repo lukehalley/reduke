@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.card_text_post.view.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.error
 import org.wit.reduke.activities.users.RedukeSharedPreferences
+import org.wit.reduke.helpers.readImageFromPath
 import org.wit.reduke.models.posts.PostModel
 
 
@@ -77,6 +78,7 @@ class RedukeAdapter(private var posts: List<PostModel>,
                     itemView.imagePostCardLink.visibility = View.GONE
                 }
                 "Image" -> {
+                    itemView.imagePostCardImage.setImageBitmap(readImageFromPath(itemView.context, post.image))
                     itemView.imagePostCardImage.visibility = View.VISIBLE
                     itemView.imagePostCardLink.visibility = View.GONE
                 }
