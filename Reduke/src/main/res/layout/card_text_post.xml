@@ -16,13 +16,13 @@
         <ImageView
             android:id="@+id/imagePostCardImage"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:scaleType="centerCrop" />
 
         <io.github.ponnamkarthik.richlinkpreview.RichLinkViewSkype
             android:id="@+id/imagePostCardLink"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="150dp" />
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/linearLayout"
