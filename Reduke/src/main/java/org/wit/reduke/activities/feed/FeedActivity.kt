@@ -17,7 +17,7 @@ import android.widget.ExpandableListView
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_feed.*
-import kotlinx.android.synthetic.main.card_text_post.*
+import kotlinx.android.synthetic.main.card.*
 import org.jetbrains.anko.*
 import org.wit.reduke.activities.navbar.CustomExpandableListAdapter
 import org.wit.reduke.activities.posts.ImagePostActivity
