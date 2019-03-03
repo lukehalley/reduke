@@ -47,7 +47,7 @@ class PostJSONStore(val context: Context) : PostStore, AnkoLogger {
         val foundPost: PostModel? = posts.find { p -> p.id == post.id }
         // As long as the found post is not null update the post.
         if (foundPost != null) {
-            foundPost.postOwner = post.postOwner
+            foundPost.owner = post.owner
             foundPost.title = post.title
             foundPost.text = post.text
             foundPost.tags = post.tags

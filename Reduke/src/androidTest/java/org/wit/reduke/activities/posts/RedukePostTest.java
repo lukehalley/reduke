@@ -57,7 +57,7 @@ public class RedukePostTest {
     private Instrumentation.ActivityMonitor registerActivityMonitor = getInstrumentation().addMonitor(RedukeRegisterActivity.class.getName(), null, false);
     private Instrumentation.ActivityMonitor loginActivityMonitor = getInstrumentation().addMonitor(RedukeLoginActivity.class.getName(), null, false);
     private Instrumentation.ActivityMonitor feedActivityMonitor = getInstrumentation().addMonitor(FeedActivity.class.getName(), null, false);
-    private Instrumentation.ActivityMonitor postActivityMonitor = getInstrumentation().addMonitor(PostAddEditActivity.class.getName(), null, false);
+    private Instrumentation.ActivityMonitor postActivityMonitor = getInstrumentation().addMonitor(TextPostActivity.class.getName(), null, false);
 
     // Setup the EspressoIdlingResource to allow waiting on network processes like login and register.
     @Before
@@ -149,24 +149,24 @@ public class RedukePostTest {
         assertNotNull(postActivity);
 
         // Enter the posts title.
-        Espresso.onView((withId(R.id.postTitleField)))
+        Espresso.onView((withId(R.id.textPostTitleField)))
                 .perform(ViewActions.typeText(str));
 
         Espresso.closeSoftKeyboard();
 
         // Enter the posts description.
         String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum mollis felis, in consequat nibh viverra sed.";
-        Espresso.onView((withId(R.id.postDescriptionField)))
+        Espresso.onView((withId(R.id.textPostDescriptionField)))
                 .perform(ViewActions.typeText(lorem));
 
         Espresso.closeSoftKeyboard();
 
         // Choose the Android sub reddit from the spinner.
-        onView(withId(R.id.subredditSpinner)).perform(click());
+        onView(withId(R.id.textPostSubredditSpinner)).perform(click());
         onData(allOf(is(instanceOf(String.class)), is("Android"))).perform(click());
 
         // Create the post
-        Espresso.onView(withId(R.id.addPostBtn))
+        Espresso.onView(withId(R.id.addTextPostBtn))
                 .perform(ViewActions.click());
 
         // We should be brought back to the feed activity.
@@ -185,19 +185,19 @@ public class RedukePostTest {
         String loremEdit = str + " edit";
 
         // Edit the title.
-        Espresso.onView((withId(R.id.postTitleField)))
+        Espresso.onView((withId(R.id.textPostTitleField)))
                 .perform(ViewActions.replaceText(strEdit));
 
         Espresso.closeSoftKeyboard();
 
         // Edit the description.
-        Espresso.onView((withId(R.id.postDescriptionField)))
+        Espresso.onView((withId(R.id.textPostDescriptionField)))
                 .perform(ViewActions.replaceText(loremEdit));
 
         Espresso.closeSoftKeyboard();
 
         // Press the save button
-        Espresso.onView(withId(R.id.addPostBtn))
+        Espresso.onView(withId(R.id.addTextPostBtn))
                 .perform(ViewActions.click());
 
         // We should have been brought back to the feed activity.
@@ -232,7 +232,7 @@ public class RedukePostTest {
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
         // Press the delete button to delete the post.
-        Espresso.onView(withId(R.id.deletePostBtn))
+        Espresso.onView(withId(R.id.deleteTextPostBtn))
                 .perform(ViewActions.click());
 
         // Press ok on the pop up prompt

@@ -6,11 +6,14 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.card_post.view.*
+import android.webkit.URLUtil
+import io.github.ponnamkarthik.richlinkpreview.ViewListener
+import kotlinx.android.synthetic.main.card.view.*
 import org.jetbrains.anko.AnkoLogger
-import org.wit.reduke.R
 import org.wit.reduke.activities.users.RedukeSharedPreferences
+import org.wit.reduke.helpers.readImageFromPath
 import org.wit.reduke.models.posts.PostModel
+
 
 interface RedukeListener {
     // Create listener functions.
@@ -27,7 +30,7 @@ class RedukeAdapter(private var posts: List<PostModel>,
 
     // Inflate the current post to a card.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        return MainHolder(LayoutInflater.from(parent.context).inflate(org.wit.reduke.R.layout.card_post, parent, false))
+        return MainHolder(LayoutInflater.from(parent.context).inflate(org.wit.reduke.R.layout.card, parent, false))
     }
 
     // Bind current post to the feed.
@@ -41,11 +44,19 @@ class RedukeAdapter(private var posts: List<PostModel>,
 
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView), AnkoLogger {
 
+
         // Bind the post data to all of the fields.
         @SuppressLint("SetTextI18n")
         fun bind(post: PostModel, listener: RedukeListener) {
-            itemView.postTitleField.text = post.title
-            itemView.cardPostOwner.text = post.postOwner
+
+
+            var url = post.link
+            if (!url.startsWith("https://") && !URLUtil.isValidUrl(url)) {
+                url = "https://$url"
+            }
+
+            itemView.textPostTitleField.text = post.title
+            itemView.cardPostOwner.text = post.owner
             itemView.cardPostTimestamp.text = post.timestamp.split(" ")[0]
             itemView.cardPostPointCount.text = post.votes.toString() + " points"
             itemView.cardPostSubreddit.text = post.subreddit
@@ -56,15 +67,44 @@ class RedukeAdapter(private var posts: List<PostModel>,
             // Color the upvote and downvote buttons based on the current user - if he/she has up-voted or down-voted the current post.
             val userEmail = RedukeSharedPreferences(itemView.cardUpvotePost.context).getCurrentUserEmail()
             if (userEmail in post.upvotedBy) {
-                itemView.cardUpvotePost.setImageResource(R.drawable.upvoteactive)
+                itemView.cardUpvotePost.setImageResource(org.wit.reduke.R.drawable.upvoteactive)
             } else {
-                itemView.cardUpvotePost.setImageResource(R.drawable.upvotenotactive)
+                itemView.cardUpvotePost.setImageResource(org.wit.reduke.R.drawable.upvotenotactive)
             }
             if (userEmail in post.downvotedBy) {
-                itemView.cardDownvotePost.setImageResource(R.drawable.downvoteactive)
+                itemView.cardDownvotePost.setImageResource(org.wit.reduke.R.drawable.downvoteactive)
             } else {
-                itemView.cardDownvotePost.setImageResource(R.drawable.downvotenotactive)
+                itemView.cardDownvotePost.setImageResource(org.wit.reduke.R.drawable.downvotenotactive)
             }
+
+            // Set Card Design Based On Post Type
+            when (post.type) {
+                "Text" -> {
+                    itemView.imagePostCardImage.visibility = View.GONE
+                    itemView.imagePostCardLink.visibility = View.GONE
+                }
+                "Image" -> {
+                    itemView.imagePostCardImage.setImageBitmap(readImageFromPath(itemView.context, post.image))
+                    itemView.imagePostCardImage.visibility = View.VISIBLE
+                    itemView.imagePostCardLink.visibility = View.GONE
+                }
+                "Link" -> {
+                    itemView.imagePostCardLink.setLink(url, object : ViewListener {
+                        override fun onSuccess(status: Boolean) {
+
+                        }
+
+                        override fun onError(e: Exception) {
+                            error { "Couldnt get URL Preview: $e" }
+                        }
+                    })
+                    itemView.imagePostCardImage.visibility = View.GONE
+                    itemView.imagePostCardLink.visibility = View.VISIBLE
+                }
+                else -> error { "Unknown Post Type, Can't Set Card Design!" }
+            }
+
+
         }
 
 

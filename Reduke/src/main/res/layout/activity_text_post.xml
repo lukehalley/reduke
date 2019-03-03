@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.wit.reduke.activities.posts.PostAddEditActivity">
+    tools:context="org.wit.reduke.activities.posts.TextPostActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbarAdd"
+                android:id="@+id/toolbarText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:titleTextColor="@color/colorPrimary" />
@@ -55,7 +55,7 @@
                     android:textStyle="bold" />
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/postTitleField"
+                    android:id="@+id/textPostTitleField"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginLeft="8dp"
@@ -70,7 +70,7 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/postDescriptionField"
+                    android:id="@+id/textPostDescriptionField"
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:layout_marginLeft="10dip"
@@ -85,7 +85,7 @@
                     android:textSize="17sp" />
 
                 <TextView
-                    android:id="@+id/subredditTag"
+                    android:id="@+id/textSubredditTag"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -98,7 +98,7 @@
                     android:textStyle="bold" />
 
                 <Spinner
-                    android:id="@+id/subredditSpinner"
+                    android:id="@+id/textPostSubredditSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="49dp"
                     android:layout_marginLeft="10dip"
@@ -107,7 +107,7 @@
                     android:entries="@array/subreddits_list" />
 
                 <Button
-                    android:id="@+id/addPostBtn"
+                    android:id="@+id/addTextPostBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -121,7 +121,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/deletePostBtn"
+                    android:id="@+id/deleteTextPostBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"

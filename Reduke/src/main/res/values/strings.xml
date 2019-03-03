@@ -71,6 +71,14 @@
     <string name="menu_on_card">menu on card</string>
     <string name="downvote_button">downvote button</string>
     <string name="subredditTag">Subreddit</string>
+    <string name="button_addImageFromGallery">CHOOSE IMAGE</string>
+    <string name="button_addImageFromCamera">TAKE PHOTO</string>
+    <string name="imageTag">Choose Image</string>
+    <string name="hint_postURL">URL</string>
+    <string name="the_post_s_image">The Post\'s Image</string>
+    <string name="select_redukeImage">Select Post Image</string>
+    <string name="title_ImagePost">Image Post</string>
+    <string name="title_LinkPost">Add Link Pos</string>
 
     <!--Subreddits-->
     <string-array name="subreddits_list">
