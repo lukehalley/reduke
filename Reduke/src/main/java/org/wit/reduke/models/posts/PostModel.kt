@@ -17,6 +17,7 @@ import kotlinx.android.parcel.Parcelize
 // downvotedBy: list of user emails who downvoted the post.
 @Parcelize
 data class PostModel(var id: Long = 0,
+                     var fbId: String = "",
                      var type: String = "",
                      var owner: String = "",
                      var title: String = "",
@@ -29,5 +30,5 @@ data class PostModel(var id: Long = 0,
                      var downvotedBy: MutableList<String> = mutableListOf(),
                      var image: String = "",
                      var link: String = ""
-                     ) : Parcelable
+) : Parcelable
 
