@@ -400,12 +400,26 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     // and pass the RedukeAdapter to the recyclerView's adapter.
     fun initFeed(imagePosts: List<PostModel>) {
         val mypreference = RedukeSharedPreferences(this)
-        val userName = mypreference.getCurrentUserName()
+
         val userEmail = mypreference.getCurrentUserEmail()
+
+        val userName = mypreference.getCurrentUserName()
+
+        info { "CURRENT USERNAME IS: " + userName }
+
         val parentView = nav_view.getHeaderView(0)
         val navHeaderUser = parentView.findViewById(org.wit.reduke.R.id.current_user_nav_header) as TextView
         val navHeaderEmail = parentView.findViewById(org.wit.reduke.R.id.current_email_nav_header) as TextView
-        navHeaderUser.text = userName
+
+        if (userName === "Name NA") {
+            toast("userName === \"Name NA\"")
+            navHeaderUser.text = userEmail.substringBefore("@")
+        } else {
+            toast("NOT userName === \"Name NA\"")
+            navHeaderUser.text = userName
+        }
+
+
         navHeaderEmail.text = userEmail
         mypreference.setCurrentRedukeCount(imagePosts.size)
         recyclerView.adapter = RedukeAdapter(imagePosts, this)

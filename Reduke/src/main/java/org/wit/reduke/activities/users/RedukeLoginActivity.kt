@@ -146,15 +146,18 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
                 val personId = account.id
                 val personPhoto = account.photoUrl
 
-                if (personEmail != null) {
+                if (personEmail != null && personName != null) {
                     redukeSharedPref.setCurrentUserEmail(personEmail)
+                    redukeSharedPref.setCurrentUserName(personName)
                 }
 
                 if (fireStore != null) {
                     // Sign in success, update UI with the signed-in user's information
                     fireStore!!.fetchPosts {
                         // If the user logs in, set their email in the redukeSharedPref for use later on.
-                        redukeSharedPref.setCurrentUserEmail(enteredLoginEmail.text.toString())
+                        if (personEmail != null) {
+                            redukeSharedPref.setCurrentUserEmail(personEmail)
+                        }
                         startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", personEmail), 0)
                     }
 
