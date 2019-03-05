@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@+id/enteredLoginEmail" />
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/firebaseLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -93,6 +93,17 @@
         app:layout_constraintStart_toStartOf="@+id/enteredLoginPassword"
         app:layout_constraintTop_toBottomOf="@+id/enteredLoginPassword" />
 
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/googleLoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/promptSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firebaseLoginButton" />
 
     <TextView
         android:id="@+id/promptSignUp"
@@ -105,7 +116,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+        app:layout_constraintTop_toBottomOf="@+id/firebaseLoginButton" />
 
     <Button
         android:id="@+id/navToRegisterButton"
