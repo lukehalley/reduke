@@ -95,7 +95,7 @@ Demo Links:
 
 ## Setup
 
-First clone the repo at the master branch down to your machine.
+First clone the repo at the **dev** (development not finished) branch down to your machine.
 
 `git clone https://github.com/lukehalley/reduke.git`
 
