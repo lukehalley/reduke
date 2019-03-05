@@ -33,7 +33,7 @@ Demo Links:
   - Current Users Email & Username shown in sidebar.
   - Material Design - Flat and bright colours with consistent app wide colour scheme.
 * **Animations**
-  - Posts fade in from the right when the posts are loaded or when they sorted.
+  - Posts fade in from the right when the posts are loaded or when they are sorted.
 * **Espresso UI Tests**
   - Test all key functionalitys (CRUD, Upvote, Downvote, Login, Logout etc...)
   - Using **EspressoIdlingResource** which allows testing of asynchronous functions in the Reduke app such as Login and Register.
