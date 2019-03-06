@@ -412,10 +412,8 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         val navHeaderEmail = parentView.findViewById(org.wit.reduke.R.id.current_email_nav_header) as TextView
 
         if (userName === "Name NA") {
-            toast("userName === \"Name NA\"")
             navHeaderUser.text = userEmail.substringBefore("@")
         } else {
-            toast("NOT userName === \"Name NA\"")
             navHeaderUser.text = userName
         }
 
