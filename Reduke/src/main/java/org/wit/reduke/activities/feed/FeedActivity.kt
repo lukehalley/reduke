@@ -14,7 +14,9 @@ import android.view.MenuItem
 import android.view.animation.AnimationUtils
 import android.widget.ExpandableListAdapter
 import android.widget.ExpandableListView
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -35,6 +37,8 @@ import kotlin.collections.set
 
 
 class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
+
+
     // Create an instance of the FirebaseAuth.
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
     // Create an instance of the app.
@@ -410,12 +414,26 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         val parentView = nav_view.getHeaderView(0)
         val navHeaderUser = parentView.findViewById(org.wit.reduke.R.id.current_user_nav_header) as TextView
         val navHeaderEmail = parentView.findViewById(org.wit.reduke.R.id.current_email_nav_header) as TextView
+        val navHeaderPic = parentView.findViewById(org.wit.reduke.R.id.current_profile_picture_nav_header) as ImageView
 
         if (userName === "Name NA") {
             navHeaderUser.text = userEmail.substringBefore("@")
         } else {
             navHeaderUser.text = userName
         }
+
+        val extras = intent.extras
+
+        val loginType = extras.getString("typeOfSignIn")
+
+        info { "LOGIN TYPE: " + loginType }
+
+        if (loginType == "google") {
+            toast("SETTING GOOGLE PIC")
+            val acct = GoogleSignIn.getLastSignedInAccount(this)
+            Glide.with(this).load(acct!!.photoUrl).into(navHeaderPic)
+        }
+
 
 
         navHeaderEmail.text = userEmail
