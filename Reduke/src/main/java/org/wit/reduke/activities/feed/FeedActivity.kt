@@ -14,7 +14,11 @@ import android.view.MenuItem
 import android.view.animation.AnimationUtils
 import android.widget.ExpandableListAdapter
 import android.widget.ExpandableListView
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.card.*
@@ -33,6 +37,8 @@ import kotlin.collections.set
 
 
 class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
+
+
     // Create an instance of the FirebaseAuth.
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
     // Create an instance of the app.
@@ -45,6 +51,10 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     internal var expandableListView: ExpandableListView? = null
     internal var adapter: ExpandableListAdapter? = null
     internal var titleList: List<String>? = null
+
+    var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
 
 
     // When the activity is first created the following is run.
@@ -143,6 +153,9 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
                 org.wit.reduke.R.id.nav_Logout ->
                     alert(org.wit.reduke.R.string.logoutPrompt) {
                         yesButton {
+                            app.posts.clear()
+                            auth.signOut()
+                            signOutGoogle()
                             finish()
                         }
                         noButton {}
@@ -199,7 +212,6 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             }
         }
 
-
     }
 
     // Inflate the options menu.
@@ -239,7 +251,9 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             org.wit.reduke.R.id.item_logout ->
                 alert(org.wit.reduke.R.string.logoutPrompt) {
                     yesButton {
+                        app.posts.clear()
                         auth.signOut()
+                        signOutGoogle()
                         finish()
                     }
                     noButton {}
@@ -390,12 +404,38 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     // and pass the RedukeAdapter to the recyclerView's adapter.
     fun initFeed(imagePosts: List<PostModel>) {
         val mypreference = RedukeSharedPreferences(this)
-        val userName = mypreference.getCurrentUserName()
+
         val userEmail = mypreference.getCurrentUserEmail()
+
+        val userName = mypreference.getCurrentUserName()
+
+        info { "CURRENT USERNAME IS: " + userName }
+
         val parentView = nav_view.getHeaderView(0)
         val navHeaderUser = parentView.findViewById(org.wit.reduke.R.id.current_user_nav_header) as TextView
         val navHeaderEmail = parentView.findViewById(org.wit.reduke.R.id.current_email_nav_header) as TextView
-        navHeaderUser.text = userName
+        val navHeaderPic = parentView.findViewById(org.wit.reduke.R.id.current_profile_picture_nav_header) as ImageView
+
+        if (userName === "Name NA") {
+            navHeaderUser.text = userEmail.substringBefore("@")
+        } else {
+            navHeaderUser.text = userName
+        }
+
+        val extras = intent.extras
+
+        val loginType = extras.getString("typeOfSignIn")
+
+        info { "LOGIN TYPE: " + loginType }
+
+        if (loginType == "google") {
+            toast("SETTING GOOGLE PIC")
+            val acct = GoogleSignIn.getLastSignedInAccount(this)
+            Glide.with(this).load(acct!!.photoUrl).into(navHeaderPic)
+        }
+
+
+
         navHeaderEmail.text = userEmail
         mypreference.setCurrentRedukeCount(imagePosts.size)
         recyclerView.adapter = RedukeAdapter(imagePosts, this)
@@ -409,6 +449,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             yesButton {
                 app.posts.clear()
                 auth.signOut()
+                signOutGoogle()
                 finish()
                 super.onBackPressed()
             }
@@ -423,5 +464,12 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         recyclerView.layoutAnimation = controller
         // Run the animation.
         recyclerView.scheduleLayoutAnimation()
+    }
+
+    private fun signOutGoogle() {
+        // Build a GoogleSignInClient with the options specified by gso.
+        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        mGoogleSignInClient.signOut()
     }
 }

@@ -79,6 +79,7 @@
     <string name="select_redukeImage">Select Post Image</string>
     <string name="title_ImagePost">Image Post</string>
     <string name="title_LinkPost">Add Link Pos</string>
+    <string name="toast_GoogleAuthFail">Sign In With Google Failed!</string>
 
     <!--Subreddits-->
     <string-array name="subreddits_list">
