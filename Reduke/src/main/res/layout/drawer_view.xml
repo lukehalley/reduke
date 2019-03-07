@@ -16,6 +16,11 @@
             android:id="@+id/nav_Logout"
             android:icon="@drawable/logout"
             android:title="@string/logoutTitle" />
+
+        <item
+            android:id="@+id/nav_YourPosts"
+            android:icon="@drawable/person_outline"
+            android:title="@string/yourPosts" />
     </group>
 
 </menu>

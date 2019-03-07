@@ -161,6 +161,10 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
                         noButton {}
                     }.show()
             }
+            when (menuItem.itemId) {
+                org.wit.reduke.R.id.nav_YourPosts -> recyclerView.adapter = RedukeAdapter(filterByPostCreator(posts), this)
+
+            }
             // Close the drawer.
             mDrawerLayout.closeDrawers()
             true
@@ -400,6 +404,13 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         return list.filter { post -> post.subreddit == subreddit }
     }
 
+    // Sorts alphabetically (descending)
+    fun filterByPostCreator(list: List<PostModel>): List<PostModel> {
+        toolbarMain.title = "Your Posts"
+        val mypreference = RedukeSharedPreferences(this)
+        return list.filter { post -> post.owner == mypreference.getCurrentUserName() }
+    }
+
     // Initialize the feed by setting the users email and username in the RedukeSharedPreferences
     // and pass the RedukeAdapter to the recyclerView's adapter.
     fun initFeed(imagePosts: List<PostModel>) {
@@ -409,32 +420,27 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
         val userName = mypreference.getCurrentUserName()
 
-        info { "CURRENT USERNAME IS: " + userName }
-
         val parentView = nav_view.getHeaderView(0)
         val navHeaderUser = parentView.findViewById(org.wit.reduke.R.id.current_user_nav_header) as TextView
         val navHeaderEmail = parentView.findViewById(org.wit.reduke.R.id.current_email_nav_header) as TextView
         val navHeaderPic = parentView.findViewById(org.wit.reduke.R.id.current_profile_picture_nav_header) as ImageView
 
-        if (userName === "Name NA") {
-            navHeaderUser.text = userEmail.substringBefore("@")
-        } else {
-            navHeaderUser.text = userName
-        }
-
         val extras = intent.extras
 
         val loginType = extras.getString("typeOfSignIn")
 
-        info { "LOGIN TYPE: " + loginType }
+        if (loginType == "firebase") {
+            val firebaseUsername = userEmail.substringBefore("@")
+            mypreference.setCurrentUserName(firebaseUsername)
+            navHeaderUser.text = firebaseUsername
+        } else {
+            navHeaderUser.text = userName
+        }
 
         if (loginType == "google") {
-            toast("SETTING GOOGLE PIC")
             val acct = GoogleSignIn.getLastSignedInAccount(this)
             Glide.with(this).load(acct!!.photoUrl).into(navHeaderPic)
         }
-
-
 
         navHeaderEmail.text = userEmail
         mypreference.setCurrentRedukeCount(imagePosts.size)
