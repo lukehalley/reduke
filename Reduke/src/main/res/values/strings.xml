@@ -81,10 +81,12 @@
     <string name="title_LinkPost">Add Link Pos</string>
     <string name="toast_GoogleAuthFail">Sign In With Google Failed!</string>
     <string name="yourPosts">Your Posts</string>
+    <string name="feed">Feed</string>
 
 
     <!--Subreddits-->
     <string-array name="subreddits_list">
+        <item>All</item>
         <item>Android</item>
         <item>Education</item>
         <item>Fashion</item>

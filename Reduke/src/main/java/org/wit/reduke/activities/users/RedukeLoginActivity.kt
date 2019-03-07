@@ -144,7 +144,7 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
 
                 if (personEmail != null && personName != null) {
                     redukeSharedPref.setCurrentUserEmail(personEmail)
-                    redukeSharedPref.setCurrentUserName(personName.replace("\\s".toRegex(), ""))
+                    redukeSharedPref.setCurrentUserName((personName.replace("\\s".toRegex(), "").toLowerCase()).capitalize())
                 }
 
                 if (fireStore != null) {

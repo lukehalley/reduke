@@ -145,6 +145,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             toast(menuItem.itemId)
             menuItem.isChecked = true
+
             when (menuItem.itemId) {
                 org.wit.reduke.R.id.nav_addReduke -> startActivityForResult<TextPostActivity>(0)
 
@@ -197,7 +198,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
             expandableListView!!.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
                 when (childPosition) {
-                    0 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    0 -> recyclerView.adapter = RedukeAdapter(allPosts(posts), this)
                     1 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
                     2 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
                     3 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
@@ -207,6 +208,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
                     7 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
                     8 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
                     9 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
+                    10 -> recyclerView.adapter = RedukeAdapter(filterBySubreddit(posts, listData[(titleList as ArrayList<String>)[groupPosition]]!![childPosition]), this)
                     else -> { // Note the block
                         toast("Invalid Subreddit Selection")
                     }
@@ -372,6 +374,12 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     // Sorting functions
+
+    // Sorts by votes.
+    fun allPosts(list: List<PostModel>): List<PostModel> {
+        toolbarMain.title = "Feed"
+        return list
+    }
 
     // Sorts by votes.
     fun sortByVotes(list: List<PostModel>): List<PostModel> {
