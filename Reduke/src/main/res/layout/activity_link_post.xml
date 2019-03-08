@@ -104,7 +104,7 @@
                     android:layout_marginLeft="10dip"
                     android:layout_marginTop="10dip"
                     android:layout_marginRight="10dip"
-                    android:entries="@array/subreddits_list" />
+                    android:entries="@array/subreddits" />
 
                 <Button
                     android:id="@+id/addLinkPostBtn"

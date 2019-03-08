@@ -8,6 +8,11 @@
         android:checkableBehavior="single">
 
         <item
+            android:id="@+id/nav_YourPosts"
+            android:icon="@drawable/person_outline"
+            android:title="@string/yourPosts" />
+
+        <item
             android:id="@+id/nav_addReduke"
             android:icon="@drawable/add_white"
             android:title="@string/title_PostAdd" />
@@ -16,6 +21,7 @@
             android:id="@+id/nav_Logout"
             android:icon="@drawable/logout"
             android:title="@string/logoutTitle" />
+
     </group>
 
 </menu>

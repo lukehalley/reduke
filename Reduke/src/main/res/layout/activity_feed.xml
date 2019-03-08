@@ -52,13 +52,16 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
+        app:itemBackground="@color/navGrey"
+        app:itemIconTint="@color/md_black_1000"
+        app:itemTextColor="@color/md_black_1000"
         app:menu="@layout/drawer_view">
 
         <ExpandableListView
             android:id="@+id/nav_ExpandableSubredditList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="310dp"
+            android:layout_marginTop="355dp"
             android:choiceMode="singleChoice"
             android:dividerHeight="1dp"
             android:layoutDirection="rtl" />
