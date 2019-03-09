@@ -7,7 +7,6 @@ import android.view.MenuItem
 import android.view.View.VISIBLE
 import android.widget.Spinner
 import kotlinx.android.synthetic.main.activity_link_post.*
-import kotlinx.android.synthetic.main.activity_text_post.*
 import org.jetbrains.anko.*
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.main.MainApp
@@ -42,7 +41,7 @@ class LinkPostActivity : AppCompatActivity(), AnkoLogger {
             edit = true
 
             // Set toolbar title to Edit Post.
-            toolbarText.title = "Edit Post"
+            toolbarLink.title = "Edit Post"
             setSupportActionBar(toolbarLink)
             post = intent.extras.getParcelable<PostModel>("post_edit")
 
