@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View.VISIBLE
 import android.widget.Spinner
+import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.activity_text_post.*
 import org.jetbrains.anko.*
 import org.wit.reduke.activities.users.RedukeSharedPreferences
@@ -85,6 +86,7 @@ class TextPostActivity : AppCompatActivity(), AnkoLogger {
                 if (edit) {
                     // If the user has edited a post update it.
                     app.posts.update(post.copy())
+                    recyclerView.adapter?.notifyDataSetChanged()
                 } else {
                     // If the user has added a post add it to the posts.
                     app.posts.create(post.copy())

@@ -82,6 +82,8 @@
     <string name="toast_GoogleAuthFail">Sign In With Google Failed!</string>
     <string name="yourPosts">Your Posts</string>
     <string name="feed">Feed</string>
+    <string name="edit_card_menu">Edit</string>
+    <string name="delete_card_menu">Delete</string>
 
 
     <!--Subreddits-->

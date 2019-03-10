@@ -252,7 +252,9 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             navHeaderUser.text = mypreference.getCurrentUserName()
         }
 
+
     }
+
 
     // Inflate the options menu.
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -341,53 +343,66 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         runAnimation(recyclerView)
     }
 
-    // When a card is clicked bring the user to the edit activity of that imagePost they clicked.
-    override fun onPostCardClick(imagePost: PostModel) {
-        startActivityForResult(intentFor<TextPostActivity>().putExtra("post_edit", imagePost), 0)
+    // When a card is clicked bring the user to the edit activity of that post they clicked.
+    override fun onTextPostCardClick(post: PostModel) {
+        toast("onTextPostCardClick")
+        startActivityForResult(intentFor<TextPostActivity>().putExtra("post_edit", post), 0)
+    }
+
+    // When a card is clicked bring the user to the edit activity of that post they clicked.
+    override fun onImagePostCardClick(post: PostModel) {
+        toast("onImagePostCardClick")
+        startActivityForResult(intentFor<ImagePostActivity>().putExtra("post_edit", post), 0)
+    }
+
+    // When a card is clicked bring the user to the edit activity of that post they clicked.
+    override fun onLinkPostCardClick(post: PostModel) {
+        toast("onLinkPostCardClick")
+        startActivityForResult(intentFor<LinkPostActivity>().putExtra("post_edit", post), 0)
     }
 
     // Handle the upvote button being pressed by a user.
-    override fun onPostUpvote(imagePost: PostModel) {
+    override fun onPostUpvote(post: PostModel) {
         // Get the current user email from RedukeSharedPreferences
         val mypreference = RedukeSharedPreferences(this)
         val userEmail = mypreference.getCurrentUserEmail()
 
         // Check if the user who just pressed the upvote button has pressed the downvote
-        // button for this imagePost. If they have remove their name from the downvotedBy field
-        // as a user is only allowed to either upvote or downvote a imagePost.
-        if (userEmail in imagePost.downvotedBy) {
-            imagePost.downvotedBy.remove(userEmail)
+        // button for this post. If they have remove their name from the downvotedBy field
+        // as a user is only allowed to either upvote or downvote a post.
+        if (userEmail in post.downvotedBy) {
+            post.downvotedBy.remove(userEmail)
             recyclerView.adapter?.notifyDataSetChanged()
         }
 
-        // If the user hasnt already upvoted the imagePost add them to the upvotedBy field and
+        // If the user hasnt already upvoted the post add them to the upvotedBy field and
         // add one onto the posts votes.
-        if (userEmail !in imagePost.upvotedBy) {
-            imagePost.upvotedBy.add(userEmail)
-            imagePost.votes = imagePost.votes + 1
+        if (userEmail !in post.upvotedBy) {
+            post.upvotedBy.add(userEmail)
+            post.votes = post.votes + 1
             cardUpvotePost.isEnabled = false
             cardDownvotePost.isEnabled = true
             recyclerView.adapter?.notifyDataSetChanged()
         }
     }
 
-    override fun onPostDownvote(imagePost: PostModel) {
-        if (imagePost.votes > 0) {
+    override fun onPostDownvote(post: PostModel) {
+        if (post.votes > 0) {
             val userEmail = RedukeSharedPreferences(this).getCurrentUserEmail()
 
             // Check if the user who just pressed the downvote button has pressed the upvote
-            // button for this imagePost. If they have remove their name from the upvotedBy field
-            // as a user is only allowed to either upvote or downvote a imagePost.
-            if (userEmail in imagePost.upvotedBy) {
-                imagePost.upvotedBy.remove(userEmail)
+            // button for this post. If they have remove their name from the upvotedBy field
+            // as a user is only allowed to either upvote or downvote a post.
+            if (userEmail in post.upvotedBy) {
+                post.upvotedBy.remove(userEmail)
                 recyclerView.adapter?.notifyDataSetChanged()
             }
 
-            // If the user hasnt already downvoted the imagePost add them to the downvotedBy field and
+            // If the user hasnt already downvoted the post add them to the downvotedBy field and
             // subtract one onto the posts votes.
-            if (userEmail !in imagePost.downvotedBy) {
-                imagePost.downvotedBy.add(userEmail)
-                imagePost.votes = imagePost.votes - 1
+            if (userEmail !in post.downvotedBy) {
+                post.downvotedBy.add(userEmail)
+                post.votes = post.votes - 1
                 cardDownvotePost.isEnabled = false
                 cardUpvotePost.isEnabled = true
                 recyclerView.adapter?.notifyDataSetChanged()
