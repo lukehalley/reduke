@@ -252,8 +252,6 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             navHeaderUser.text = mypreference.getCurrentUserName()
         }
 
-        HideFabOnScroll(recyclerView = recyclerView, floatingActionButton = addPostFabButton).start()
-
 
     }
 
