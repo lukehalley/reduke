@@ -7,12 +7,7 @@
   <br>
 </h1>
 
-<h2 align="center">
-  What Is Reduke?
-</h2>
-
-<h4 align="center">
-Reduke is a Android application built based around the popular website Reddit. On Reddit members submit content to the site in the form of either links, text posts, or images, which are then voted up or down by other members. Posts are organized by subject into user-created boards called "subreddits", which cover a variety of topics including news, science, movies, video games, music, books, fitness, food, and image-sharing. Submissions with more up-votes appear towards the top of their subreddit and, if they receive enough votes, ultimately on the site's front page. Despite strict rules prohibiting harassment, Reddit's administrators spend considerable resources on moderating the site.</a></h4>
+<h4 align="center">An android application built with Kotlin for my 4th Year, Semester 2 "Mobile App Dev 2" module for our continuous assesment.</a></h4>
 
 ## Luke Halley
 ### 20071820
