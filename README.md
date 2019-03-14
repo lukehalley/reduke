@@ -12,10 +12,6 @@
 ## Luke Halley
 ### 20071820
 
-## Repo
-
-[Reduke Github Repo](https://github.com/lukehalley/reduke)
-
 # Jump To:
 
 [Demo Videos](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#setup)
