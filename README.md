@@ -16,6 +16,26 @@
 
 [Reduke Github Repo](https://github.com/lukehalley/reduke)
 
+# Jump To:
+
+[Demo Videos](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#setup)
+
+[Technolgies Used](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#tests)
+
+[Features](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#tests)
+
+[User Case Diagrams](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#user-stories)
+
+[Persistance](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#user-stories)
+
+[Git Approach](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#user-stories)
+
+[UX/DX Approach Adopted.](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#user-stories)
+ 
+[Screenshots](https://gitlab.com/stork-group/stork-web-service/wikis/Home#status-codes)
+
+## [Setup](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#setup)
+
 ## Demo Videos
 
 **PLEASE NOTE:** There are two demo videos, one which shows the **Reduke App Functionality** and a second video which shows the **Espresso UI Tests**
