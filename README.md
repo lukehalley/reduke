@@ -18,17 +18,17 @@
 
 [Setup](https://github.com/lukehalley/reduke/blob/dev/README.md#setup-1)
 
-[Technolgies Used](https://github.com/lukehalley/reduke/blob/dev/README.md#features)
+[Features](https://github.com/lukehalley/reduke/blob/dev/README.md#features)
 
-[Features](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#tests)
+[Technolgies Used](https://github.com/lukehalley/reduke/blob/dev/README.md#technolgies-used)
 
-[User Case Diagrams](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#user-stories)
+[User Case Diagrams](https://github.com/lukehalley/reduke/blob/dev/README.md#user-case-diagrams)
 
-[Persistance](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#user-stories)
+[Persistance](https://github.com/lukehalley/reduke/blob/dev/README.md#persitance)
 
-[Git Approach](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#user-stories)
+[Git Approach](https://github.com/lukehalley/reduke/blob/dev/README.md#git-approach)
 
-[UX/DX Approach Adopted](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#user-stories)
+[UX/DX Approach Adopted](https://github.com/lukehalley/reduke/blob/dev/README.md#uxdx-approach-adopted)
  
 [Screenshots](https://github.com/lukehalley/reduke/blob/dev/README.md#screenshots)
 
@@ -127,9 +127,9 @@ Connect your device or start an emulator and run the app! 😃
 
 ## Git Approach
 
-## Screenshots
-
 ## UX/DX Approach Adopted
+
+## Screenshots
 
 <p align="center">
   <img src="https://i.imgur.com/6LL3cSp.jpg">
