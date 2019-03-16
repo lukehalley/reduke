@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context="org.wit.reduke.activities.other.RedukeSplashscreen">
+
+    <ImageView
+        android:id="@+id/splashscreenImage"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:contentDescription="@string/splashscreen_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/reduke_splash" />
+</FrameLayout>
