@@ -40,9 +40,9 @@
 
 Demo Links:
 
-- [Reduke App (V2) Functionality](https://youtu.be/2UcHWqksSwQ)
+- [Reduke App Functionality](https://youtu.be/LO0r3PZQhF4)
 
-- [Espresso UI Tests](https://youtu.be/jC_GyuUsz9U)
+- [Espresso UI Tests](https://youtu.be/ncm8QSMwZus)
 
 ## Setup
 
@@ -60,6 +60,21 @@ Connect your device or start an emulator and run the app! 😃
 
 ## Features
 ### Reduke V2 - Features added/improved/ to the second version of Reduke for assignment two.
+**APIS/Libraries**
+- Google Sign In
+- Firebase Authentication
+- Firebase Real Time Database
+- Firebase Authentication
+- RichLinkPreview
+- Anko Commons
+- UI Automator
+- Espresso
+- Play Services Auth
+- JUnit
+- Apache Commons Text
+- CircleImageView
+- Glide
+- Picasso
 * **Reddit Feed Features**
   - Each user can either Upvote or Downvote a post (negative points allowed). When a post is votes on it tracks who placed the vote on the post which allows the app to keep of track of if the current use thas already voted.
   - The type of Post is used to in logic in the adapter to show/hide elements of the card to accomidate the type of post. This allows the app to use one design but display all the different types of posts in the feed while still maintaining a consitent design.
@@ -70,6 +85,14 @@ Connect your device or start an emulator and run the app! 😃
 * **Subreddits**
   - ExpandableListView in Nav Drawer with a list of Subreddits.
   - When a user clicks a subreddits the feed is filtered to only display posts which are within that subreddit.
+* **Register and Login**
+  - Used the Glide CircleImageView library to display user image.
+  - Added the option for the user to sign in user Google account using Google Sign In.
+  - Used the users Google account email, username and profile picture to top of the navigation drawer.
+  - Using a Reduke placeholder for users logged in using Firebase Auth.
+* **Persistence**
+  - Persisting Users using Firebase Authentication.
+  - Persisting Posts using Firebase Realtime Database including the creation, reading, editing and deletion of them.
 * **Your Posts**
   - Nav Drawer item to allow to user see their only their own posts.
 * **Image**
@@ -88,18 +111,11 @@ Connect your device or start an emulator and run the app! 😃
   - Using **EspressoIdlingResource** which allows testing of asynchronous functions in the Reduke app such as Login and Register.
   - Testing Splashscreen.
   - Testing login for Firebase authetication with random user credentials.
-* **Persistence**
-  - Persisting Users using Firebase Authentication.
-  - Persisting Posts using Firebase Realtime Database including the creation, reading, editing and deletion of them.
 * **Version Control**
   - Issues - 28 total Issues were created to be used to track task that needed to be done
   - Branches - a branch was created for each feature
   - Regular commits.
   - Dev branch used with merge requests to keep all code on Dev & Master working.
-* **Register and Login**
-  - Added the option for the user to sign in user Google account using Google Sign In
-  - Used the users Google account email, username and profile picture to top of the navigation drawer.
-  - Using a Reduke placeholder for users logged in using Firebase Auth.
 * **CRUD Features**
   - Dynamic Edit/Update activity which shows/hides elements based on the type of type of the post the User is editing.
   - Link parsing, validates the entered URL for a URL post. Adds a HTTPS if the url doesnt include it.
@@ -126,7 +142,7 @@ Connect your device or start an emulator and run the app! 😃
 * **Persistence**
   - Persisting Users using Firebase.
   - Persisting Posts using JSON.
-* **Version Control**
+* **Version Control/GIT**
   - Use of Issues to track task that needed to be done
   - Branches for each feature.
   - Regular commits.
@@ -177,5 +193,3 @@ Connect your device or start an emulator and run the app! 😃
 <p align="center">
   <img src="https://i.imgur.com/6LL3cSp.jpg">
 </p>
-
-
