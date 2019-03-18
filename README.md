@@ -196,10 +196,6 @@ Connect your device or start an emulator and run the app! 😃
 
 ## User Case Diagrams
 
-## Persitance
-
-## Git Approach
-
 ## UX/DX Approach Adopted
 
 ## Screenshots
