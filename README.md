@@ -23,12 +23,6 @@
 [Technolgies Used](https://github.com/lukehalley/reduke/blob/dev/README.md#technolgies-used)
 
 [User Case Diagrams](https://github.com/lukehalley/reduke/blob/dev/README.md#user-case-diagrams)
-
-[Persistance](https://github.com/lukehalley/reduke/blob/dev/README.md#persitance)
-
-[Git Approach](https://github.com/lukehalley/reduke/blob/dev/README.md#git-approach)
-
-[UX/DX Approach Adopted](https://github.com/lukehalley/reduke/blob/dev/README.md#uxdx-approach-adopted)
  
 [Screenshots](https://github.com/lukehalley/reduke/blob/dev/README.md#screenshots)
 
@@ -195,8 +189,6 @@ Connect your device or start an emulator and run the app! 😃
 - Picasso
 
 ## User Case Diagrams
-
-## UX/DX Approach Adopted
 
 ## Screenshots
 
