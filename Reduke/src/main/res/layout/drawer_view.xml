@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/menu_top"
+        android:checkableBehavior="single">
 
         <item
             android:id="@+id/nav_addReduke"
@@ -15,4 +17,5 @@
             android:icon="@drawable/logout"
             android:title="@string/logoutTitle" />
     </group>
+
 </menu>

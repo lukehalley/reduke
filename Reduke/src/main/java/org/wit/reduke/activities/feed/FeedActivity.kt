@@ -12,17 +12,23 @@ import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.animation.AnimationUtils
+import android.widget.ExpandableListAdapter
+import android.widget.ExpandableListView
 import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.card_post.*
 import org.jetbrains.anko.*
+import org.wit.reduke.activities.navbar.CustomExpandableListAdapter
 import org.wit.reduke.activities.posts.PostAddEditActivity
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.posts.PostModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.set
 
 
 class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
@@ -33,6 +39,12 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
     // Set the default feed sorting setting.
     var sortSetting = "Top"
+
+    // Navbar expandable menu resources
+    internal var expandableListView: ExpandableListView? = null
+    internal var adapter: ExpandableListAdapter? = null
+    internal var titleList: List<String>? = null
+
 
     // When the activity is first created the following is run.
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,6 +108,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
         // Set the actions when the drawer items are pressed.
         navigationView.setNavigationItemSelectedListener { menuItem ->
+            toast(menuItem.itemId)
             menuItem.isChecked = true
             when (menuItem.itemId) {
                 org.wit.reduke.R.id.nav_addReduke -> startActivityForResult<PostAddEditActivity>(0)
@@ -114,6 +127,87 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             mDrawerLayout.closeDrawers()
             true
         }
+
+//        // Add Subreddits To Nav Drawer
+//        val menu = navigationView.menu
+//        var subs = resources.getStringArray(R.array.subreddits_list)
+//        for (i in subs) {
+//            val id = "nav_" + i.replace("\\s+", " ")
+//
+//            menu.add(i)
+//
+//            // Set Id
+//        }
+
+//        val data: HashMap<String, List<String>>
+//            get() {
+//
+//
+//                return listData
+//            }
+
+        val listData = HashMap<String, List<String>>()
+
+        val redmiMobiles = ArrayList<String>()
+        redmiMobiles.add("Redmi Y2")
+        redmiMobiles.add("Redmi S2")
+        redmiMobiles.add("Redmi Note 5 Pro")
+        redmiMobiles.add("Redmi Note 5")
+        redmiMobiles.add("Redmi 5 Plus")
+        redmiMobiles.add("Redmi Y1")
+        redmiMobiles.add("Redmi 3S Plus")
+
+        val micromaxMobiles = ArrayList<String>()
+        micromaxMobiles.add("Micromax Bharat Go")
+        micromaxMobiles.add("Micromax Bharat 5 Pro")
+        micromaxMobiles.add("Micromax Bharat 5")
+        micromaxMobiles.add("Micromax Canvas 1")
+        micromaxMobiles.add("Micromax Dual 5")
+
+        val appleMobiles = ArrayList<String>()
+        appleMobiles.add("iPhone 8")
+        appleMobiles.add("iPhone 8 Plus")
+        appleMobiles.add("iPhone X")
+        appleMobiles.add("iPhone 7 Plus")
+        appleMobiles.add("iPhone 7")
+        appleMobiles.add("iPhone 6 Plus")
+
+        val samsungMobiles = ArrayList<String>()
+        samsungMobiles.add("Samsung Galaxy S9+")
+        samsungMobiles.add("Samsung Galaxy Note 7")
+        samsungMobiles.add("Samsung Galaxy Note 5 Dual")
+        samsungMobiles.add("Samsung Galaxy S8")
+        samsungMobiles.add("Samsung Galaxy A8")
+        samsungMobiles.add("Samsung Galaxy Note 4")
+
+        listData["Redmi"] = redmiMobiles
+        listData["Micromax"] = micromaxMobiles
+        listData["Apple"] = appleMobiles
+        listData["Samsung"] = samsungMobiles
+
+        info { "Expand List: " + listData }
+
+        expandableListView = findViewById(org.wit.reduke.R.id.nav_ExpandableSubredditList)
+
+        info { "expandableListView: " + expandableListView }
+        if (expandableListView != null) {
+
+            toast("Oh what a godess!")
+
+            titleList = ArrayList(listData.keys)
+            adapter = CustomExpandableListAdapter(this, titleList as ArrayList<String>, listData)
+            expandableListView!!.setAdapter(adapter)
+
+            expandableListView!!.setOnGroupExpandListener { groupPosition -> Toast.makeText(applicationContext, (titleList as ArrayList<String>)[groupPosition] + " List Expanded.", Toast.LENGTH_SHORT).show() }
+
+            expandableListView!!.setOnGroupCollapseListener { groupPosition -> Toast.makeText(applicationContext, (titleList as ArrayList<String>)[groupPosition] + " List Collapsed.", Toast.LENGTH_SHORT).show() }
+
+            expandableListView!!.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
+                Toast.makeText(applicationContext, "Clicked: " + (titleList as ArrayList<String>)[groupPosition] + " -> " + listData[(titleList as ArrayList<String>)[groupPosition]]!!.get(childPosition), Toast.LENGTH_SHORT).show()
+                false
+            }
+        }
+
 
     }
 
@@ -325,12 +419,10 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     private fun runAnimation(recyclerView: RecyclerView) {
-//        loadPosts()
         // Get the context.
         val context = recyclerView.context
         val controller = AnimationUtils.loadLayoutAnimation(context, org.wit.reduke.R.anim.feedslideanimation)
         recyclerView.layoutAnimation = controller
-//        recyclerView.adapter!!.notifyDataSetChanged()
         // Run the animation.
         recyclerView.scheduleLayoutAnimation()
     }
