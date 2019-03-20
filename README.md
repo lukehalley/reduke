@@ -178,5 +178,5 @@ Connect your device or start an emulator and run the app! 😃
 ## Screenshots
 
 <p align="center">
-  <img src="https://i.imgur.com/6LL3cSp.jpg">
+  <img src="https://i.imgur.com/7GZUeph.jpg">
 </p>
