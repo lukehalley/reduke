@@ -70,7 +70,7 @@ class LinkPostActivity : AppCompatActivity(), AnkoLogger {
                     .withZone(ZoneOffset.UTC)
                     .format(Instant.now())
             // Get the value from the subreddit spinner.
-            val subredditSpinner = findViewById<Spinner>(org.wit.reduke.R.id.textPostSubredditSpinner)
+            val subredditSpinner = findViewById<Spinner>(org.wit.reduke.R.id.linkPostSubredditSpinner)
             post.subreddit = subredditSpinner.selectedItem.toString()
 
             // Get an instance of the RedukeSharedPreferences.

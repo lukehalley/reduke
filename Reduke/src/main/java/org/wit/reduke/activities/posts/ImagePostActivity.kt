@@ -1,8 +1,10 @@
 package org.wit.reduke.activities.posts
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -18,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_image_post.*
 import kotlinx.android.synthetic.main.activity_text_post.*
 import org.jetbrains.anko.*
 import org.wit.reduke.activities.users.RedukeSharedPreferences
+import org.wit.reduke.helpers.readImage
 import org.wit.reduke.helpers.readImageFromPath
 import org.wit.reduke.helpers.showImagePicker
 import org.wit.reduke.main.MainApp
@@ -116,7 +119,7 @@ class ImagePostActivity : AppCompatActivity(), AnkoLogger {
         // If the user is adding a post.
         addImagePostBtn.setOnClickListener {
             // Get the data from all the post fields.
-            post.title = textPostTitleField.text.toString()
+            post.title = imagePostTitleField.text.toString()
             post.type = "Image"
             // Create a timestamp for when the post has been created.
             post.timestamp = DateTimeFormatter
@@ -124,7 +127,7 @@ class ImagePostActivity : AppCompatActivity(), AnkoLogger {
                     .withZone(ZoneOffset.UTC)
                     .format(Instant.now())
             // Get the value from the subreddit spinner.
-            val subredditSpinner = findViewById<Spinner>(org.wit.reduke.R.id.textPostSubredditSpinner)
+            val subredditSpinner = findViewById<Spinner>(org.wit.reduke.R.id.imagePostSubredditSpinner)
             post.subreddit = subredditSpinner.selectedItem.toString()
 
             // Get an instance of the RedukeSharedPreferences.
@@ -132,7 +135,7 @@ class ImagePostActivity : AppCompatActivity(), AnkoLogger {
             post.owner = redukeSharedPref.getCurrentUserName()
 
             // If the fields are empty tell the user they need to fill them.
-            if (post.title.isEmpty() or post.text.isEmpty()) {
+            if (post.title.isEmpty() or post.image.isEmpty()) {
                 toast(org.wit.reduke.R.string.hint_EnterPostTitle)
             } else {
                 if (edit) {
@@ -182,6 +185,35 @@ class ImagePostActivity : AppCompatActivity(), AnkoLogger {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            // GALLERY
+            GALLERY_IMAGE_REQUEST -> {
+                if (data != null) {
+                    post.image = data.getData().toString()
+                    postImage.setImageBitmap(readImage(this, resultCode, data))
+                    postImage.visibility = View.VISIBLE
+                    chooseImageFromCamera.isClickable = false
+                    chooseImageFromCamera.setBackgroundColor(Color.parseColor("#FF9E9E9E"))
+                }
+            }
+
+            // CAMERA
+            CAMERA_IMAGE_REQUEST -> {
+                if (data != null) {
+                    if (resultCode == Activity.RESULT_OK) {
+                        postImage.setImageBitmap(decodeBitmap())
+                        post.image = cameraPicSaveAndGet()
+                    }
+                    chooseImageFromGallery.setBackgroundColor(Color.parseColor("#FF9E9E9E"))
+                    chooseImageFromGallery.isClickable = false
+                    postImage.visibility = View.VISIBLE
+                }
+            }
+        }
     }
 
     // Make sure the user actually wants to discard post with a yes or no popup.

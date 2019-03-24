@@ -55,7 +55,7 @@
                     android:textStyle="bold" />
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/linkPostTitleField"
+                    android:id="@+id/imagePostTitleField"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginLeft="8dp"
@@ -83,7 +83,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:baselineAligned="false"
                     android:orientation="horizontal">
 
