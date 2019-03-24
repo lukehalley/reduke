@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.wit.reduke.activities.posts.TextPostActivity">
+    tools:context="org.wit.reduke.activities.posts.ImagePostActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbarAdd"
+                android:id="@+id/toolbarImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:titleTextColor="@color/colorPrimary" />
@@ -55,7 +55,7 @@
                     android:textStyle="bold" />
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/postTitleField"
+                    android:id="@+id/linkPostTitleField"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginLeft="8dp"
@@ -69,23 +69,72 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="16sp" />
 
-                <EditText
-                    android:id="@+id/postDescriptionField"
+                <ImageView
+                    android:id="@+id/postImage"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_marginLeft="10dip"
-                    android:layout_marginTop="10dip"
-                    android:layout_marginRight="10dip"
-                    android:autofillHints=""
-                    android:ems="150"
-                    android:gravity="top"
-                    android:hint="@string/hint_postDescription"
-                    android:inputType="textMultiLine|textCapSentences"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="17sp" />
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginRight="17dp"
+                    android:adjustViewBounds="false"
+                    android:contentDescription="@string/the_post_s_image"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:id="@+id/chooseImageFromGallery"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@color/colorAccent"
+                            android:drawableStart="@drawable/gallery"
+                            android:paddingLeft="22dp"
+                            android:paddingRight="22dp"
+                            android:text="@string/button_addImageFromGallery"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <Button
+                            android:id="@+id/chooseImageFromCamera"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/colorAccent"
+                            android:drawableStart="@drawable/camera"
+                            android:paddingLeft="22dp"
+                            android:paddingRight="22dp"
+                            android:text="@string/button_addImageFromCamera"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/subredditTag"
+                    android:id="@+id/imagePostSubredditTag"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -98,7 +147,7 @@
                     android:textStyle="bold" />
 
                 <Spinner
-                    android:id="@+id/subredditSpinner"
+                    android:id="@+id/imagePostSubredditSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="49dp"
                     android:layout_marginLeft="10dip"
@@ -107,7 +156,7 @@
                     android:entries="@array/subreddits_list" />
 
                 <Button
-                    android:id="@+id/addPostBtn"
+                    android:id="@+id/addImagePostBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -121,7 +170,7 @@
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/deletePostBtn"
+                    android:id="@+id/deleteImagePostBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"

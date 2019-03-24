@@ -26,6 +26,8 @@ data class PostModel(var id: Long = 0,
                      var subreddit: String = "",
                      var timestamp: String = "",
                      var upvotedBy: MutableList<String> = mutableListOf(),
-                     var downvotedBy: MutableList<String> = mutableListOf()
-) : Parcelable
+                     var downvotedBy: MutableList<String> = mutableListOf(),
+                     var image: String = "",
+                     var link: String = ""
+                     ) : Parcelable
 
