@@ -73,12 +73,12 @@ class RedukeAdapter(private var posts: List<PostModel>,
             // Set Card Design Based On Post Type
             when (post.type) {
                 "Text" -> {
-                    itemView.imagePostCardImage.visibility = View.INVISIBLE
-                    itemView.imagePostCardLink.visibility = View.INVISIBLE
+                    itemView.imagePostCardImage.visibility = View.GONE
+                    itemView.imagePostCardLink.visibility = View.GONE
                 }
                 "Image" -> {
                     itemView.imagePostCardImage.visibility = View.VISIBLE
-                    itemView.imagePostCardLink.visibility = View.INVISIBLE
+                    itemView.imagePostCardLink.visibility = View.GONE
                 }
                 "Link" -> {
                     itemView.imagePostCardLink.setLink(post.link, object : ViewListener {
@@ -90,7 +90,7 @@ class RedukeAdapter(private var posts: List<PostModel>,
                             error { "Couldnt get URL Preview: $e" }
                         }
                     })
-                    itemView.imagePostCardImage.visibility = View.INVISIBLE
+                    itemView.imagePostCardImage.visibility = View.GONE
                     itemView.imagePostCardLink.visibility = View.VISIBLE
                 }
                 else -> error { "Unknown Post Type, Can't Set Card Design!" }
