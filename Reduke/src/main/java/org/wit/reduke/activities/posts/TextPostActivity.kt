@@ -16,7 +16,7 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 
-class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
+class TextPostActivity : AppCompatActivity(), AnkoLogger {
 
     val subreddits = listOf("Android", "Education", "Fashion", "Funny", "Ireland", "Music", "News", "Photography", "Technology", "Video")
 
@@ -61,6 +61,9 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
         addPostBtn.setOnClickListener {
             // Get the data from all the post fields.
             post.title = postTitleField.text.toString()
+
+            post.type = "Text"
+
             post.text = postDescriptionField.text.toString()
             // Create a timestamp for when the post has been created.
             post.timestamp = DateTimeFormatter
@@ -73,7 +76,7 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
 
             // Get an instance of the RedukeSharedPreferences.
             val redukeSharedPref = RedukeSharedPreferences(this)
-            post.postOwner = redukeSharedPref.getCurrentUserName()
+            post.owner = redukeSharedPref.getCurrentUserName()
 
             // If the fields are empty tell the user they need to fill them.
             if (post.title.isEmpty() or post.text.isEmpty()) {

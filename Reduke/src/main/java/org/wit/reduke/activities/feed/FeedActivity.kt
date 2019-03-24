@@ -20,7 +20,9 @@ import kotlinx.android.synthetic.main.activity_feed.*
 import kotlinx.android.synthetic.main.card_post.*
 import org.jetbrains.anko.*
 import org.wit.reduke.activities.navbar.CustomExpandableListAdapter
-import org.wit.reduke.activities.posts.PostAddEditActivity
+import org.wit.reduke.activities.posts.ImagePostActivity
+import org.wit.reduke.activities.posts.LinkPostActivity
+import org.wit.reduke.activities.posts.TextPostActivity
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.posts.PostModel
@@ -96,7 +98,31 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
         // Set the FAB buttons action to allow the user to add a post.
         addPostFabButton.setOnClickListener {
-            startActivityForResult<PostAddEditActivity>(0)
+
+            val countries = listOf("Text Post", "Image Post", "Link Post")
+            selector(
+                    "What Type Of Post Do You Want To Create?",
+                    countries
+            ) { _, i ->
+
+                val sel = countries[i]
+
+                when (sel) {
+                    "Text Post" -> {
+                        startActivityForResult<TextPostActivity>(0)
+                    }
+                    "Image Post" -> {
+                        startActivityForResult<ImagePostActivity>(0)
+                    }
+                    "Link Post" -> {
+                        startActivityForResult<LinkPostActivity>(0)
+                    }
+                    else -> error { "Invalid Post Type!" }
+                }
+
+            }
+
+
         }
 
         // Set the view as a drawer layout
@@ -110,7 +136,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             toast(menuItem.itemId)
             menuItem.isChecked = true
             when (menuItem.itemId) {
-                org.wit.reduke.R.id.nav_addReduke -> startActivityForResult<PostAddEditActivity>(0)
+                org.wit.reduke.R.id.nav_addReduke -> startActivityForResult<TextPostActivity>(0)
 
             }
             when (menuItem.itemId) {
@@ -264,53 +290,53 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         runAnimation(recyclerView)
     }
 
-    // When a card is clicked bring the user to the edit activity of that post they clicked.
-    override fun onPostCardClick(post: PostModel) {
-        startActivityForResult(intentFor<PostAddEditActivity>().putExtra("post_edit", post), 0)
+    // When a card is clicked bring the user to the edit activity of that imagePost they clicked.
+    override fun onPostCardClick(imagePost: PostModel) {
+        startActivityForResult(intentFor<TextPostActivity>().putExtra("post_edit", imagePost), 0)
     }
 
     // Handle the upvote button being pressed by a user.
-    override fun onPostUpvote(post: PostModel) {
+    override fun onPostUpvote(imagePost: PostModel) {
         // Get the current user email from RedukeSharedPreferences
         val mypreference = RedukeSharedPreferences(this)
         val userEmail = mypreference.getCurrentUserEmail()
 
         // Check if the user who just pressed the upvote button has pressed the downvote
-        // button for this post. If they have remove their name from the downvotedBy field
-        // as a user is only allowed to either upvote or downvote a post.
-        if (userEmail in post.downvotedBy) {
-            post.downvotedBy.remove(userEmail)
+        // button for this imagePost. If they have remove their name from the downvotedBy field
+        // as a user is only allowed to either upvote or downvote a imagePost.
+        if (userEmail in imagePost.downvotedBy) {
+            imagePost.downvotedBy.remove(userEmail)
             recyclerView.adapter?.notifyDataSetChanged()
         }
 
-        // If the user hasnt already upvoted the post add them to the upvotedBy field and
+        // If the user hasnt already upvoted the imagePost add them to the upvotedBy field and
         // add one onto the posts votes.
-        if (userEmail !in post.upvotedBy) {
-            post.upvotedBy.add(userEmail)
-            post.votes = post.votes + 1
+        if (userEmail !in imagePost.upvotedBy) {
+            imagePost.upvotedBy.add(userEmail)
+            imagePost.votes = imagePost.votes + 1
             cardUpvotePost.isEnabled = false
             cardDownvotePost.isEnabled = true
             recyclerView.adapter?.notifyDataSetChanged()
         }
     }
 
-    override fun onPostDownvote(post: PostModel) {
-        if (post.votes > 0) {
+    override fun onPostDownvote(imagePost: PostModel) {
+        if (imagePost.votes > 0) {
             val userEmail = RedukeSharedPreferences(this).getCurrentUserEmail()
 
             // Check if the user who just pressed the downvote button has pressed the upvote
-            // button for this post. If they have remove their name from the upvotedBy field
-            // as a user is only allowed to either upvote or downvote a post.
-            if (userEmail in post.upvotedBy) {
-                post.upvotedBy.remove(userEmail)
+            // button for this imagePost. If they have remove their name from the upvotedBy field
+            // as a user is only allowed to either upvote or downvote a imagePost.
+            if (userEmail in imagePost.upvotedBy) {
+                imagePost.upvotedBy.remove(userEmail)
                 recyclerView.adapter?.notifyDataSetChanged()
             }
 
-            // If the user hasnt already downvoted the post add them to the downvotedBy field and
+            // If the user hasnt already downvoted the imagePost add them to the downvotedBy field and
             // subtract one onto the posts votes.
-            if (userEmail !in post.downvotedBy) {
-                post.downvotedBy.add(userEmail)
-                post.votes = post.votes - 1
+            if (userEmail !in imagePost.downvotedBy) {
+                imagePost.downvotedBy.add(userEmail)
+                imagePost.votes = imagePost.votes - 1
                 cardDownvotePost.isEnabled = false
                 cardUpvotePost.isEnabled = true
                 recyclerView.adapter?.notifyDataSetChanged()
@@ -365,7 +391,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
     // Initialize the feed by setting the users email and username in the RedukeSharedPreferences
     // and pass the RedukeAdapter to the recyclerView's adapter.
-    fun initFeed(posts: List<PostModel>) {
+    fun initFeed(imagePosts: List<PostModel>) {
         val mypreference = RedukeSharedPreferences(this)
         val userName = mypreference.getCurrentUserName()
         val userEmail = mypreference.getCurrentUserEmail()
@@ -374,8 +400,8 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         val navHeaderEmail = parentView.findViewById(org.wit.reduke.R.id.current_email_nav_header) as TextView
         navHeaderUser.text = userName
         navHeaderEmail.text = userEmail
-        mypreference.setCurrentRedukeCount(posts.size)
-        recyclerView.adapter = RedukeAdapter(posts, this)
+        mypreference.setCurrentRedukeCount(imagePosts.size)
+        recyclerView.adapter = RedukeAdapter(imagePosts, this)
         recyclerView.adapter?.notifyDataSetChanged()
     }
 

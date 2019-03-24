@@ -57,7 +57,7 @@ public class RedukePostTest {
     private Instrumentation.ActivityMonitor registerActivityMonitor = getInstrumentation().addMonitor(RedukeRegisterActivity.class.getName(), null, false);
     private Instrumentation.ActivityMonitor loginActivityMonitor = getInstrumentation().addMonitor(RedukeLoginActivity.class.getName(), null, false);
     private Instrumentation.ActivityMonitor feedActivityMonitor = getInstrumentation().addMonitor(FeedActivity.class.getName(), null, false);
-    private Instrumentation.ActivityMonitor postActivityMonitor = getInstrumentation().addMonitor(PostAddEditActivity.class.getName(), null, false);
+    private Instrumentation.ActivityMonitor postActivityMonitor = getInstrumentation().addMonitor(TextPostActivity.class.getName(), null, false);
 
     // Setup the EspressoIdlingResource to allow waiting on network processes like login and register.
     @Before
