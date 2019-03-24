@@ -19,6 +19,11 @@
             android:layout_height="150dp"
             android:scaleType="centerCrop" />
 
+        <io.github.ponnamkarthik.richlinkpreview.RichLinkViewSkype
+            android:id="@+id/imagePostCardLink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <android.support.constraint.ConstraintLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
