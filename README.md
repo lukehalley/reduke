@@ -101,11 +101,11 @@ Connect your device or start an emulator and run the app! 😃
   - Dynamic Edit/Update activity which shows/hides elements based on the type of the post the User is editing.
   - Link parsing validates the entered URL for a URL post. Adds an HTTPS if the URL doesn't include it.
 * **Post Model Fields**
-  - link: the link associated with the linked post.
-  - image: the image associated with the image post.
-  - votes: number of votes the post has decided by users upvoting and downvoting the post.
-  - subreddit: subreddit the post belongs too.
-  - timestamp: the time the post was created.
+  - **link**: the link associated with the linked post.
+  - **image**: the image associated with the image post.
+  - **votes**: number of votes the post has decided by users upvoting and downvoting the post.
+  - **subreddit**: subreddit the post belongs too.
+  - **timestamp**: the time the post was created.
 * **Anko Selector**
   - Used to allow the user to decide "What Type Of Post Do You Want To Create?" and select for the three three post types (text, image or link) and bring them to a dynamic create post activity which shows/hides elements based on the type of type of the post the User is creating. 
 ### Reduke V1 - Features added/improved/ to the first version of Reduke for assignment two.
@@ -143,16 +143,16 @@ Connect your device or start an emulator and run the app! 😃
     - email: the email of the user.
     - password: the password of the user.
 * **Post Model Fields (Some not used - will be in next assignment)**
-  - id: unique id of the post.
-  - postOwner: the user who created the post.
-  - title: a title of the post.
-  - text: body text of the post.
-  - tags: tags set by the user set when created - EG: Question, Answer...
-  - votes: number of votes the post has decided by users upvoting and downvoting the post.
-  - subreddit: subreddit the post belongs too.
-  - timestamp: the time the post was created.
-  - upvotedBy: list of user emails who upvoted the post.
-  - downvotedBy: list of user emails who downvoted the post.
+  - **id**: unique id of the post.
+  - **postOwner**: the user who created the post.
+  - **title**: a title of the post.
+  - **text**: body text of the post.
+  - **tags**: tags set by the user set when created - EG: Question, Answer...
+  - **votes**: number of votes the post has decided by users upvoting and downvoting the post.
+  - **subreddit**: subreddit the post belongs too.
+  - **timestamp**: the time the post was created.
+  - **upvotedBy**: list of user emails who upvoted the post.
+  - **downvotedBy**: list of user emails who downvoted the post.
   - Empty field checking when creating a Post.
 * **Anko Pop Up Windows**
   - Used in multiple areas such as logging out (are you sure you want to log out?) and when deleting a Post (are you sure you want to delete this Post?) etc...
