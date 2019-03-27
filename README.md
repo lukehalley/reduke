@@ -138,10 +138,10 @@ Connect your device or start an emulator and run the app! 😃
   - Edit/Update a Post.
   - Delete Post.
 * **User Model Fields
-    - id: unique id of the user.
-    - username: the username of the user.
-    - email: the email of the user.
-    - password: the password of the user.
+  - id: unique id of the user.
+  - username: the username of the user.
+  - email: the email of the user.
+  - password: the password of the user.
 * **Post Model Fields (Some not used - will be in next assignment)**
   - **id**: unique id of the post.
   - **postOwner**: the user who created the post.
