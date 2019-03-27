@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.URLUtil
 import io.github.ponnamkarthik.richlinkpreview.ViewListener
 import kotlinx.android.synthetic.main.card_text_post.view.*
 import org.jetbrains.anko.AnkoLogger
@@ -49,6 +50,12 @@ class RedukeAdapter(private var posts: List<PostModel>,
         @SuppressLint("SetTextI18n")
         fun bind(post: PostModel, listener: RedukeListener) {
 
+
+            var url = post.link
+            if (!url.startsWith("https://") && !URLUtil.isValidUrl(url)) {
+                url = "https://$url"
+            }
+
             itemView.textPostTitleField.text = post.title
             itemView.cardPostOwner.text = post.owner
             itemView.cardPostTimestamp.text = post.timestamp.split(" ")[0]
@@ -83,7 +90,7 @@ class RedukeAdapter(private var posts: List<PostModel>,
                     itemView.imagePostCardLink.visibility = View.GONE
                 }
                 "Link" -> {
-                    itemView.imagePostCardLink.setLink(post.link, object : ViewListener {
+                    itemView.imagePostCardLink.setLink(url, object : ViewListener {
                         override fun onSuccess(status: Boolean) {
 
                         }
