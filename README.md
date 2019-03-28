@@ -7,7 +7,7 @@
   <br>
 </h1>
 
-<h4 align="center">An android application built with Kotlin for my 4th Year, Semester 2 "Mobile App Dev 2" module for our continuous assesment.</a></h4>
+<h4 align="center">An android application built with Kotlin for my 4th Year, Semester 2 "Mobile App Dev 2" module for our continuous assessment.</a></h4>
 
 ## Luke Halley
 ### 20071820
