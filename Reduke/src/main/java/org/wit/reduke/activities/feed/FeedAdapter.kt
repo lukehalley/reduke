@@ -8,9 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.URLUtil
 import io.github.ponnamkarthik.richlinkpreview.ViewListener
-import kotlinx.android.synthetic.main.card_text_post.view.*
+import kotlinx.android.synthetic.main.card.view.*
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.error
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.helpers.readImageFromPath
 import org.wit.reduke.models.posts.PostModel
@@ -31,7 +30,7 @@ class RedukeAdapter(private var posts: List<PostModel>,
 
     // Inflate the current post to a card.
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        return MainHolder(LayoutInflater.from(parent.context).inflate(org.wit.reduke.R.layout.card_text_post, parent, false))
+        return MainHolder(LayoutInflater.from(parent.context).inflate(org.wit.reduke.R.layout.card, parent, false))
     }
 
     // Bind current post to the feed.
