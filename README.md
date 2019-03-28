@@ -32,7 +32,7 @@
 
 Demo Links:
 
-- [Reduke App Functionality](https://youtu.be/LO0r3PZQhF4)
+- [Reduke V2 App Functionality](https://youtu.be/LO0r3PZQhF4)
 
 - [Espresso UI Tests](https://youtu.be/ncm8QSMwZus)
 
