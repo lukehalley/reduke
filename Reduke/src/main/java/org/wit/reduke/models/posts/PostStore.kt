@@ -12,4 +12,7 @@ interface PostStore {
 
     // Delete a post.
     fun delete(post: PostModel)
+
+    // Clear the posts.
+    fun clear()
 }

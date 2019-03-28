@@ -11,16 +11,24 @@ import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
 import org.wit.reduke.activities.feed.FeedActivity
 import org.wit.reduke.main.MainApp
+import org.wit.reduke.models.posts.PostsFirebaseStore
 import org.wit.reduke.tools.EspressoIdlingResource
 
 class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
 
-    // Get instance of the the FirebaseAuth
+    // Get instance of the the Firebase Auth
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
+
+    // Get instance of the the Firebase Database
+    var fireStore: PostsFirebaseStore? = null
 
     lateinit var app: MainApp
     override fun onCreate(savedInstanceState: Bundle?) {
         app = application as MainApp
+
+        if (app.posts is PostsFirebaseStore) {
+            fireStore = app.posts as PostsFirebaseStore
+        }
 
         super.onCreate(savedInstanceState)
         setContentView(org.wit.reduke.R.layout.activity_login)
@@ -34,14 +42,19 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
                 EspressoIdlingResource.increment()
                 // Show the loading indicator.
                 showProgress()
-
                 // Use the details entered by the user to sign in to the firebase auth cloud service.
                 auth.signInWithEmailAndPassword(enteredLoginEmail.text.toString(), enteredLoginPassword.text.toString())
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
-                                // If the user logs in, set their email in the redukeSharedPref for use later on.
-                                redukeSharedPref.setCurrentUserEmail(enteredLoginEmail.text.toString())
-                                startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", enteredLoginEmail.text.toString()), 0)
+                                if (fireStore != null) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    fireStore!!.fetchPosts {
+                                        // If the user logs in, set their email in the redukeSharedPref for use later on.
+                                        redukeSharedPref.setCurrentUserEmail(enteredLoginEmail.text.toString())
+                                        startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", enteredLoginEmail.text.toString()), 0)
+                                    }
+
+                                }
                             } else {
                                 // If sign in fails due to incorrect details, display a message to the user.
                                 toast(org.wit.reduke.R.string.toast_InvalidCreds)

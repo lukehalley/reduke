@@ -166,9 +166,6 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         info { "expandableListView: " + expandableListView }
         if (expandableListView != null) {
 
-
-            toast("Oh what a godess!")
-
             titleList = ArrayList(listData.keys)
             adapter = CustomExpandableListAdapter(this, titleList as ArrayList<String>, listData)
             expandableListView!!.setAdapter(adapter)
@@ -410,6 +407,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     override fun onBackPressed() {
         alert(org.wit.reduke.R.string.logoutPrompt) {
             yesButton {
+                app.posts.clear()
                 auth.signOut()
                 finish()
                 super.onBackPressed()
