@@ -9,13 +9,10 @@ import com.google.firebase.storage.StorageReference
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.wit.reduke.Posts
-import org.wit.reduke.helpers.exists
 import org.wit.reduke.helpers.readImageFromPath
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.*
-
-val post_JSON_FILE = "posts.json"
 
 
 fun generateRandompostId(): Long {
@@ -34,8 +31,6 @@ class PostsFirebaseStore : PostStore, AnkoLogger {
 
     constructor (context: Context) {
         this.context = context
-        if (exists(context, post_JSON_FILE)) {
-        }
     }
 
     override fun findAll(): MutableList<PostModel> {
@@ -48,7 +43,7 @@ class PostsFirebaseStore : PostStore, AnkoLogger {
 
         info { "KEY: " + auth.uid.toString() }
 
-        var key = postDatabase.child("users").child(auth.uid.toString()).child(Posts.FIREBASE_TASK).push().key
+        var key = postDatabase.child(Posts.FIREBASE_TASK).push().key
 
         post.fbId = key!!
 
@@ -56,7 +51,7 @@ class PostsFirebaseStore : PostStore, AnkoLogger {
 
         posts.add(post)
 
-        postDatabase.child("users").child(auth.uid.toString()).child(Posts.FIREBASE_TASK).child(key).setValue(post)
+        postDatabase.child(Posts.FIREBASE_TASK).child(key).setValue(post)
 
     }
 
@@ -78,7 +73,7 @@ class PostsFirebaseStore : PostStore, AnkoLogger {
             foundpost.upvotedBy = post.upvotedBy
             foundpost.downvotedBy = post.downvotedBy
         }
-        postDatabase.child("users").child(auth.uid.toString()).child(Posts.FIREBASE_TASK).child(post.fbId).setValue(post)
+        postDatabase.child(Posts.FIREBASE_TASK).child(post.fbId).setValue(post)
     }
 
     fun updateImage(post: PostModel) {
@@ -104,7 +99,7 @@ class PostsFirebaseStore : PostStore, AnkoLogger {
                 }.addOnSuccessListener { taskSnapshot ->
                     taskSnapshot.metadata!!.reference!!.downloadUrl.addOnSuccessListener {
                         post.image = it.toString()
-                        postDatabase.child("users").child(auth.uid.toString()).child(Posts.FIREBASE_TASK).child(post.fbId).setValue(post)
+                        postDatabase.child(Posts.FIREBASE_TASK).child(post.fbId).setValue(post)
                     }
                 }
             }
@@ -121,17 +116,19 @@ class PostsFirebaseStore : PostStore, AnkoLogger {
                 foundpost.timestamp = post.timestamp
                 foundpost.upvotedBy = post.upvotedBy
                 foundpost.downvotedBy = post.downvotedBy
+            } else {
+                info { "foundpost is null" }
             }
 
         }
     }
 
     override fun delete(post: PostModel) {
-        postDatabase.child("users").child(auth.uid.toString()).child(Posts.FIREBASE_TASK).child(post.fbId).removeValue()
+        postDatabase.child(Posts.FIREBASE_TASK).child(post.fbId).removeValue()
         posts.remove(post)
     }
 
-    fun fetchposts(postsReady: () -> Unit) {
+    fun fetchPosts(postsReady: () -> Unit) {
         val valueEventListener = object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
             }
@@ -143,7 +140,7 @@ class PostsFirebaseStore : PostStore, AnkoLogger {
         }
         posts.clear()
         st = FirebaseStorage.getInstance().reference
-        postDatabase.child("users").child(FirebaseAuth.getInstance().currentUser!!.uid).child(Posts.FIREBASE_TASK).addListenerForSingleValueEvent(valueEventListener)
+        postDatabase.child(Posts.FIREBASE_TASK).addListenerForSingleValueEvent(valueEventListener)
 
         info { "GOT THESE posts: " + posts }
 

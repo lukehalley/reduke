@@ -2,9 +2,8 @@ package org.wit.reduke.main
 
 import android.app.Application
 import org.jetbrains.anko.AnkoLogger
-import org.wit.reduke.models.posts.PostJSONStore
 import org.wit.reduke.models.posts.PostStore
-import org.wit.reduke.models.users.UserJSONStore
+import org.wit.reduke.models.posts.PostsFirebaseStore
 import org.wit.reduke.models.users.UserStore
 
 class MainApp : Application(), AnkoLogger {
@@ -16,8 +15,9 @@ class MainApp : Application(), AnkoLogger {
     override fun onCreate() {
         // When the app is run.
         super.onCreate()
+
         // Create an instance of the JSON store for both posts and users.
-        posts = PostJSONStore(applicationContext)
-        users = UserJSONStore(applicationContext)
+        posts = PostsFirebaseStore(applicationContext)
+//        users = UserJSONStore(applicationContext)
     }
 }
