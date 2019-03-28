@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1038411323088",
+    "firebase_url": "https://reduke-91683.firebaseio.com",
+    "project_id": "reduke-91683",
+    "storage_bucket": "reduke-91683.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038411323088:android:f5c2c7632e0e4ea9",
+        "android_client_info": {
+          "package_name": "org.wit.reduke"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038411323088-ga896k6u38qm8e4uinqculimeg5f077k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.wit.reduke",
+            "certificate_hash": "54dd0fd0b3468b76b53d42a360f363b4807e419e"
+          }
+        },
+        {
+          "client_id": "1038411323088-hnmhs8ssbeu9tl329gpt1u9ttsb9pk3g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvW1rHReCfDyCmPZyJG7Qnu-PcAjmbndo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038411323088-hnmhs8ssbeu9tl329gpt1u9ttsb9pk3g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
