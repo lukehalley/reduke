@@ -6,7 +6,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View.VISIBLE
 import android.widget.Spinner
-import kotlinx.android.synthetic.main.activity_post.*
+import kotlinx.android.synthetic.main.activity_link_post.*
+import kotlinx.android.synthetic.main.activity_text_post.*
 import org.jetbrains.anko.*
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.main.MainApp
@@ -16,7 +17,7 @@ import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 
-class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
+class LinkPostActivity : AppCompatActivity(), AnkoLogger {
 
     val subreddits = listOf("Android", "Education", "Fashion", "Funny", "Ireland", "Music", "News", "Photography", "Technology", "Video")
 
@@ -24,9 +25,9 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
     lateinit var app: MainApp
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(org.wit.reduke.R.layout.activity_post)
-        toolbarAdd.title = title
-        setSupportActionBar(toolbarAdd)
+        setContentView(org.wit.reduke.R.layout.activity_link_post)
+        toolbarLink.title = "Add Link Post"
+        setSupportActionBar(toolbarLink)
 
         // Show the up the button to allow the user to navigate back to the feed.
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -41,42 +42,43 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
             edit = true
 
             // Set toolbar title to Edit Post.
-            toolbarAdd.title = "Edit Post"
-            setSupportActionBar(toolbarAdd)
+            toolbarText.title = "Edit Post"
+            setSupportActionBar(toolbarLink)
             post = intent.extras.getParcelable<PostModel>("post_edit")
 
             // Fill the fields with existing data.
-            postTitleField.setText(post.title)
-            postDescriptionField.setText(post.text)
-            subredditSpinner.setSelection(subreddits.indexOf(post.subreddit))
-            subredditSpinner.isEnabled = false
+            linkPostTitleField.setText(post.title)
+            linkPostURL.setText(post.link)
+            linkPostSubredditSpinner.setSelection(subreddits.indexOf(post.subreddit))
+            linkPostSubredditSpinner.isEnabled = false
 
-            deletePostBtn.visibility = VISIBLE
+            deleteLinkPostBtn.visibility = VISIBLE
 
             // Set the button to display save instead of add.
-            addPostBtn.setText(org.wit.reduke.R.string.button_savePost)
+            addLinkPostBtn.setText(org.wit.reduke.R.string.button_savePost)
         }
 
         // If the user is adding a post.
-        addPostBtn.setOnClickListener {
+        addLinkPostBtn.setOnClickListener {
             // Get the data from all the post fields.
-            post.title = postTitleField.text.toString()
-            post.text = postDescriptionField.text.toString()
+            post.title = linkPostTitleField.text.toString()
+            post.type = "Link"
+            post.link = linkPostURL.text.toString()
             // Create a timestamp for when the post has been created.
             post.timestamp = DateTimeFormatter
                     .ofPattern("dd-MM-yyyy HH:mm:ss.SSSSSS")
                     .withZone(ZoneOffset.UTC)
                     .format(Instant.now())
             // Get the value from the subreddit spinner.
-            val subredditSpinner = findViewById<Spinner>(org.wit.reduke.R.id.subredditSpinner)
+            val subredditSpinner = findViewById<Spinner>(org.wit.reduke.R.id.linkPostSubredditSpinner)
             post.subreddit = subredditSpinner.selectedItem.toString()
 
             // Get an instance of the RedukeSharedPreferences.
             val redukeSharedPref = RedukeSharedPreferences(this)
-            post.postOwner = redukeSharedPref.getCurrentUserName()
+            post.owner = redukeSharedPref.getCurrentUserName()
 
             // If the fields are empty tell the user they need to fill them.
-            if (post.title.isEmpty() or post.text.isEmpty()) {
+            if (post.title.isEmpty() or post.link.isEmpty()) {
                 toast(org.wit.reduke.R.string.hint_EnterPostTitle)
             } else {
                 if (edit) {
@@ -94,7 +96,7 @@ class PostAddEditActivity : AppCompatActivity(), AnkoLogger {
         }
 
         // Set up the delete buttons functionality.
-        deletePostBtn.setOnClickListener {
+        deleteLinkPostBtn.setOnClickListener {
             // Make sure the user actually wants to the delete the post with a yes or no popup.
             alert(org.wit.reduke.R.string.deletePrompt) {
                 yesButton {

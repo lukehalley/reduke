@@ -47,8 +47,16 @@
             android:name="org.wit.reduke.activities.feed.FeedActivity"
             android:label="@string/title_PostList" />
         <activity
-            android:name="org.wit.reduke.activities.posts.PostAddEditActivity"
+            android:name="org.wit.reduke.activities.posts.TextPostActivity"
             android:label="@string/title_PostAdd"
+            android:parentActivityName="org.wit.reduke.activities.feed.FeedActivity" />
+        <activity
+            android:name="org.wit.reduke.activities.posts.ImagePostActivity"
+            android:label="@string/title_ImagePost"
+            android:parentActivityName="org.wit.reduke.activities.feed.FeedActivity" />
+        <activity
+            android:name="org.wit.reduke.activities.posts.LinkPostActivity"
+            android:label="@string/title_LinkPost"
             android:parentActivityName="org.wit.reduke.activities.feed.FeedActivity" />
         <activity
             android:name="org.wit.reduke.activities.users.RedukeLoginActivity"
