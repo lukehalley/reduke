@@ -173,7 +173,7 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
         val listData = HashMap<String, List<String>>()
 
-        val subs = ArrayList<String>(Arrays.asList(*resources.getStringArray(org.wit.reduke.R.array.subreddits_list)))
+        val subs = ArrayList<String>(Arrays.asList(*resources.getStringArray(org.wit.reduke.R.array.subreddits_menu)))
 
         listData["Subreddits"] = subs
 
