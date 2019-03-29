@@ -38,6 +38,14 @@ Demo Links:
 
 ## Setup
 
+### Preferred Method: APK Install
+
+Download the [Reduke APK](https://github.com/lukehalley/reduke/blob/master/Reduke/release/Reduke-release.apk)
+
+[Install](https://apkpure.com/how-to-install-apk.html) the APK - Note: you shouldnt have any problem installing the app as its signed with a cert.
+
+### Other Method: Download Source and Install Via Android Studio
+
 First clone the repo at the **master** branch down to your machine.
 
 `git clone https://github.com/lukehalley/reduke.git`
