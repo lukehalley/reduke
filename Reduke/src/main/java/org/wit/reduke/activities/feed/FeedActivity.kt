@@ -218,6 +218,40 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
             }
         }
 
+        val mypreference = RedukeSharedPreferences(this)
+
+        val userEmail = mypreference.getCurrentUserEmail()
+
+        val userName = mypreference.getCurrentUserName()
+
+        val parentView = nav_view.getHeaderView(0)
+        val navHeaderUser = parentView.findViewById(org.wit.reduke.R.id.current_user_nav_header) as TextView
+        val navHeaderEmail = parentView.findViewById(org.wit.reduke.R.id.current_email_nav_header) as TextView
+        val navHeaderPic = parentView.findViewById(org.wit.reduke.R.id.current_profile_picture_nav_header) as ImageView
+
+        navHeaderEmail.text = userEmail
+
+        val extras = intent.extras
+
+        if (extras != null) {
+            val loginType = extras.getString("typeOfSignIn")
+
+            if (loginType == "firebase") {
+                val firebaseUsername = userEmail.substringBefore("@")
+                mypreference.setCurrentUserName(firebaseUsername)
+                navHeaderUser.text = firebaseUsername
+            } else {
+                navHeaderUser.text = userName
+            }
+
+            if (loginType == "google") {
+                val acct = GoogleSignIn.getLastSignedInAccount(this)
+                Glide.with(this).load(acct!!.photoUrl).into(navHeaderPic)
+            }
+        } else {
+            navHeaderUser.text = mypreference.getCurrentUserName()
+        }
+
     }
 
     // Inflate the options menu.
@@ -422,36 +456,6 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     // Initialize the feed by setting the users email and username in the RedukeSharedPreferences
     // and pass the RedukeAdapter to the recyclerView's adapter.
     fun initFeed(imagePosts: List<PostModel>) {
-        val mypreference = RedukeSharedPreferences(this)
-
-        val userEmail = mypreference.getCurrentUserEmail()
-
-        val userName = mypreference.getCurrentUserName()
-
-        val parentView = nav_view.getHeaderView(0)
-        val navHeaderUser = parentView.findViewById(org.wit.reduke.R.id.current_user_nav_header) as TextView
-        val navHeaderEmail = parentView.findViewById(org.wit.reduke.R.id.current_email_nav_header) as TextView
-        val navHeaderPic = parentView.findViewById(org.wit.reduke.R.id.current_profile_picture_nav_header) as ImageView
-
-        val extras = intent.extras
-
-        val loginType = extras.getString("typeOfSignIn")
-
-        if (loginType == "firebase") {
-            val firebaseUsername = userEmail.substringBefore("@")
-            mypreference.setCurrentUserName(firebaseUsername)
-            navHeaderUser.text = firebaseUsername
-        } else {
-            navHeaderUser.text = userName
-        }
-
-        if (loginType == "google") {
-            val acct = GoogleSignIn.getLastSignedInAccount(this)
-            Glide.with(this).load(acct!!.photoUrl).into(navHeaderPic)
-        }
-
-        navHeaderEmail.text = userEmail
-        mypreference.setCurrentRedukeCount(imagePosts.size)
         recyclerView.adapter = RedukeAdapter(imagePosts, this)
         recyclerView.adapter?.notifyDataSetChanged()
     }
