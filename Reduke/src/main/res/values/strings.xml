@@ -80,9 +80,26 @@
     <string name="title_ImagePost">Image Post</string>
     <string name="title_LinkPost">Add Link Pos</string>
     <string name="toast_GoogleAuthFail">Sign In With Google Failed!</string>
+    <string name="yourPosts">Your Posts</string>
+    <string name="feed">Feed</string>
+
 
     <!--Subreddits-->
-    <string-array name="subreddits_list">
+    <string-array name="subreddits_menu">
+        <item>All</item>
+        <item>Android</item>
+        <item>Education</item>
+        <item>Fashion</item>
+        <item>Funny</item>
+        <item>Ireland</item>
+        <item>Music</item>
+        <item>News</item>
+        <item>Photography</item>
+        <item>Technology</item>
+        <item>Video</item>
+    </string-array>
+
+    <string-array name="subreddits">
         <item>Android</item>
         <item>Education</item>
         <item>Fashion</item>
