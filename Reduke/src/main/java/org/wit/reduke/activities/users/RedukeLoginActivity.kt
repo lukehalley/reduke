@@ -1,8 +1,14 @@
 package org.wit.reduke.activities.users
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.AnkoLogger
@@ -14,12 +20,23 @@ import org.wit.reduke.main.MainApp
 import org.wit.reduke.models.posts.PostsFirebaseStore
 import org.wit.reduke.tools.EspressoIdlingResource
 
+
 class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
 
-    // Get instance of the the Firebase Auth
+    // Get instance of the Firebase Auth
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    // Get instance of the the Firebase Database
+    // Get instance of the Google Sign In
+    val RC_SIGN_IN = 1
+
+    // Configure sign-in to request the user's ID, email address, and basic
+    // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+    var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+
+
+    // Get instance of the Firebase Database
     var fireStore: PostsFirebaseStore? = null
 
     lateinit var app: MainApp
@@ -35,7 +52,7 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
         val redukeSharedPref = RedukeSharedPreferences(this)
 
         // Setup the login button functionality.
-        loginButton.setOnClickListener {
+        firebaseLoginButton.setOnClickListener {
             // Make sure the fields are not empty, if they are tell the user to fill them.
             if (enteredLoginEmail.text.toString().isNotEmpty() && enteredLoginPassword.text.toString().isNotEmpty()) {
                 // Tell Espresso to wait for UI testing as we do not know how long the Firebase login will take.
@@ -51,7 +68,7 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
                                     fireStore!!.fetchPosts {
                                         // If the user logs in, set their email in the redukeSharedPref for use later on.
                                         redukeSharedPref.setCurrentUserEmail(enteredLoginEmail.text.toString())
-                                        startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", enteredLoginEmail.text.toString()), 0)
+                                        startActivityForResult(intentFor<FeedActivity>().putExtra("typeOfSignIn", "firebase"), 0)
                                     }
 
                                 }
@@ -84,6 +101,15 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
         navToRegisterButton.setOnClickListener {
             startActivityForResult<RedukeRegisterActivity>(0)
         }
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        googleLoginButton.setOnClickListener {
+            val signInIntent = mGoogleSignInClient.signInIntent
+            startActivityForResult(signInIntent, RC_SIGN_IN)
+        }
+
     }
 
     // Functions to show and hide loading animation.
@@ -93,6 +119,50 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
 
     fun hideProgress() {
         loadingLoginIndicator.visibility = View.GONE
+    }
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        val redukeSharedPref = RedukeSharedPreferences(this)
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+
+            if (account != null) {
+                val personName = account.displayName
+                val personEmail = account.email
+
+                if (personEmail != null && personName != null) {
+                    redukeSharedPref.setCurrentUserEmail(personEmail)
+                    redukeSharedPref.setCurrentUserName(personName)
+                }
+
+                if (fireStore != null) {
+                    // Sign in success, update UI with the signed-in user's information
+                    fireStore!!.fetchPosts {
+                        // If the user logs in, set their email in the redukeSharedPref for use later on.
+                        if (personEmail != null) {
+                            redukeSharedPref.setCurrentUserEmail(personEmail)
+                        }
+                        startActivityForResult(intentFor<FeedActivity>().putExtra("typeOfSignIn", "google"), 0)
+                    }
+
+                }
+            }
+        } catch (e: ApiException) {
+            toast(org.wit.reduke.R.string.toast_GoogleAuthFail)
+        }
+
     }
 
 }

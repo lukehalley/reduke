@@ -110,7 +110,7 @@ public class RedukeUserAccountTest {
         Espresso.closeSoftKeyboard();
 
         // Click the login button to login the user.
-        Espresso.onView(withId(R.id.loginButton))
+        Espresso.onView(withId(R.id.firebaseLoginButton))
                 .perform(ViewActions.click());
 
         // After login we should be brought to the feed activity.
