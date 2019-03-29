@@ -150,8 +150,15 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
                     redukeSharedPref.setCurrentUserEmail(personEmail)
                 }
 
-                // Signed in successfully, show authenticated UI.
-                startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", personEmail), 0)
+                if (fireStore != null) {
+                    // Sign in success, update UI with the signed-in user's information
+                    fireStore!!.fetchPosts {
+                        // If the user logs in, set their email in the redukeSharedPref for use later on.
+                        redukeSharedPref.setCurrentUserEmail(enteredLoginEmail.text.toString())
+                        startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", personEmail), 0)
+                    }
+
+                }
             }
         } catch (e: ApiException) {
             toast(org.wit.reduke.R.string.toast_GoogleAuthFail)
