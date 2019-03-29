@@ -68,7 +68,7 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
                                     fireStore!!.fetchPosts {
                                         // If the user logs in, set their email in the redukeSharedPref for use later on.
                                         redukeSharedPref.setCurrentUserEmail(enteredLoginEmail.text.toString())
-                                        startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", enteredLoginEmail.text.toString()), 0)
+                                        startActivityForResult(intentFor<FeedActivity>().putExtra("typeOfSignIn", "firebase"), 0)
                                     }
 
                                 }
@@ -140,11 +140,7 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
 
             if (account != null) {
                 val personName = account.displayName
-                val personGivenName = account.givenName
-                val personFamilyName = account.familyName
                 val personEmail = account.email
-                val personId = account.id
-                val personPhoto = account.photoUrl
 
                 if (personEmail != null && personName != null) {
                     redukeSharedPref.setCurrentUserEmail(personEmail)
@@ -158,7 +154,7 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
                         if (personEmail != null) {
                             redukeSharedPref.setCurrentUserEmail(personEmail)
                         }
-                        startActivityForResult(intentFor<FeedActivity>().putExtra("loggedInUser", personEmail), 0)
+                        startActivityForResult(intentFor<FeedActivity>().putExtra("typeOfSignIn", "google"), 0)
                     }
 
                 }
