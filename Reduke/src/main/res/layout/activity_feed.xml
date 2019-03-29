@@ -58,7 +58,7 @@
             android:id="@+id/nav_ExpandableSubredditList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="310dp"
+            android:layout_marginTop="361dp"
             android:choiceMode="singleChoice"
             android:dividerHeight="1dp"
             android:layoutDirection="rtl" />

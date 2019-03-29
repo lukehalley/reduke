@@ -144,16 +144,12 @@ class RedukeLoginActivity : AppCompatActivity(), AnkoLogger {
 
                 if (personEmail != null && personName != null) {
                     redukeSharedPref.setCurrentUserEmail(personEmail)
-                    redukeSharedPref.setCurrentUserName(personName)
+                    redukeSharedPref.setCurrentUserName(personName.replace("\\s".toRegex(), ""))
                 }
 
                 if (fireStore != null) {
                     // Sign in success, update UI with the signed-in user's information
                     fireStore!!.fetchPosts {
-                        // If the user logs in, set their email in the redukeSharedPref for use later on.
-                        if (personEmail != null) {
-                            redukeSharedPref.setCurrentUserEmail(personEmail)
-                        }
                         startActivityForResult(intentFor<FeedActivity>().putExtra("typeOfSignIn", "google"), 0)
                     }
 
