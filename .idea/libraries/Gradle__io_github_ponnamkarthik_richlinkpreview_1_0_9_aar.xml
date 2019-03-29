@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: io.github.ponnamkarthik:richlinkpreview:1.0.9@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/richlinkpreview-1.0.9.aar/ca75d1ec36f1da33f7c1ff2fe8e15222/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/richlinkpreview-1.0.9.aar/ca75d1ec36f1da33f7c1ff2fe8e15222/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.github.ponnamkarthik/richlinkpreview/1.0.9/d9ff38bab89ac801257f50daf10fb4fbe572fb28/richlinkpreview-1.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
