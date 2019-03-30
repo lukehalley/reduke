@@ -17,7 +17,6 @@ import android.view.View
 import android.view.View.VISIBLE
 import android.widget.Spinner
 import kotlinx.android.synthetic.main.activity_image_post.*
-import kotlinx.android.synthetic.main.activity_text_post.*
 import org.jetbrains.anko.*
 import org.wit.reduke.activities.users.RedukeSharedPreferences
 import org.wit.reduke.helpers.readImage
@@ -68,15 +67,15 @@ class ImagePostActivity : AppCompatActivity(), AnkoLogger {
             post = intent.extras.getParcelable<PostModel>("post_edit")
 
             // Fill the fields with existing data.
-            textPostTitleField.setText(post.title)
+            imagePostTitleField.setText(post.title)
 
-            textPostSubredditSpinner.setSelection(subreddits.indexOf(post.subreddit))
-            textPostSubredditSpinner.isEnabled = false
+            imagePostSubredditSpinner.setSelection(subreddits.indexOf(post.subreddit))
+            imagePostSubredditSpinner.isEnabled = false
 
-            deleteTextPostBtn.visibility = VISIBLE
+            deleteImagePostBtn.visibility = VISIBLE
 
             // Set the button to display save instead of add.
-            addTextPostBtn.setText(org.wit.reduke.R.string.button_savePost)
+            addImagePostBtn.setText(org.wit.reduke.R.string.button_savePost)
 
             if (post.image.isNotEmpty()) {
                 postImage.setImageBitmap(readImageFromPath(this, post.image))
