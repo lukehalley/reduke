@@ -63,6 +63,11 @@ class LinkPostActivity : AppCompatActivity(), AnkoLogger {
             post.title = linkPostTitleField.text.toString()
             post.type = "Link"
             post.link = linkPostURL.text.toString()
+
+            info { "SAVING LINK AS: " + linkPostURL.text.toString() }
+            info { "ACTUAL LINK AS: " + post.link }
+            post.link
+
             // Create a timestamp for when the post has been created.
             post.timestamp = DateTimeFormatter
                     .ofPattern("dd-MM-yyyy HH:mm:ss.SSSSSS")

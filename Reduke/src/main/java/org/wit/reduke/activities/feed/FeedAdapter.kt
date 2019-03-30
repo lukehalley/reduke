@@ -13,6 +13,7 @@ import android.widget.PopupMenu
 import io.github.ponnamkarthik.richlinkpreview.ViewListener
 import kotlinx.android.synthetic.main.card.view.*
 import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.info
 import org.wit.reduke.R.*
 import org.wit.reduke.activities.posts.ImagePostActivity
 import org.wit.reduke.activities.posts.LinkPostActivity
@@ -61,6 +62,8 @@ class RedukeAdapter(private var posts: List<PostModel>,
 
             var postToEdit: String
 
+            info { "GOT THE URL TO: " + post.link }
+
 
             var url = post.link
             if (!url.startsWith("https://") && !URLUtil.isValidUrl(url)) {
@@ -103,6 +106,9 @@ class RedukeAdapter(private var posts: List<PostModel>,
                     itemView.imagePostCardLink.visibility = View.GONE
                 }
                 "Link" -> {
+
+                    info { "SETTING URL TO: " + url }
+
                     postToEdit = "link"
                     itemView.imagePostCardLink.setLink(url, object : ViewListener {
                         override fun onSuccess(status: Boolean) {
