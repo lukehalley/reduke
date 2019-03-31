@@ -34,7 +34,7 @@ Demo Links:
 
 - [Reduke V2 App Functionality](https://youtu.be/2UcHWqksSwQ)
 
-- [Espresso UI Tests](https://youtu.be/ncm8QSMwZus)
+- [Reduke V2 Espresso UI Tests](https://youtu.be/jC_GyuUsz9U)
 
 ## Setup
 
