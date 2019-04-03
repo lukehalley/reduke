@@ -109,13 +109,13 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         // Set the FAB buttons action to allow the user to add a post.
         addPostFabButton.setOnClickListener {
 
-            val countries = listOf("Text Post", "Image Post", "Link Post")
+            val postTypes = listOf("Text Post", "Image Post", "Link Post")
             selector(
                     "What Type Of Post Do You Want To Create?",
-                    countries
+                    postTypes
             ) { _, i ->
 
-                val sel = countries[i]
+                val sel = postTypes[i]
 
                 when (sel) {
                     "Text Post" -> {
@@ -145,9 +145,30 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             toast(menuItem.itemId)
             menuItem.isChecked = true
-
+            val postTypes = listOf("Text Post", "Image Post", "Link Post")
             when (menuItem.itemId) {
-                org.wit.reduke.R.id.nav_addReduke -> startActivityForResult<TextPostActivity>(0)
+                org.wit.reduke.R.id.nav_addReduke ->
+                    selector(
+                            "What Type Of Post Do You Want To Create?",
+                            postTypes
+                    ) { _, i ->
+
+                        val sel = postTypes[i]
+
+                        when (sel) {
+                            "Text Post" -> {
+                                startActivityForResult<TextPostActivity>(0)
+                            }
+                            "Image Post" -> {
+                                startActivityForResult<ImagePostActivity>(0)
+                            }
+                            "Link Post" -> {
+                                startActivityForResult<LinkPostActivity>(0)
+                            }
+                            else -> error { "Invalid Post Type!" }
+                        }
+
+                    }
 
             }
             when (menuItem.itemId) {
