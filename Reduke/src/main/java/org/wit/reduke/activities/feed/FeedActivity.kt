@@ -434,27 +434,27 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
     }
 
     override fun onPostDownvote(post: PostModel) {
-        if (post.votes > 0) {
-            val userEmail = RedukeSharedPreferences(this).getCurrentUserEmail()
 
-            // Check if the user who just pressed the downvote button has pressed the upvote
-            // button for this post. If they have remove their name from the upvotedBy field
-            // as a user is only allowed to either upvote or downvote a post.
-            if (userEmail in post.upvotedBy) {
-                post.upvotedBy.remove(userEmail)
-                recyclerView.adapter?.notifyDataSetChanged()
-            }
+        val userEmail = RedukeSharedPreferences(this).getCurrentUserEmail()
 
-            // If the user hasnt already downvoted the post add them to the downvotedBy field and
-            // subtract one onto the posts votes.
-            if (userEmail !in post.downvotedBy) {
-                post.downvotedBy.add(userEmail)
-                post.votes = post.votes - 1
-                cardDownvotePost.isEnabled = false
-                cardUpvotePost.isEnabled = true
-                recyclerView.adapter?.notifyDataSetChanged()
-            }
+        // Check if the user who just pressed the downvote button has pressed the upvote
+        // button for this post. If they have remove their name from the upvotedBy field
+        // as a user is only allowed to either upvote or downvote a post.
+        if (userEmail in post.upvotedBy) {
+            post.upvotedBy.remove(userEmail)
+            recyclerView.adapter?.notifyDataSetChanged()
         }
+
+        // If the user hasnt already downvoted the post add them to the downvotedBy field and
+        // subtract one onto the posts votes.
+        if (userEmail !in post.downvotedBy) {
+            post.downvotedBy.add(userEmail)
+            post.votes = post.votes - 1
+            cardDownvotePost.isEnabled = false
+            cardUpvotePost.isEnabled = true
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
+
     }
 
     // When the add/edit activity finishes load the posts and execute the feed animation.
