@@ -309,6 +309,32 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
                     }
                 }
         }
+        val postTypes = listOf("Text Post", "Image Post", "Link Post")
+        // Add a post
+        when (item?.itemId) {
+            org.wit.reduke.R.id.item_add_post ->
+                selector(
+                        "What Type Of Post Do You Want To Create?",
+                        postTypes
+                ) { _, i ->
+
+                    val sel = postTypes[i]
+
+                    when (sel) {
+                        "Text Post" -> {
+                            startActivityForResult<TextPostActivity>(0)
+                        }
+                        "Image Post" -> {
+                            startActivityForResult<ImagePostActivity>(0)
+                        }
+                        "Link Post" -> {
+                            startActivityForResult<LinkPostActivity>(0)
+                        }
+                        else -> error { "Invalid Post Type!" }
+                    }
+                }
+        }
+
         // Log the user but create a pop to confirm they really want to log out.
         when (item?.itemId) {
             org.wit.reduke.R.id.item_logout ->

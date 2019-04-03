@@ -17,7 +17,8 @@
             android:id="@+id/imagePostCardImage"
             android:layout_width="match_parent"
             android:layout_height="125dp"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:contentDescription="TODO" />
 
         <io.github.ponnamkarthik.richlinkpreview.RichLinkViewSkype
             android:id="@+id/imagePostCardLink"
