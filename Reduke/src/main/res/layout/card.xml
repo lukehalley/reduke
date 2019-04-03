@@ -5,7 +5,7 @@
     android:id="@+id/imagePost_Card_View"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="7dp"
     android:elevation="24dp">
 
     <LinearLayout
@@ -16,13 +16,13 @@
         <ImageView
             android:id="@+id/imagePostCardImage"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="125dp"
             android:scaleType="centerCrop" />
 
         <io.github.ponnamkarthik.richlinkpreview.RichLinkViewSkype
             android:id="@+id/imagePostCardLink"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="125dp" />
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/linearLayout"
@@ -33,8 +33,8 @@
                 android:id="@+id/textPostTitleField"
                 android:layout_width="346dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/title_of_the_post_card"
                 android:text="@string/example_text"
@@ -42,7 +42,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.275"
+                app:layout_constraintHorizontal_bias="0.21"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed" />
@@ -51,11 +51,11 @@
                 android:id="@+id/cardPostOwner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
                 android:contentDescription="@string/user_who_created_the_post_card"
                 android:text="@string/exampleowner"
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textPostTitleField" />
@@ -64,13 +64,13 @@
                 android:id="@+id/cardPostPointCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="4dp"
                 android:contentDescription="@string/user_who_created_the_post_card"
                 android:text="@string/examplepoints"
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toTopOf="@+id/cardPostCommentCount"
                 app:layout_constraintEnd_toStartOf="@+id/cardUpvotePost"
@@ -84,11 +84,11 @@
                 android:id="@+id/cardPostCommentCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginBottom="12dp"
                 android:contentDescription="@string/user_who_created_the_post_card"
                 android:text="@string/zerocomments"
-                android:textAlignment="center"
+                android:textAlignment="textStart"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -99,7 +99,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:contentDescription="@string/user_who_created_the_post_card"
                 android:text="@string/defaulttime"
                 android:textAlignment="center"
@@ -114,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:contentDescription="@string/user_who_created_the_post_card"
                 android:text="@string/defaultsubreddit"
                 android:textAlignment="center"
@@ -143,7 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:contentDescription="@string/user_who_created_the_post_card"
                 android:text="@string/point"
                 android:textAlignment="center"
