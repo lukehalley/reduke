@@ -75,13 +75,13 @@ Connect your device or start an emulator and run the app! 😃
 * **Image**
   - Allow a user to take a picture from their phone camera.
   - Allow the user to select a picture from their phone's gallery.
-* **Design/UX*
+* **Design/UX**
   - Switched FAB Button To The Left To Improve UX.
   - Redesigned Login Activity To Accommodate Google Sign In.
   - Added Break Link To Login Activity To Separate Login to Register.
   - Refactored Post Card To Accommodate the 3 post types (previously on 1 design).
   - An improved general layout of cards to make them more uniform.
-* **DX*
+* **DX**
   - Created methods for repetitive processes - eg. sortByNewest, sortByOldest etc...
   - All code commented to describe code.
   - Setup instructions in this README.
