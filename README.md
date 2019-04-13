@@ -180,8 +180,15 @@ Connect your device or start an emulator and run the app! 😃
 - Picasso
 
 ## User Case Diagrams
+<p align="center">
+  <img src="https://i.imgur.com/gvd6yF9.png">
+</p>
 
 ## Screenshots
 <p align="center">
   <img src="https://i.imgur.com/7GZUeph.jpg">
 </p>
+
+
+
+- Firebase Authentication
