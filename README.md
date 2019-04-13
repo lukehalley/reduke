@@ -26,8 +26,6 @@
  
 [Screenshots](https://github.com/lukehalley/reduke/blob/dev/README.md#screenshots)
 
-## [Setup](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#setup)
-
 ## Demo Videos
 
 **PLEASE NOTE:** There are two demo videos, one which shows the **Reduke App Functionality** and a second video which shows the **Espresso UI Tests**
