@@ -74,6 +74,7 @@ Connect your device or start an emulator and run the app! 😃
 - Apache Commons Text
 - CircleImageView
 - Glide
+- Picasso
 * **Reddit Feed Features**
   - Each user can either Upvote or Downvote a post (negative points allowed). When a post is votes on it tracks who placed the vote on the post which allows the app to keep of track of if the current use thas already voted.
   - The type of Post is used to in logic in the adapter to show/hide elements of the card to accomidate the type of post. This allows the app to use one design but display all the different types of posts in the feed while still maintaining a consitent design.
