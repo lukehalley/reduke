@@ -60,7 +60,7 @@ Connect your device or start an emulator and run the app! 😃
 
 ## Features
 ### Reduke V2 - Features added/improved/ to the second version of Reduke for assignment two.
-* **APIS/Libraries**
+**APIS/Libraries**
 - Google Sign In
 - Firebase Authentication
 - Firebase Real Time Database
@@ -90,6 +90,9 @@ Connect your device or start an emulator and run the app! 😃
   - Added the option for the user to sign in user Google account using Google Sign In.
   - Used the users Google account email, username and profile picture to top of the navigation drawer.
   - Using a Reduke placeholder for users logged in using Firebase Auth.
+* **Persistence**
+  - Persisting Users using Firebase Authentication.
+  - Persisting Posts using Firebase Realtime Database including the creation, reading, editing and deletion of them.
 * **Your Posts**
   - Nav Drawer item to allow to user see their only their own posts.
 * **Image**
@@ -108,9 +111,6 @@ Connect your device or start an emulator and run the app! 😃
   - Using **EspressoIdlingResource** which allows testing of asynchronous functions in the Reduke app such as Login and Register.
   - Testing Splashscreen.
   - Testing login for Firebase authetication with random user credentials.
-* **Persistence**
-  - Persisting Users using Firebase Authentication.
-  - Persisting Posts using Firebase Realtime Database including the creation, reading, editing and deletion of them.
 * **Version Control**
   - Issues - 28 total Issues were created to be used to track task that needed to be done
   - Branches - a branch was created for each feature
@@ -142,7 +142,7 @@ Connect your device or start an emulator and run the app! 😃
 * **Persistence**
   - Persisting Users using Firebase.
   - Persisting Posts using JSON.
-* **Version Control**
+* **Version Control/GIT**
   - Use of Issues to track task that needed to be done
   - Branches for each feature.
   - Regular commits.
