@@ -46,7 +46,7 @@ Demo Links:
 
 ## Setup
 
-First clone the repo at the **dev** (development not finished) branch down to your machine.
+First clone the repo at the **master** branch down to your machine.
 
 `git clone https://github.com/lukehalley/reduke.git`
 
@@ -59,6 +59,59 @@ Then [open the project in Android Studio](https://github.com/dogriffiths/HeadFir
 Connect your device or start an emulator and run the app! 😃
 
 ## Features
+### Reduke V2 - Features added/improved/ to the second version of Reduke for assignment two.
+* **Reddit Feed Features**
+  - Each user can either Upvote or Downvote a post (negative points allowed). When a post is votes on it tracks who placed the vote on the post which allows the app to keep of track of if the current use thas already voted.
+  - The type of Post is used to in logic in the adapter to show/hide elements of the card to accomidate the type of post. This allows the app to use one design but display all the different types of posts in the feed while still maintaining a consitent design.
+  - Post Title, Owner, Date Created, Votes, Subreddit, Comment Count can be seen on each card for each Post and are filled in with the data stored in the Firebase Realtime Database.
+  - Changed editing of posts from a long press to a three button menu to improve UX.
+* **Added Rich Preview Links**
+  - Used the [RichLinkPreview](https://github.com/PonnamKarthik/RichLinkPreview) by PonnamKarthik - library to show link previews in the cards for all link posts.
+* **Subreddits**
+  - ExpandableListView in Nav Drawer with a list of Subreddits.
+  - When a user clicks a subreddits the feed is filtered to only display posts which are within that subreddit.
+* **Your Posts**
+  - Nav Drawer item to allow to user see their only their own posts.
+* **Image**
+  - Allow user to take a picture from their phone camera.
+  - Allow user to select a picture from their phones gallery.
+* **Design**
+  - Switched FAB Button To The Left To Improve UX.
+  - Redesigned Login Activity To Accomidate Google Sign In.
+  - Added Break Link To Login Activity To Seperate Login to Register.
+  - Refactored Post Card To Accomidate the 3 post types (previously on 1 design).
+  - Improved general layout of cards to make them more uniform.
+* **Animations**
+  - Tweaked when Animation for feed is played to improve UX.
+* **Testing**
+  - Using Espresso UI with an Emulator to test the UI of reduke.
+  - Using **EspressoIdlingResource** which allows testing of asynchronous functions in the Reduke app such as Login and Register.
+  - Testing Splashscreen.
+  - Testing login for Firebase authetication with random user credentials.
+* **Persistence**
+  - Persisting Users using Firebase Authentication.
+  - Persisting Posts using Firebase Realtime Database including the creation, reading, editing and deletion of them.
+* **Version Control**
+  - Issues - 28 total Issues were created to be used to track task that needed to be done
+  - Branches - a branch was created for each feature
+  - Regular commits.
+  - Dev branch used with merge requests to keep all code on Dev & Master working.
+* **Register and Login**
+  - Added the option for the user to sign in user Google account using Google Sign In
+  - Used the users Google account email, username and profile picture to top of the navigation drawer.
+  - Using a Reduke placeholder for users logged in using Firebase Auth.
+* **CRUD Features**
+  - Dynamic Edit/Update activity which shows/hides elements based on the type of type of the post the User is editing.
+  - Link parsing, validates the entered URL for a URL post. Adds a HTTPS if the url doesnt include it.
+* **Post Model Fields**
+  - link: the link associated to the link post.
+  - image: the image associated with the image post.
+  - votes: number of votes the post has decided by users upvoting and downvoting the post.
+  - subreddit: subreddit the post belongs too.
+  - timestamp: time the post was created.
+* **Anko Selector**
+  - Used to allow the user to decide "What Type Of Post Do You Want To Create?" and select for the thre three post types (text, image or link) and bring them to a dynamic create post activity which shows/hides elements based on the type of type of the post the User is creating. 
+### Reduke V1 - Features added/improved/ to the first version of Reduke for assignment two.
 * **Design**
   - Custom Splashscreen created by me.
   - Navigation drawer, Floating Action Button (FAB), Flat Icons.
@@ -66,20 +119,10 @@ Connect your device or start an emulator and run the app! 😃
   - Material Design - Flat and bright colours with consistent app wide colour scheme.
 * **Animations**
   - Posts fade in from the right when the posts are loaded or when they are sorted.
-* **Espresso UI Tests**
-  - Test all key functionalitys (CRUD, Upvote, Downvote, Login, Logout etc...)
-  - Using **EspressoIdlingResource** which allows testing of asynchronous functions in the Reduke app such as Login and Register.
 * **Reddit Feed Features**
   - Scroll through all the posts created as a feed just like Reddit.
-  - Sort Posts by:
-    - Top (Most votes)
-    - Newest (Newest Posts)
-    - Oldest (Oldest Posts)
-    - Alphabetical (Ascending Order)
-    - Alphabetical (Descending Order)
   - Upvote or Downvote a post.
   - Posts displayed in uniform cards.
-  - Post Title, Owner, Date Created, Votes, Subreddit, Comment Count can be seen on each card for each Post.
 * **Persistence**
   - Persisting Users using Firebase.
   - Persisting Posts using JSON.
@@ -102,7 +145,7 @@ Connect your device or start an emulator and run the app! 😃
     - username: the username of the user.
     - email: the email of the user.
     - password: the password of the user.
-* **Post Model Fields**
+* **Post Model Fields (Some not used - will be in next assignment)**
   - id: unique id of the post.
   - postOwner: user who created the post.
   - title: title of the post.
@@ -114,7 +157,7 @@ Connect your device or start an emulator and run the app! 😃
   - upvotedBy: list of user emails who upvoted the post.
   - downvotedBy: list of user emails who downvoted the post.
   - Empty field checking when creating a Post.
-* **Pop Up Windows**
+* **Anko Pop Up Windows**
   - Used in multiple areas such as logging out (are you sure you want to logout?) and when deleting a Post (are you sure you want to delete this Post?) etc...
 * **Using SharedPreferences**
   - Used for various logic and ui elements.
