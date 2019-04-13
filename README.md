@@ -23,8 +23,6 @@
 [Technolgies Used](https://github.com/lukehalley/reduke/blob/dev/README.md#technolgies-used)
 
 [User Case Diagrams](https://github.com/lukehalley/reduke/blob/dev/README.md#user-case-diagrams)
-
-[Persistance](https://github.com/lukehalley/reduke/blob/dev/README.md#persitance)
  
 [Screenshots](https://github.com/lukehalley/reduke/blob/dev/README.md#screenshots)
 
