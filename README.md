@@ -14,9 +14,11 @@
 
 # Jump To:
 
-[Demo Videos](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#setup)
+[Demo Videos](https://github.com/lukehalley/reduke/blob/dev/README.md#demo-videos)
 
-[Technolgies Used](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#tests)
+[Setup](https://github.com/lukehalley/reduke/blob/dev/README.md#setup-1)
+
+[Technolgies Used](https://github.com/lukehalley/reduke/blob/dev/README.md#features)
 
 [Features](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#tests)
 
@@ -26,9 +28,9 @@
 
 [Git Approach](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#user-stories)
 
-[UX/DX Approach Adopted.](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#user-stories)
+[UX/DX Approach Adopted](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#user-stories)
  
-[Screenshots](https://gitlab.com/stork-group/stork-web-service/wikis/Home#status-codes)
+[Screenshots](https://github.com/lukehalley/reduke/blob/dev/README.md#screenshots)
 
 ## [Setup](https://gitlab.com/stork-group/stork-web-service/wikis/Home/#setup)
 
@@ -41,6 +43,20 @@ Demo Links:
 - [Reduke App Functionality](https://youtu.be/LO0r3PZQhF4)
 
 - [Espresso UI Tests](https://youtu.be/ncm8QSMwZus)
+
+## Setup
+
+First clone the repo at the **dev** (development not finished) branch down to your machine.
+
+`git clone https://github.com/lukehalley/reduke.git`
+
+Then [open the project in Android Studio](https://github.com/dogriffiths/HeadFirstAndroid/wiki/How-to-open-a-project-in-Android-Studio)
+
+<p align="center">
+  <img src="https://i.imgur.com/zUipbb3.png">
+</p>
+
+Connect your device or start an emulator and run the app! 😃
 
 ## Features
 * **Design**
@@ -103,22 +119,20 @@ Demo Links:
 * **Using SharedPreferences**
   - Used for various logic and ui elements.
 
+## Technolgies Used
+
+## User Case Diagrams
+
+## Persitance
+
+## Git Approach
+
 ## Screenshots
+
+## UX/DX Approach Adopted
 
 <p align="center">
   <img src="https://i.imgur.com/6LL3cSp.jpg">
 </p>
 
-## Setup
 
-First clone the repo at the **dev** (development not finished) branch down to your machine.
-
-`git clone https://github.com/lukehalley/reduke.git`
-
-Then [open the project in Android Studio](https://github.com/dogriffiths/HeadFirstAndroid/wiki/How-to-open-a-project-in-Android-Studio)
-
-<p align="center">
-  <img src="https://i.imgur.com/zUipbb3.png">
-</p>
-
-Connect your device or start an emulator and run the app! 😃
