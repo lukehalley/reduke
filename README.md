@@ -77,12 +77,16 @@ Connect your device or start an emulator and run the app! 😃
 * **Image**
   - Allow user to take a picture from their phone camera.
   - Allow user to select a picture from their phones gallery.
-* **Design**
+* **Design/UX*
   - Switched FAB Button To The Left To Improve UX.
   - Redesigned Login Activity To Accomidate Google Sign In.
   - Added Break Link To Login Activity To Seperate Login to Register.
   - Refactored Post Card To Accomidate the 3 post types (previously on 1 design).
   - Improved general layout of cards to make them more uniform.
+* **DX*
+  - Created methods for repetative processes - eg. sortByNewest, sortByOldest etc...
+  - All code commented to describe code.
+  - Setup instructions in the this README.
 * **Animations**
   - Tweaked when Animation for feed is played to improve UX.
 * **Testing**
@@ -173,10 +177,12 @@ Connect your device or start an emulator and run the app! 😃
 - Glide
 - Picasso
 
-## User Case Diagrams
+## UML Diagram
+<p align="center">
+  <img src="https://i.imgur.com/gvd6yF9.png">
+</p>
 
 ## Screenshots
-
 <p align="center">
   <img src="https://i.imgur.com/7GZUeph.jpg">
 </p>
