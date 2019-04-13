@@ -188,7 +188,3 @@ Connect your device or start an emulator and run the app! 😃
 <p align="center">
   <img src="https://i.imgur.com/7GZUeph.jpg">
 </p>
-
-
-
-- Firebase Authentication
