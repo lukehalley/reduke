@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/imagePost_Card_View"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="7dp"
+    android:elevation="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imagePostCardImage"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="TODO" />
+
+        <io.github.ponnamkarthik.richlinkpreview.RichLinkViewSkype
+            android:id="@+id/imagePostCardLink"
+            android:layout_width="match_parent"
+            android:layout_height="125dp" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textPostTitleField"
+                android:layout_width="346dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/title_of_the_post_card"
+                android:text="@string/example_text"
+                android:textAlignment="viewStart"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.21"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/cardPostOwner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/user_who_created_the_post_card"
+                android:text="@string/exampleowner"
+                android:textAlignment="textStart"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textPostTitleField" />
+
+            <TextView
+                android:id="@+id/cardPostPointCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="4dp"
+                android:contentDescription="@string/user_who_created_the_post_card"
+                android:text="@string/examplepoints"
+                android:textAlignment="textStart"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@+id/cardPostCommentCount"
+                app:layout_constraintEnd_toStartOf="@+id/cardUpvotePost"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardPostOwner"
+                app:layout_constraintVertical_bias="1.0"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/cardPostCommentCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="12dp"
+                android:contentDescription="@string/user_who_created_the_post_card"
+                android:text="@string/zerocomments"
+                android:textAlignment="textStart"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/cardPostTimestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/user_who_created_the_post_card"
+                android:text="@string/defaulttime"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/point"
+                app:layout_constraintTop_toBottomOf="@+id/textPostTitleField"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/cardPostSubreddit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/user_who_created_the_post_card"
+                android:text="@string/defaultsubreddit"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/point2"
+                app:layout_constraintTop_toBottomOf="@+id/textPostTitleField"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="not set" />
+
+            <TextView
+                android:id="@+id/point2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:contentDescription="@string/user_who_created_the_post_card"
+                android:text="@string/point"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/cardPostTimestamp"
+                app:layout_constraintTop_toTopOf="@+id/cardPostTimestamp" />
+
+            <TextView
+                android:id="@+id/point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:contentDescription="@string/user_who_created_the_post_card"
+                android:text="@string/point"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/cardPostOwner"
+                app:layout_constraintTop_toBottomOf="@+id/textPostTitleField" />
+
+            <ImageButton
+                android:id="@+id/cardUpvotePost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="152dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/transparent"
+                android:contentDescription="@string/upvote_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardPostCommentCount"
+                app:layout_constraintTop_toBottomOf="@+id/cardPostOwner"
+                app:layout_constraintVertical_bias="0.771"
+                app:srcCompat="@drawable/upvotenotactive" />
+
+            <ImageButton
+                android:id="@+id/cardFavouritePost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/transparent"
+                android:contentDescription="@string/favourite_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cardPostMenu"
+                app:layout_constraintStart_toEndOf="@+id/cardDownvotePost"
+                app:layout_constraintTop_toBottomOf="@+id/cardPostOwner"
+                app:layout_constraintVertical_bias="0.771"
+                app:srcCompat="@drawable/ic_star_black_24dp" />
+
+            <ImageButton
+                android:id="@+id/cardPostMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/transparent"
+                android:contentDescription="@string/menu_on_card"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardFavouritePost"
+                app:layout_constraintTop_toBottomOf="@+id/cardPostOwner"
+                app:layout_constraintVertical_bias="0.771"
+                app:srcCompat="@drawable/menu" />
+
+            <ImageButton
+                android:id="@+id/cardDownvotePost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/transparent"
+                android:contentDescription="@string/downvote_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cardFavouritePost"
+                app:layout_constraintStart_toEndOf="@+id/cardUpvotePost"
+                app:layout_constraintTop_toBottomOf="@+id/cardPostOwner"
+                app:layout_constraintVertical_bias="0.771"
+                app:srcCompat="@drawable/downvotenotactive" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
