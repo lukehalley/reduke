@@ -137,7 +137,7 @@ Connect your device or start an emulator and run the app! 😃
   - View/Read a Post.
   - Edit/Update a Post.
   - Delete Post.
-  * User Model Fields
+* **User Model Fields
     - id: unique id of the user.
     - username: the username of the user.
     - email: the email of the user.
