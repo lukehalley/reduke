@@ -143,7 +143,6 @@ class FeedActivity : AppCompatActivity(), RedukeListener, AnkoLogger {
 
         // Set the actions when the drawer items are pressed.
         navigationView.setNavigationItemSelectedListener { menuItem ->
-            toast(menuItem.itemId)
             menuItem.isChecked = true
             val postTypes = listOf("Text Post", "Image Post", "Link Post")
             when (menuItem.itemId) {
