@@ -179,6 +179,20 @@ Connect your device or start an emulator and run the app! 😃
   - Used for various logic and ui elements.
 
 ## Technolgies Used
+- Google Sign In
+- Firebase Authentication
+- Firebase Real Time Database
+- Firebase Authentication
+- RichLinkPreview
+- Anko Commons
+- UI Automator
+- Espresso
+- Play Services Auth
+- JUnit
+- Apache Commons Text
+- CircleImageView
+- Glide
+- Picasso
 
 ## User Case Diagrams
 
@@ -193,5 +207,3 @@ Connect your device or start an emulator and run the app! 😃
 <p align="center">
   <img src="https://i.imgur.com/6LL3cSp.jpg">
 </p>
-
-
