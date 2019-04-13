@@ -179,7 +179,7 @@ Connect your device or start an emulator and run the app! 😃
 - Glide
 - Picasso
 
-## User Case Diagrams
+## UML Diagram
 <p align="center">
   <img src="https://i.imgur.com/gvd6yF9.png">
 </p>
