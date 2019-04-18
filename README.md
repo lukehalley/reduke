@@ -185,7 +185,7 @@ Connect your device or start an emulator and run the app! 😃
 
 ## UML Diagram
 <p align="center">
-  <img src="https://i.imgur.com/gvd6yF9.png">
+  <img src="https://i.imgur.com/e5oA8Zx.png">
 </p>
 
 ## Screenshots
